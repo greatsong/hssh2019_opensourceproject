@@ -1,1 +1,51 @@
-d
+[프로젝트1 : 등가속도 운동방정식의 효율성 개선]
+1)연구소 이름 : 권순의 연구소
+2)연구소가 해결하려는 문제 : 가속도를 구하는 데 어려움을 겪고 있는 권순
+3)연구소의 깃헙 링크 : https://github.com/yttts4354/-/blob/master/정보%20프로젝트
+4)내가 기여한 내용:
+x = input("가속도를 모르는 운동이면 A, 최종속력을 모르는 운동이면 B, 모든 변수를 알고 있으면 C를 입력해주세요.:")
+
+def f(x):
+from matplotlib import pyplot as plt
+from matplotlib import font_manager, rc
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc('font', family=font_name)
+plt.plot([0,t],[vi,vf])
+plt.xlabel('time(s)')
+plt.ylabel('velocity(m/s)')
+plt.title('등가속도 운동 그래프')
+plt.show()
+
+if x=='A':
+vi = int(input("초기속력을 입력하세요 (단위 m/s):"))
+vf = int(input("최종속력을 입력하세요 (단위 m/s):"))
+t = int(input("진행시간을 입력하세요 (단위 s):"))
+a=(vf-vi)/t
+d = (vf2 - vi2) / (2*a)
+print("가속도는", a, "m/s^2 입니다.")
+print("변위는", abs(d), "m 입니다.")
+f(x)
+
+elif x=='B':
+vi = int(input("초기속력을 입력하세요 (단위 m/s):"))
+a = int(input("가속도를 입력하세요 (단위 m/s2:"))
+t = int(input("진행시간을 입력하세요 (단위 s):"))
+vf = vi + at
+d = (vf2 - vi2) / (2*a)
+print("최종속력은", vf, "m/s입니다.")
+print("이동거리는", abs(d), "m 입니다.")
+f(x)
+
+elif x=='C':
+vi = int(input("초기속력을 입력하세요 (단위 m/s):"))
+a = int(input("가속도를 입력하세요 (단위 m/s2:"))
+vf = int(input("최종속력을 입력하세요 (단위 m/s):"))
+t = int(input("진행시간을 입력하세요 (단위 s):"))
+if vf!=vi+at:
+print ('존재하지 않는 운동입니다.')
+else:
+f(x)
+5)내가 기여한 내용에 대한 설명
+존재하지 않는 운동의 경우에 대해서 고려함.
+다양한 변수를 모를 때 경우별로 나눔.
+그래프 그리는 함수를 한번에 설정해서 코드 길이를 줄임
