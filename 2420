@@ -29,7 +29,26 @@ pg.draw()` -> pg.draw()
 4-1)수정하거나 추가하고 싶은 내용
 (수정하거나 추가하고 싶은 내용을 작성해주세요)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def translate(rslt):
+
+ for i in range(0, len(rslt)):
+        if codon == 'ATG':
+            sm = True
+            pos = i
+            break
+
+    if sm == True :
+
+        for i in range(pos, len(rslt),3) :
+
+            codon = rslt[i:i + 3]
+
+            if codon in ['TAA', 'TAG', 'TGA']:
+                return protein
+            else: 
+                protein += table[codon] 
+             
+print(translate("ATGTCGTAA"))
 5)내가 기여한 내용에 대한 설명
 (자신이 어떤 기여를 한 것인지 설명해주세요)
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
