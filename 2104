@@ -49,3 +49,50 @@ f(x)
 존재하지 않는 운동의 경우에 대해서 고려함.
 다양한 변수를 모를 때 경우별로 나눔.
 그래프 그리는 함수를 한번에 설정해서 코드 길이를 줄임
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+[프로젝트 2 : 함수의 그래프]
+1)연구소 이름 : 
+2)연구소가 해결하려는 문제 : 미분공부에 어려움을 겪는 친구(옥슬이)
+3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+4)내가 기여한 내용
+(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def translate(): 
+    table = { 
+        'ATA':'ILEU-', 'ATC':'ILEU-', 'ATT':'ILEU-', 'ATG':'MET-', 
+        'ACA':'THR-', 'ACC':'THR-', 'ACG':'THR-', 'ACT':'THR-', 
+        'AAC':'ASN-', 'AAT':'ASN-', 'AAA':'LYS-', 'AAG':'LYS-', 
+        'AGC':'SER-', 'AGT':'SER-', 'AGA':'ARG-', 'AGG':'ARG-',                  
+        'CTA':'LEU-', 'CTC':'LEU-', 'CTG':'LEU-', 'CTT':'LEU-', 
+        'CCA':'PRO-', 'CCC':'PRO-', 'CCG':'PRO-', 'CCT':'PRO-', 
+        'CAC':'HIS-', 'CAT':'HIS-', 'CAA':'GLN-', 'CAG':'GLN-', 
+        'CGA':'ARG-', 'CGC':'ARG-', 'CGG':'ARG-', 'CGT':'ARG-', 
+        'GTA':'VAL-', 'GTC':'VAL-', 'GTG':'VAL-', 'GTT':'VAL-', 
+        'GCA':'ALA-', 'GCC':'ALA-', 'GCG':'ALA-', 'GCT':'ALA-', 
+        'GAC':'ASP-', 'GAT':'ASP-', 'GAA':'GLU-', 'GAG':'GLU-', 
+        'GGA':'GLY-', 'GGC':'GLY-', 'GGG':'GLY-', 'GGT':'GLY-', 
+        'TCA':'SER-', 'TCC':'SER-', 'TCG':'SER-', 'TCT':'SER-', 
+        'TTC':'PHE-', 'TTT':'PHE-', 'TTA':'LEU-', 'TTG':'LEU-', 
+        'TAC':'TYR-', 'TAT':'TYR-', 'TAA':'_', 'TAG':'_', 
+        'TGC':'CYS-', 'TGT':'CYS-', 'TGA':'_', 'TGG':'TRY-', 
+
+    } 
+    protein ="" 
+    
+    rslt=input('염기서열을 입력하세요:')
+    for i in range(0, len(rslt), 3):
+        codon = protein[i:i + 3]
+        print(translate[codon])
+5)내가 기여한 내용에 대한 설명
+(자신이 어떤 기여를 한 것인지 설명해주세요)
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
+1)연구소 이름 : (공유 파일에서 복붙하세요)
+2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
+3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+4)내가 기여한 내용
+(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+5)내가 기여한 내용에 대한 설명
+(자신이 어떤 기여를 한 것인지 설명해주세요)
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
