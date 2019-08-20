@@ -2,6 +2,7 @@
 한성과학고등학교의 2019학년도 2학기 정보과학 - 오픈소스 프로젝트 레파지토리입니다.
 
 오픈소스란? : https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88_%EC%86%8C%EC%8A%A4
+컨트리뷰션의 종류 : https://naver.github.io/OpenSourceGuide/book/BetterContribution/why-contribute-to-open-source.html
 
 #### 1) 선생님 레파지토리를 fork하세요!
 #### 2) 오픈소스 프로젝트 진행 과정을 기록하는 파일(제목은 학번)을 작성해서 첫번째 PR을 날려주세요!!
