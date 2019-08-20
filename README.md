@@ -1,5 +1,5 @@
 # hssh2019_opensourceproject
-한성과학고등학교의 2019학년도 2학기 정보과학 - 오픈소스 프로젝트 레파지토리입니다.
+한성과학고등학교의 2019학년도 2학기 정보과학 - 오픈소스 프로젝트 레파지토리입니다.<br>
 오픈소스란? : https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88_%EC%86%8C%EC%8A%A4<br>
 컨트리뷰션의 종류 : https://naver.github.io/OpenSourceGuide/book/BetterContribution/why-contribute-to-open-source.html<br>
 
