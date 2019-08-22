@@ -9,23 +9,47 @@
 4-1)수정하거나 추가하고 싶은 내용
 단순히 반복되는 코드가 길어, 이를 일일이 계산할 수 있는 프로그램으로 바꾸고 싶다. 이를 통해, 118번 이후의 그 어떤 원자라도 만들 수 있도록 하고 싶다.
 4-2)내가 기여한 내용
-if cnt == 24 or 29: 와 같이 작성하면 29는 True이므로 항상 실행됨을 확인하여, 이를 일일이 cnt == 29와 같이 수정하였다.
-#49번째 줄부터 (그 전까지 동일)
+#전체 프로그램
+except_in = 1
+if z in [24, 29] :
+    except_num = z - 19
+    z = 19
+    except_type = '3d'
+elif z in [41, 42, 44, 46] :
+    except_num = z - 37
+    z = 37
+    except_type = '4d'
+elif z in [58, 64] :
+    except_num = 1
+    z -= 1
+    except_type = '5d'
+elif z in [89, 90] :
+    except_num = z - 88
+    z = 88
+    except_type = '6d'
+elif z in [91, 92, 93, 96] :
+    except_num = 1
+    z -= 1
+    except_type = '6d'
+elif z == 103 :
+    except_num = 1
+    z -= 1
+    except_type = '7p'
+else :
+    except_in = 0
+    
 x = 1
 data = []
 temp = 0
 while True:
     pos = (x+1)//2
-    
     while True:
         if x%2:
             start = (x+1)//2 + (x+1)//2 - pos
         else:
             start = x // 2 + 1 + (x+1)//2 - pos
-            
         if z <= 4*pos-2:
             data.append([start, pos, z])
-            
             temp = 1
             break
         else:
@@ -39,18 +63,24 @@ while True:
     x += 1
 
 norm_let = 'spdf'
+orbital = {}
 for i in data:
     if i[1] <= 4:
         i[1] = norm_let[i[1]-1]
     else:
         i[1] = ord(i[1] + 98)
+
+    orbital[str(i[0])+i[1]] = i[2]
     
-    print(str(i[0])+i[1]+'*'+str(i[2]), end = ' ')
+if except_in:
+    orbital[except_type] = except_num
     
 5)내가 기여한 내용에 대한 설명
-spdf의 앞뒤 계수를 지정해주는 것을 자동화하여, 반복적인 구조를 미리 만들었어야 할 필요를 없앴다.
-예외적인 전자배치는 따로 구현하기 복잡하여, 기존의 코드로 놔두었다.
-이를 통해, 118번까지가 아니라 그 이후의 번호들도 작성할 수 있을 것이다.
+spdf를 사전에 설정한 다음 그에 맞추어 전자를 배열하는 것이 아니라, 전자를 배치해나가며 spdf를 추가로 생성하도록 하였다. 
+이를 통하여, 필요없는 spdf 칸을 생성하지 않을 수 있으며, 118번 이후의 원자들에 대해서도 전자 배치를 알 수 있었다.
+예외 처리 부분은 예외적이지 않은 부분까지 동일 방식으로 생성한 후, 마지막에 예외 부분을 더하도록 하였다. 이는 전보다 조금 더 비효율적일 수는 있지만, 
+오비탈을 일일이 지정해줄 필요가 없다는 데에 의의를 둔다.
+z == 24 or 29는 원하는대로 실행이 되지 않으므로, 이를 z in [24,29]와 같이 변형하였다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 예외가 있는 원자와 이온의 오비탈]
