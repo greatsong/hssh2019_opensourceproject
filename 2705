@@ -9,9 +9,45 @@
 4-1)수정하거나 추가하고 싶은 내용
 단순히 반복되는 코드가 길어, 이를 일일이 계산할 수 있는 프로그램으로 바꾸고 싶다. 이를 통해, 118번 이후의 그 어떤 원자라도 만들 수 있도록 하고 싶다.
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+#2번째 줄부터 (1번째 줄 동일)
+x = 1
+data = []
+temp = 0
+while True:
+    pos = (x+1)//2
+    
+    while True:
+        if x%2:
+            start = (x+1)//2 + (x+1)//2 - pos
+        else:
+            start = x // 2 + 1 + (x+1)//2 - pos
+            
+        if z <= 4*pos-2:
+            data.append([start, pos, z])
+            
+            temp = 1
+            break
+        else:
+            data.append([start, pos, 4*pos-2])
+            z -= 4*pos-2
+            pos -= 1
+            if not pos:
+                break
+    if temp:
+        break
+    x += 1
+
+norm_let = 'spdf'
+for i in data:
+    if i[1] <= 4:
+        i[1] = norm_let[i[1]-1]
+    else:
+        i[1] = ord(i[1] + 98)
+    
+    print(str(i[0])+i[1]+'*'+str(i[2]), end = ' ')
+    
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+spdf의 앞뒤 계수를 지정해주는 것을 자동화하여, 반복적인 구조를 미리 만들었어야 할 필요를 없앴다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 예외가 있는 원자와 이온의 오비탈]
