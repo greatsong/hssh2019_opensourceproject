@@ -7,7 +7,66 @@
 2)연구소가 해결하려는 문제 : 미분공부에 어려움을 겪는 친구(옥슬이)
 3)연구소의 깃헙 링크 : https://github.com/maga0328/maganetic/blob/master/%ED%82%B9%EB%AF%BC%EC%A7%9C%EC%9D%B4%20%EC%97%B0%EA%B5%AC%EA%B2%B0%EA%B3%BC
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+from numpy import *
+import re
+x = symbols('x')
+print('문제에서 적용가능한 함수 리스트\n',"'함수 : 입력' 형식에 맞춰 입력해야 함\n")
+print('f(x)^n : f(x)**n')
+print('e^f(x) : exp(f(x)) (e**f(x)로 안씀)')
+print('a^f(x) : a**f(x)')
+print('ln(f(x)) : log(f(x))')
+print('sin(f(x)) : sin(f(x))')
+print('사용 가능한 범용 함수 : f(x), g(x)')
+
+def del_0(sth):
+    if sth==[]:
+        return ['0']
+    else:
+        if '0' in sth:
+            sth.remove('0')
+            return del_0(sth)
+        else:
+            return sth
+
+        
+def desc(x,fin):
+    if len(x)!=len(fin):
+        return 'fail'
+    for i in range(len(x)):
+        if x[i] not in fin: return 'fail'; break
+        else:
+            if i==len(x)-1:
+                if x[i] in fin: return 'pass'
+                
+                
+def correct(x):
+    a=''
+    for i in range(len(x)):
+        if i!=len(x)-1:
+            if x[i][0]=='-': a+=x[i]; a+='-'
+            else: a+=x[i]; a+='+'
+        else: a+=x[i]
+    return a
+
+global answer
+    sth=input().split('+') #여러개를 나열해서 미분퀴즈를 내는 것 보다 더하기로 묶는게 나을듯
+    fin=input().split('+')
+    x = dercof(sth)
+    x.reverse()
+    # 띄어쓰기로 함수를 나눴을 때 미분값을 반대로 뒤집어 입력해야 넘어감, 아마도 스택써서 그런듯. 그래서 리스트 자체를 뒤집음
+    x=del_0(x)
+    answer=correct(x)
+    fin=del_0(fin)
+    # 어차피 0은 있으나 마나 상관 없으니 마음껏 써도 상관은 없게 만들어놓음
+    return desc(x,fin)
+    
+    elif a== 'fail':
+        print('answer is',answer) #오답이면 정답 나오게 설정함, 맘에 안들면 주석처리 하면 됨
+        print('try again')
+        print("your score is",i-1,'score.')
+        print('wa! sans!')
+        break
+
 5)내가 기여한 내용에 대한 설명
 1. 거꾸로 써야한다는 큰 단점을 보완함, 더 나아가 교환법칙 가능
 2. 상수항을 미분했을 때 0을 써야하지만 0을 안써도 되게함
