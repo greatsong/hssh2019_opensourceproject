@@ -9,33 +9,44 @@
 4)내가 기여한 내용
 x_1 = input("1째 점의 x좌표를 입력해 주세요")
 y_1 = input("1째 점의 y좌표를 입력해 주세요")
-
- 
-
-#1,3번 방정식의 해
-
+ #1,3번 방정식의 해
 x_2 =input("2째 점의 x좌표를 입력해 주세요")
-
 y_2 =input("2째 점의 y좌표를 입력해 주세요")
-
-
- 
-
-#2,3번 방정식의 해
-
+ #2,3번 방정식의 해
 x_3=input("2째 점의 x좌표를 입력해 주세요")
-
 y_3=input("2째 점의 y좌표를 입력해 주세요")
-
-
-
+#랜덤하게 뿌린 점을 담을 리스트와 그 중에서 영역 안에 포함된 점을 담을 리스트 설정
+randompoint=[]
+conditionpoint=[]
+#세 방정식으로 만들어진 도형(삼각형)을 포함하는 최소의 직사각형 안에 랜덤하게 점을 뿌리기
+a=max(x_1,x_2,x_3)
+b=min(x_1,x_2,x_3)
+c=max(y_1,y_2,y_3)
+d=min(y_1,y_2,y_3)
+for i in range(1000):
+    randompoint += [[0.01*random.randint(100*int(b),100*(int(a)+1)), 0.01*random.randint(100*int(d),100*(int(c)+1))]]
+# 이 중 조건을 만족하는 점들을 다른 리스트에 담기
+for i in range(len(randompoint)):
+    if a_1*randompoint[i][0]+b_1*randompoint[i][1]+c_1>0 and a_2*randompoint[i][0]+b_2*randompoint[i][1]+c_2>0 and a_3*randompoint[i][0]+b_3*randompoint[i][1]+c_3>0:
+        conditionpoint.append(randompoint[i])
+#그래프 그리기
+list_x=[]
+list_y=[]
+for i in range(len(conditionpoint)):
+    list_x = list_x + [conditionpoint[i][0]]
+    list_y = list_y + [conditionpoint[i][1]]
+plt.scatter(list_x ,list_y)
+plt.show()
 5)내가 기여한 내용에 대한 설명
 원래의 코드에서는 점묘화로 채울 삼각형을 세변의 직선의 
 방정식을 이용해 정의했지만 나는 실제로 그리러 하는 영역의 
 각변을 직선의 방정식으로 구하는 것은 귀찮다고 생각하여
 삼각형의 세꼭짓점의 좌표를 정해서 정의해 보았다.
-
+이것을 응용하면 폴라짱은 삼각형 말고도 여러 도형을 그릴 수 있지
+않을 까??
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+
 
 [프로젝트 2 : 탄소 순환을 이용한 지구온난화 분석 및 '인류 멸망 주식회사']
 1)연구소 이름 : 연구소 이름을 까먹은 연구팀의 연구소(진짜 까먹었어요 죄송합니다)
@@ -43,25 +54,300 @@ y_3=input("2째 점의 y좌표를 입력해 주세요")
 3)연구소의 깃헙 링크 : https://github.com/Usernam02/2508-2510
 4)내가 기여한 내용
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-
- elif f-h< :
+class Queue :
+    def __init__(self) :
+        self.items = []
+    def enqueue(self,item) :
+        self.items.insert(0,item) 
+    def dequeue(self) :
+        return self.items.pop()
+    def isEmpty(self) :
+        return self.items == []
+    def size(self) :
+        return len(self.items)
+g = Queue()
+k = Queue()
+b = Queue()
+s = Queue()
+for i in range(0,100):
+    g.enqueue(1)
+    k.enqueue(1)
+    b.enqueue(1)
+    s.enqueue(1)
+a1 = g.size() // 3
+a2 = k.size() // 4
+a3 = b.size() // 2
+a4 = s.size() // 5
+for i in range(a1) :
+    g.dequeue()
+for i in range(a2) :
+    k.dequeue()
+for i in range(a3) :
+    b.dequeue()
+for i in range(a4) :
+    s.dequeue()
+for i in range(a2) :
+    g.enqueue(1)
+for i in range(a3) :
+    k.enqueue(1)
+for i in range(a4) :
+    b.enqueue(1)
+for i in range(a1) :
+    s.enqueue(1)
+print(g.size())
+print(k.size())
+print(b.size())
+print(s.size())
+q=True                                       #f= 수확량
+wf=input('뭐 먹을래? 감자 보리 밀 옥수수 쌀 인공 음식     ')
+if wf=='감자' :
+    f=292
+elif wf=='보리' :
+    f=176
+elif wf=='밀' :
+    f=248
+elif wf=='쌀' :
+    f=264
+elif wf=='채소' :
+    f=2
+elif wf=='빵' :
+    print('빵이 없으면 캐이크를 먹어-말이 안통하네트')
+    q=False
+elif wf=='인공 음식' :
+    f=10000000
+elif wf=='옥수수' :
+    f=496
+else :
+    print('그런 거 없다 반동분자야')
+    q=False
+a=10000
+g=10000
+h=70
+at=[]
+gt=[]
+wt=[]
+ht=[]
+w=1000
+y=2019
+while q :
+    b=int(input('편안함'))
+    for i in range(1,41):
+        at.append(a)
+        gt.append(g)
+        wt.append(w)
+        ht.append(h)
+        y=y+1                         #해는 1년씩 늘어남
+        nw=int(a*0.1)
+        bh=int(b*h)
+        bh1=int(bh*0.4)
+        bh2=int(bh*0.1)
+        f1=int(f*0.1)
+        a=a+w-nw+h+bh2-f1            #1년 후 이산화탄소의 양
+        g=g-bh+f-h                   #1년 후 화석 연료의 양
+        w=nw
+        dh=int(0.08*h)
+        nh=int(0.02*bh)
+        if a<3000 :                     #이산화탄소 농도가 너무 낮으면 호흡이 안되서 농사가 망함
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print(wf, end='')
+            print('농사가 망했습니다 you die')
+            at.append(a)
+            q=False
+            break
+        elif f-h<0 :                #인구에 비해 수확량이 적으면 정부에 반기를 든 분노한 시민들이 폭동을 일으킵니다.
             print('서기', end='')
             print(y, end='')
             print('년', end=' ')
             print(wf, end='')
             print('수확량이 부족합니다 폭동이 일어났습니다 you die')
             q=False
-
+            break
+        elif g<0 :                  #화석 연료가 없어서 너는 굶어 죽습니다.
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print('화석 연료가 다 떨어졌습니다 가장 현실에 가깝습니다 you die')
+            gt.append(g)
+            q=False
+            break
+        elif a>30000:               #이산화탄소 농도가 너무 높으면 질식사합니다
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print('숨이 막혀 오는 것이 느껴집니다 you die')
+            at.append(a)
+            q=False
+            break
+        elif f-h>500 :             #수확량이 인구에 비해 너무 많으면 넘쳐나는 음식물 쓰레기를 주체할 수 없게 됩니다.
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print('음식물 쓰레기가 너무 많습니다 you die')
+            q=False
+            break
+        elif h>12000000000 :   #인구가 너무 많으면 주거공간이 모자라게 됩니다.
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print(wf, end='')
+            print('주거공간이 모자랍니다 폭동이 일어났습니다. you die')
+            q=False
+         elif h<1 :   #지구에 살아있는 인류가 없습니다.
+            print('서기', end='')
+            print(y, end='')
+            print('년', end=' ')
+            print(wf, end='')
+            print('지구위에 살아있는 인류는 없습니다. you die')
+            q=False
+        else :
+            h=h-dh+nh
+    import matplotlib.pyplot as plt
+    plt.figure(figsize = (5,3), dpi = 300) # 그래프 크기 및 해상도 조절
+    plt.rc('font',family='Malgun Gothic') # 한글 폰트설정
+    plt.plot(at, '.')
+    plt.title('a') # 제목 넣기
+    plt.xlim(0,len(at)+1) # x축 값 범위
+    plt.ylim(1000,21000) # y축 값 범위
+    plt.xlabel('x축') # x축 레이블
+    plt.ylabel('y축') # y축 레이블
+    plt.savefig('data.png') # 파일 저장
+    plt.show() # 그래프 보여주기
+    print(at)
+    print(gt)
+    print(wt)
+    print(ht)
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+시뮬레이션의 결과에 몇가지 케이스를 추가 해보았다.
+인류의 인구수인 h가 120억을 넘으면 주거공간이 부족해 멸망하고 
+1보다 작게 되면 인류가 단 1명도 없게 되는 것이므로 멸망한 것으로 판단
+했다. 또한 식량의 종류중 옥수수가 없어서 추가해 보았다. 옥수수의 수확량은
+http://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_2KAA405_OECD
+자료를 이용해 밀의 생산량과 비교하여 대략적으로 계산해 보았다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
+
+
 [프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+1)연구소 이름 : gold챠오니 도깨비 연구소
+
+2)연구소가 해결하려는 문제 : classcard형식의 지구과학 암기 학습 게임을 개발해 
+통합과학을 배우면서 암기과목에 어려움을 느끼고 있는 평범한 1학년 고등학생을 도우려 한다. 
+
+3)연구소의 깃헙 링크
+  https://github.com/keumchaewon/keumjeong/blob/greatsong/project
 4)내가 기여한 내용
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+import matplotlib.pyplot as plt
+from matplotlib.image import imread
+
+import random
+
+pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+       '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+       '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
+
+easy = [ '공룡_중생대_.PNG', '매머드_신생대_.PNG', '화폐석_신생대_.PNG']
+
+hard = ['갑주어_고생대_.PNG', '방추충_고생대_.PNG',
+       '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+       '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG']
+
+
+game = True
+
+nscore = 0
+score = 0
+
+#cho = input("이름 학습을 플레이하려면 1, 시대 학습을 플레이하려면 2를 입력해주세요.")
+
+while game == True :
+    
+    cho = input("이름 학습을 플레이하려면 1, 시대 학습을 플레이하려면 2를 입력해주세요.")
+    
+    if cho in "1, 2" :
+
+        while pic != [] :
+            a = random.randint(0, len(pic)-1)
+            play = pic.pop(a)
+            img = imread(play)
+            plt.imshow(img)
+            plt.show()
+
+            name = input("답을 입력해주세요. (학습을 중단하시려면 '그만'을 입력하세요)")
+
+            if name == "그만" :
+                print("학습을 중단하셨습니다. 현재까지 누적 점수는", nscore, "점 입니다.")
+                break
+
+            elif cho == '1' :
+                if name == play.split('_')[0] :
+                    if name in easy:
+                        print("정답입니다. +1")
+                    	score += 1
+                    	nscore += 1
+                    else :
+                        print("정답입니다. +2")
+                    	score += 2
+                    	nscore += 2
+                else :
+                	 if name in easy:
+                        print("오답입니다. -1", "( 답 :", play.split('_')[0], “)”)
+                    	score -= 1
+                    	nscore -= 1
+                    else :
+                        print("오답입니다. -2", "( 답 :", play.split('_')[0], “)”)
+                    	score -= 2
+                    	nscore -= 2
+                    pic.append(play)
+
+            elif cho == '2' :
+                if name == play.split('_')[1] :
+                    if name in easy:
+                        print("정답입니다. +1")
+                    	score += 1
+                    	nscore += 1
+                    else :
+                        print("정답입니다. +2")
+                    	score += 2
+                    	nscore += 2
+                else :
+                	 if name in easy:
+                        print("오답입니다. -1", "( 답 :", play.split('_')[1], “)”)
+                    	score -= 1
+                    	nscore -= 1
+                    else :
+                        print("오답입니다. -2", "( 답 :", play.split('_')[1], “)”)
+                    	score -= 2
+                    	nscore -= 2
+                    pic.append(play)        
+
+        print("학습 완료. 당신의 점수는", score, "점 입니다.(누적 점수 :", nscore, ")")
+        
+        new = input("새 게임을 시작하시겠습니까? 예 / 아니오")
+        
+        if new == '예' :
+            game = True
+            score = 0
+            pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+           '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
+        else : 
+            game = False
+
+                
+    else :
+        game = False
+        print("입력이 잘못되었습니다.")
+        
+print("학습이 종료됩니다.")
+
 5)내가 기여한 내용에 대한 설명
 (자신이 어떤 기여를 한 것인지 설명해주세요)
+문제를 채점하는 데 있어 각 문제의 배점을 다르게 하였다. 
+예를 들어 메머드, 공룡 같은 맞추기 쉬운 문제를 1점으로 배점하였고,
+갑주어,필석 같은 어려운 문제는 2점으로 배점하였다. 
+틀렸을 때 빼는 점수도 이에 맞추어 채점하도록 하였다.
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
