@@ -11,14 +11,7 @@ https://github.com/myj072450/Orbital-arragement-of-atoms-and-ions/tree/master
 1s가 몇개인지 2s가 몇개인지 한눈에 보고싶다.
 4-2)내가 기여한 내용
 list_orbital=['1s',c,'2s',d,'2p',e,'3s',f,'3p',g,'4s',h,'3d',i,'4p',j]
-c=0
-d=0
-e=0
-f=0
-g=0
-h=0
-i=0
-j=0
+c=0 ; d=0 ; e=0 ; f=0 ; g=0 ; h=0 ; i=0 ; j=0
 if a!=24 and a!=29:
      while a:
         if 1<=a<3:
