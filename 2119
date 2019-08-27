@@ -283,7 +283,7 @@ while game == True :
 
             elif cho == '1' :
                 if name == play.split('_')[0] :
-                    if name in easy:
+                    if  play.split('_')[0] in easy:
                         print("정답입니다. +1")
                     	score += 1
                     	nscore += 1
@@ -292,7 +292,7 @@ while game == True :
                     	score += 2
                     	nscore += 2
                 else :
-                	 if name in easy:
+                	 if  play.split('_')[0] in easy:
                         print("오답입니다. -1", "( 답 :", play.split('_')[0], “)”)
                     	score -= 1
                     	nscore -= 1
@@ -304,7 +304,7 @@ while game == True :
 
             elif cho == '2' :
                 if name == play.split('_')[1] :
-                    if name in easy:
+                    if play.split('_')[1] in easy:
                         print("정답입니다. +1")
                     	score += 1
                     	nscore += 1
@@ -313,7 +313,7 @@ while game == True :
                     	score += 2
                     	nscore += 2
                 else :
-                	 if name in easy:
+                	 if play.split('_')[1] in easy:
                         print("오답입니다. -1", "( 답 :", play.split('_')[1], “)”)
                     	score -= 1
                     	nscore -= 1
