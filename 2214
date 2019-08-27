@@ -16,8 +16,6 @@ print('e^f(x) : exp(f(x)) (e**f(x)로 안씀)')
 print('a^f(x) : a**f(x)')
 print('ln(f(x)) : log(f(x))')
 print('sin(f(x)) : sin(f(x))')
-print('사용 가능한 범용 함수 : f(x), g(x)')
-
 def del_0(sth):
     if sth==[]:
         return ['0']
@@ -69,19 +67,52 @@ global answer
 
 5)내가 기여한 내용에 대한 설명
 1. 거꾸로 써야한다는 큰 단점을 보완함, 더 나아가 교환법칙 가능
-2. 상수항을 미분했을 때 0을 써야하지만 0을 안써도 되게함
 3. 미리 함수 테이블(?)을 줌
 4. 그외 기타등등이 있는데 까먹음
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+6)내가 기여한 내용의 반영 여부 : o
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 : 부등식을 만족하는 영역안의 점묘화 그리기]
+1)연구소 이름 : 폴라짱의 카와이한 연구소
+2)연구소가 해결하려는 문제 : 점묘화 미술숙제에 어려움을 겪고 있는 폴라짱
+3)연구소의 깃헙 링크 : https://github.com/1507Kimdongkyu/information-project-2019-
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+#xlim, ylim을 변수로 설정하여 쉽게 바꾸게 만듦
+xl=3
+yl=3
+
+
+x=np.linspace(-xl,xl,10000)
+y=np.linspace(-yl,yl,10000) # 처음에 코드는 말 그대로 랜덤하게 뽑아서 좀 부자연스럽게 영역이 끊긴 감이 있었다. 하지만 
+
+for i in range(dots):
+
+    randompoint += [[np.random.choice(x,1),np.random.choice(y,1)]]
+
+# 선형 그래프 그리기
+
+def line(x,a,b,c):
+    if a!=0:
+        return [x,-b/a*x-c/a]
+    return [-c/b,x]
+
+plt.style.use('dark_background') #눈에 확띄게 만듦
+plt.figure(figsize=(4,4),dpi=150)
+plt.xlim(-xl,xl)
+plt.ylim(-yl,yl)
+plt.scatter([x_1,x_2,x_3],[y_1,y_2,y_3],color='w',s=10)
+plt.plot([line(-xl,a_1,b_1,c_1)[1],line(xl,a_1,b_1,c_1)[1]],[line(-xl,a_1,b_1,c_1)[0],line(xl,a_1,b_1,c_1)[0]],linestyle='dashed',alpha=1,color='w')
+plt.plot([line(-xl,a_2,b_2,c_2)[1],line(xl,a_2,b_2,c_2)[1]],[line(-xl,a_2,b_2,c_2)[0],line(xl,a_2,b_2,c_2)[0]],linestyle='dashed',alpha=1,color='w')
+plt.plot([line(-xl,a_3,b_3,c_3)[1],line(xl,a_3,b_3,c_3)[1]],[line(-xl,a_3,b_3,c_3)[0],line(xl,a_3,b_3,c_3)[0]],linestyle='dashed',alpha=1,color='w')
+#print([y_1,y_2,y_3],[x_1,x_2,x_3])
+plt.scatter(list_x ,list_y,s=0.7,color='lightgray')
+
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+
+직선의 방정식을 플로팅하였다.
+배경을 검정색으로 만들어 눈에 잘 보이게 하였다.
+점묘화가 구간에 대해서 끊기는 것을 알고리즘을 수정하여 자연스럽게 만들었다.
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
