@@ -2,10 +2,10 @@
 
 0. 학번 : 2109
 
-[프로젝트 1 : 급수를 시각화 하기]
-1)연구소 이름 : 알수민파카르
-2)연구소가 해결하려는 문제 : 급수를 시각화 하기
-3)연구소의 깃헙 링크 : https://github.com/smkangkr/12131206python/blob/master/%EC%A0%95%EB%B3%B4%EC%88%98%ED%96%89
+[프로젝트 1 : 산&염기, 산화&환원 적정 실험 안내 프로그램]
+1)연구소 이름 : 노서John. LAB.
+2)연구소가 해결하려는 문제 : 산&염기, 산화&환원 적정 실험 안내 프로그램
+3)연구소의 깃헙 링크 : https://github.com/bugs1015/2019-1-/blob/master/2019%202216%202202.ipynb
 4)내가 기여한 내용
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
 5)내가 기여한 내용에 대한 설명
@@ -17,9 +17,22 @@
 2)연구소가 해결하려는 문제 : 별의 뜨고 지는 시각과 별을 관측할 수 있는 시간을 알려준다
 3)연구소의 깃헙 링크 : https://github.com/mapotofu21518/2-1-real
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def list_year(year):
+    global listmonth
+    if year%400==0:
+        listmonth = [31,29,31,30,31,30,31,31,30,31,30,31]        
+        return
+    elif year%100==0:
+        listmonth = [31,28,31,30,31,30,31,31,30,31,30,31]        
+        return
+    elif year%4==0:
+        listmonth = [31,29,31,30,31,30,31,31,30,31,30,31]        
+        return
+    else:
+        listmonth = [31,28,31,30,31,30,31,31,30,31,30,31]        
+        return
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+윤년 기능을 추가하고 listmonth를 전역변수처리하여 코드의 길이를 줄였다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 3 : 웹 크롤링을 이용한 개인 맞춤형 건강 정보 제공]
@@ -28,7 +41,112 @@
 (개인의 여건(성별,나이) 등에 따라 맞춤형 복합 기상 지수를  알고 싶은 사람)"
 3)연구소의 깃헙 링크 : https://github.com/chojuno/2-1-_-/tree/master
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+def weat_search(s_name):  
+    result=[]
+    s_link='https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query='+s_name+' 날씨'
+    options_1 = webdriver.ChromeOptions()
+    options_1.add_argument('headless')
+    options_1.add_argument('window-size=1920x1080')
+    options_1.add_argument("disable-gpu")
+    driver = webdriver.Chrome('chromedriver.exe')
+    driver.get(s_link)
+    try:
+        WebDriverWait(driver,5).until(EC.presence_of_element_located((By.ID, "#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box")))
+    except TimeoutException:
+        pass
+    finally:
+        html=driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.main_info > div > p > span.todaytemp')
+    result.append(float(a[0].text))#현재기온
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.main_info > div > ul > li:nth-child(2) > span.merge > span.min > span')
+    result.append(float(a[0].text))#최저기온
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.main_info > div > ul > li:nth-child(2) > span.merge > span.max > span')
+    result.append(float(a[0].text))#최고기온
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(2) > span.num')
+    result.append(a[0].text)#미세먼지 농도
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(4) > span.num')
+    result.append(a[0].text)#초미세먼지 농도
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.sub_info > div > dl > dd:nth-child(6) > span.num')
+    result.append(a[0].text)#오존 지수
+    a=soup.select('#main_pack > div.sc.cs_weather._weather > div:nth-child(2) > div.weather_box > div.weather_area._mainArea > div.today_area._mainTabContent > div.main_info > div > ul > li:nth-child(3) > span > span > span.num')
+    result.append(float(a[0].text))#자외선 지수
+    return result
+def age_num(age1):
+    if age1<=15:
+        agenum = 0.866
+    if 15<age1<=65:
+        agenum = 0.033
+    if age1>65:
+        agenum = 0.166
+    return agenum
+def gen_num(gen):
+    if gen=='M':
+        gennum = 0.25
+    elif gen=='W':
+        gennum = 0.75
+
+    return gennum
+
+
+def temp(result):
+    s1=1-0.066*(float(result[2]) -float(result[1]))
+    return s1
+ 
+def fine_dust(result):
+    s2=1+0.016*(float(result[4]))
+    return s2
+ 
+def dust(result):
+    s3=1+0.011*(float(result[3]))
+    return s3
+ 
+#자외선 지수가 UV_ray가 입력된다
+def UV(result):
+    if int(result[6])<=2:
+        return '햇빛위험도 낮음'
+    elif 2<int(result[6])<=5:
+        return '60분 이상 햇빛 노출 자제'
+    elif 5< int(result[6])<=7:
+        return '50분 이상 햇빛 노출 자제'
+    elif 7<int(result[6])<=10:
+        return '40분 이상 햇빛 노출 자제'
+    elif 10< int(result[6]):
+        return '30분 이상 햇빛 노출 자제'
+location, age, gen = input().split(' ')
+age=int(age)
+result=weat_search(location)
+print('현재 ' + location + ' 날씨는 ' + str(result[0]) + '도 입니다.')
+print('현재 ' + location + ' 미세먼지 농도는 ' + result[3] + ' 입니다.')
+print('현재 ' + location + ' 초미세먼지 농도는 ' + result[4] + ' 입니다.')
+print('현재 ' + location + ' 최고기온은' + str(result[2]) + '도 입니다')
+print('현재 ' + location + ' 최저기온은' + str(result[1]) + '도 입니다')
+print('현재 ' + location + ' 자외선지수는' + str(result[6]) + '입니다')
+print('현재 ' + location + ' 오존지수는' + result[5] + '입니다')
+temp1=0
+for i in result:#단위 제거
+    if temp1==3 or temp1==4 or temp1==5:
+        result[temp1]=float(i[:-3])       
+    temp1+=1    
+#반환값:최고기온= high ,최저기온=low ,미세먼지 농도=dust, 초미세먼지=fine dust,
+#나이별 심각도 25;1;5(인구비율)
+
+ 
+print('오늘 공기는 종합적으로 '+str(round(age_num(age)*gen_num(gen)*(temp(result)*fine_dust(result)*dust(result) - 1),2)*100)+ '% 더 심각하네요!')
+print('오늘 미세먼지는 '+str(round(age_num(age)*gen_num(gen)*(dust(result) - 1)*100,2))+ '% 더 심각하네요!')
+print('오늘  초미세먼지는 '+str(round(age_num(age)*gen_num(gen)*(fine_dust(result) - 1)*100,2))+ '% 더 심각하네요!')
+print('오늘  일교차는 '+str(round(age_num(age)*gen_num(gen)*(temp(result) - 1)*100,2))+ '% 더 심각하네요!')
+print(UV(result))
+  
+#각 함수의 출력값은 위험도를 비율로 나타내며 각 세함수의 곱이 최종 심각도로 정의된다
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+urllib를 selenium으로 바꾸어 코드의 양을 줄였으며 코드의 오류들을 해결하고 주석을 몇개 첨가하였다.
+6)내가 기여한 내용의 반영 여부 : X
