@@ -2,14 +2,76 @@
 
 0. 학번 : 2219
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 영의 슬릿실험에 따른 밝기 그래프를 실험없이 보여주는 프로그램 개선]
+1)연구소 이름 : 고충연구소
+2)연구소가 해결하려는 문제 : 영의 슬릿실험에 따른 밝기 그래프를 실험없이 보여주는 프로그램
+3)연구소의 깃헙 링크 : https://github.com/09m1jh/python27_2019/tree/master
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+#
+%matplotlib auto
+import matplotlib.pyplot as plt
+import math
+import numpy as np
+
+n = input('슬릿 개수를 입력해주세요 : ') # 파장 변수: 위상차, 진폭, 파장
+n = int(n)
+if n > 3:
+    print('아직 해결할 수 없는 문제입니다.')
+    
+else:
+    d = float(input('슬릿 폭을 입력해주세요. \n마이크로미터 단위로 입력해 주세요 : '))*(10**-6)
+    lamda = 750 * (10 ** -9) #파장은 모두 750nm 로 setting 되어 있음
+    k = 2*math.pi/lamda #파수 (2pi/파장)
+    L = 2 #슬릿 ~ 스크린 까지의 거리 (단위 : m)
+    y1 = []
+    if n == 1 :
+        x = np.linspace(-10,-0.1,100) + np.linspace(0.1,10,100) # x축 눈금 설정
+        for i in x:
+            alpha = (k * d * i / ((L ** 2 + i ** 2) ** 0.5) / 2)
+            y1.append((math.sin(alpha)/alpha) ** 2) #근사식을 사용하지 않은 경우 계산
+        
+        y2 = [((math.sin((d * k * i) / (2 * L))) ** 2 / ((d * k * i / (2 * L))) ** 2) for i in x] 
+             #sinθ ≅ tanθ 로 근사한 경우의 계산
+        
+        plt.plot(x, y1, label = '''No approximation''')
+        plt.plot(x, y2, label = 'Use approximation')
+        plt.legend(loc = 'upper left')
+        plt.title('Single Slit')
+        plt.show()
+        
+    if n == 2 :
+        a = float(input('두 개의 슬릿 사이 간격을 입력해주세요\ncm 단위로 입력해 주세요 : '))*10**-2 
+        print("\n")
+        print("이중 슬릿의 경우 회절 간섭 결과로 나타납니다.")
+        x = np.linspace(-10,-0.1,100) + np.linspace(0.1,10,100)
+        
+        for i in x:
+            alpha = (k * d * i / ((L ** 2 + i ** 2) ** 0.5) / 2)
+            beta = (k * a * i / ((L ** 2 + i ** 2) ** 0.5) / 2)
+            y1.append(((math.sin(alpha)/alpha) ** 2) * ((math.cos(beta)) ** 2))
+        
+        y2 = [((math.sin(d * k * i / (2 * L)) / (d * k * i / (2 * L))) ** 2) * (math.cos((a * k * i) / (2 * L))) ** 2 for i in x]
+        
+        plt.plot(x, y1, label = '''No approximation''')
+        plt.plot(x, y2, label = 'Use approximation')
+        plt.legend(loc = 'upper left')
+        plt.title('Double Slit')
+        plt.show()
+    
+    if n == 3:
+        x = np.linspace(-10,-0.1,100) + np.linspace(0.1,10,100)
+        y = [math.cos(1.5 * d * k * i / (2 * L)) * math.cos(0.5 * d * k * i / (2 * L)) for i in x]
+        
+        plt.plot(x, y)
+        plt.title('Triple Slit')
+        plt.show()
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+ (1) 단일 슬릿, 이중 슬릿에서 설명을 추가하고 입력 받을 때의 문구를 조금 더 친절하게 바꾸었습니다.
+ (2) 단일 슬릿과 이중 슬릿에 의한 회절 간섭 결과를 출력할 때 sin(theta) 근사식을 사용한 경우와 그렇지 않은 경우들을 모두 고려하여서 그래프에 출력하는 기능을 만들었습니다. 
+ (3) 3중 슬릿인 경우에 대해서 그 에너지 준위 그래프 개형을 출력하는 기능을 추가하였습니다. (기존에는 3중슬릿은 나타나지 않았음)
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
