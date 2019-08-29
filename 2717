@@ -2,16 +2,243 @@
 
 0. 학번 : 2000
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 부등식을 만족하는 영역안의 점묘화 그리기]
+1)연구소 이름 : 폴라짱의 카와이한 연구소
+2)연구소가 해결하려는 문제 : 점묘화 미술숙제에 어려움을 겪고 있는 폴라짱
+3)연구소의 깃헙 링크 : https://github.com/1507Kimdongkyu/information-project-2019-
 4-1)수정하거나 추가하고 싶은 내용
-(수정하거나 추가하고 싶은 내용을 작성해주세요!)
+내가 그린 그림을 점묘화로 바꾸어 주고 싶다.
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+```python
+'''
+본 코드는 colab에서 실행하는 것을 가정하였습니다.
+'''
+
+import random 
+from random import shuffle
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+from google.colab import files
+color = ['r', 'g', 'b', 'white', 'navy', 'black', 'yellow', 'cyan', 'brown', 'purple', 'lime']
+jump = [1,2,3,4,5,6]
+num = [500, 600, 700, 800, 900, 1000]
+size = input('size를 골라주세요')
+shuffle(color)
+
+
+time = 0
+a = random.choice(num)
+if int(size) <= 3:
+    a = 10 * a
+    
+elif 3 < int(size) <= 7:
+    a = 5 * a
+
+elif 7 < int(size) <= 35:
+    a = 2 * a
+    
+else:
+    a = a
+
+
+
+def draw():
+    c = random.choice(jump)
+    xs = [i+1 for i in range(0, a, c)]
+    ys = [j+1 for j in range(0, a, c)]
+    shuffle(xs)
+    shuffle(xs)
+    b = color.pop()
+    plt.scatter(xs, ys, s = int(size), color = b)
+    
+while time < 11:
+    draw()
+    time += 1
+
+
+plt.savefig('GG.jpg')
+
+
+
+
+plt.show() # 이미지 보여주기
+```
+
+```python
+from PIL import Image
+
+im = Image.open('GG.jpg') # 이미지 불러오기
+
+area = (100, 50, 350, 250) # 이미지 점 부분만 자르기 
+nimage = im.crop(area)
+nimage.show()
+nimage.save('GG2.jpg') 
+from google.colab import files
+
+files.download('GG2.jpg') # 만든 이미지를 다운로드
+```
+```python
+```
+from google.colab import files # 바꿀 원본 파일과 점묘화 가져오기
+uploaded = files.upload() # 파일 업로드 기능 실행
+
+for fn in uploaded.keys(): # 업로드된 파일 정보 출력
+    print('User uploaded file "{name}" with length {length} bytes'.format(
+        name=fn, length=len(uploaded[fn])))
+```python
+from torchvision.models import vgg19
+from torch.autograd import Variable
+from collections import OrderedDict
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.transforms as transforms
+from PIL import Image
+%pylab inline
+
+if torch.cuda.is_available():
+    torch.cuda.empty_cache()
+
+imsize = 512 
+is_cuda = torch.cuda.is_available()
+
+prep = transforms.Compose([transforms.Resize(imsize),
+                           transforms.ToTensor(),
+                           transforms.Lambda(lambda x: x[torch.LongTensor([2,1,0])]), #turn to BGR
+                           transforms.Normalize(mean=[0.40760392, 0.45795686, 0.48501961], #subtract imagenet mean
+                                                std=[1,1,1]),
+                           transforms.Lambda(lambda x: x.mul_(255)),
+                          ])
+postpa = transforms.Compose([transforms.Lambda(lambda x: x.mul_(1./255)),
+                           transforms.Normalize(mean=[-0.40760392, -0.45795686, -0.48501961], #add imagenet mean
+                                                std=[1,1,1]),
+                           transforms.Lambda(lambda x: x[torch.LongTensor([2,1,0])]), #turn to RGB
+                           ])
+postpb = transforms.Compose([transforms.ToPILImage()])
+def postp(tensor): # to clip results in the range [0,1]
+    t = postpa(tensor)
+    t[t>1] = 1    
+    t[t<0] = 0
+    img = postpb(t)
+    return img
+
+def image_loader(image_name):
+    image = Image.open(image_name)
+    image = Variable(prep(image))
+    # fake batch dimension required to fit network's input dimensions
+    image = image.unsqueeze(0)
+    return image
+
+Image.open('two.jpg').resize((600,600))#바꿀 이미지 가져오기
+
+style_img = image_loader("GG2.jpg")#점묘화 가져오기
+content_img = image_loader("two.jpg")#바꿀 이미지 가져오기
+vgg = vgg19(pretrained=True).features
+for param in vgg.parameters():
+    param.requires_grad = False
+if is_cuda:
+    style_img = style_img.cuda()
+    content_img = content_img.cuda()
+    vgg = vgg.cuda()
+
+opt_img = Variable(content_img.data.clone(),requires_grad=True)
+
+style_layers = [1,6,11,20,25]
+content_layers = [21]
+loss_layers = style_layers + content_layers
+
+class LayerActivations():
+    features=[]
+    
+    def __init__(self,model,layer_nums):
+        
+        self.hooks = []
+        for layer_num in layer_nums:
+            self.hooks.append(model[layer_num].register_forward_hook(self.hook_fn))
+    
+    def hook_fn(self,module,input,output):
+        self.features.append(output)
+
+    
+    def remove(self):
+        for hook in self.hooks:
+            hook.remove()
+
+class GramMatrix(nn.Module):
+    
+    def forward(self,input):
+        b,c,h,w = input.size()
+        features = input.view(b,c,h*w)
+        gram_matrix =  torch.bmm(features,features.transpose(1,2))
+        gram_matrix.div_(h*w)
+        return gram_matrix
+        
+class StyleLoss(nn.Module):
+    
+    def forward(self,inputs,targets):
+        out = nn.MSELoss()(GramMatrix()(inputs),targets)
+        return (out)
+
+def extract_layers(layers,img,model=None):
+    la = LayerActivations(model,layers)
+    #Clearing the cache 
+    la.features = []
+    out = model(img)
+    la.remove()
+    return la.features
+
+
+content_targets = extract_layers(content_layers,content_img,model=vgg)
+content_targets = [t.detach() for t in content_targets]
+style_targets = extract_layers(style_layers,style_img,model=vgg)
+style_targets = [GramMatrix()(t).detach() for t in style_targets]
+targets = style_targets + content_targets
+
+loss_fns = [StyleLoss()] * len(style_layers) + [nn.MSELoss()] * len(content_layers)
+if is_cuda:
+    loss_fns = [fn.cuda() for fn in loss_fns]
+
+#these are good weights settings:
+style_weights = [1e3/n**2 for n in [64,128,256,512,512]]
+content_weights = [1e0]
+weights = style_weights + content_weights
+
+%time
+#run style transferu
+max_iter = 500
+show_iter = 50
+optimizer = optim.LBFGS([opt_img]);
+n_iter=[0]
+
+while n_iter[0] <= max_iter:
+
+    def closure():
+        optimizer.zero_grad()
+        
+        out = extract_layers(loss_layers,opt_img,model=vgg)
+        layer_losses = [weights[a] * loss_fns[a](A, targets[a]) for a,A in enumerate(out)]
+        loss = sum(layer_losses)
+        loss.backward()
+        n_iter[0]+=1
+        #print loss
+        if n_iter[0]%show_iter == (show_iter-1):
+            print('Iteration: %d, loss: %f'%(n_iter[0]+1, loss.data))
+
+        return loss
+    
+    optimizer.step(closure)
+
+# 결과 출력
+out_img_hr = postp(opt_img.data[0].cpu().squeeze())
+
+imshow(out_img_hr)
+gcf().set_size_inches(10,10)
+```
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+우선 점묘화를 더 램덤적이고 크기도 다양하고, 색깔이 다양하게 만든 다음 그 점묘화를 기반으로 스타일 트랜스퍼로 내가 그린 그림을 점묘화로 바꾸어준다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
