@@ -2,14 +2,21 @@
 
 0. 학번 : 2216
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 제한효소&핵산탐침화]
+1)연구소 이름 : 생물이
+2)연구소가 해결하려는 문제 : "생물 실험 잘 못함
+DNA 염기 서열에 대한 이해가 부족하고 이론적인 내용보다는 가시적인 것을 빠르게 이해하는 생물이"
+3)연구소의 깃헙 링크 : https://github.com/qndjzm/2110-2114
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+#염기 서열 인식 및 효소 절편 제작 base = input('5-3순서대로 입력해주세요') #염기 서열 입력 fragment = input('5-3순서대로 입력해주세요') def enzyme(base,fragment) : base_saver = [] cnt = 0 check = 0 while len(base[0:-1] ) != 1 : for i in range(len(base)-2) : if base[i:i+len(fragment)] == fragment : base1 = base[0:i+1] print(base1) check += 0 break else :#모든 효소 절편이 절단되도록 설정 print(base) cnt += 1 break if check == 0 : break base_saver.append(base1) cnt +=1 base = base[len(base1):len(base)] if check != 0 : print('RFLP의 갯수는' , cnt , '입니다') #효소 절편 개수 제시 else : print('만들어진 절편은 존재하지 않습니다.') enzyme(base,fragment)
+
+class Base : def init(self, k=[]) : self.bases = k def polymerase(self) : a = self.bases[::-1] b = [] for i in range(len(a)) : if a[i] == 'A' : b.append('T') elif a[i] == 'G' : b.append('C') elif a[i] == 'C' : b.append('G') elif a[i] == 'T' : b.append('A') for i in range(len(b)) : print(b[i], end = '')
+
+def lyase(self) : return self.bases[0:-1] def size(self) : return len(self.bases) def restrict(self) : fragment = input('5-3순서대로 입력해주세요') enzyme(self.bases,fragment) def Dna_checker(self) : for i in range(len(self.bases)): if self.bases[i] == 'A': continue elif self.bases[i] == 'G': continue 
+elif self.bases[i] == 'C': continue elif self.bases[i] == 'T': continue 
+else: print('다음의 DNA는 존재하지 않습니다.')#해당 염기 이외의 문자는 인식하지 않음 return False
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+중요한 코드에 대한 주석 추가 및 코드에서 빠진 부분 보충
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
