@@ -43,12 +43,14 @@ plt.show()
 2)연구소가 해결하려는 문제 : 수능/모의고사에서 난이도가 높은 격자점 개수 세는 문제로 고통받는 수험생들을 위해서
 3)연구소의 깃헙 링크 : https://github.com/kkjun2582/261116-informatics-project
 4)내가 기여한 내용
-x_min = int(input('하한'))
-x_max = int(input('상한'))
-y_min = int(input('하한'))
-y_max = int(input('상한'))
 
-a1 = float(input('a1'))
+# 두개의 직선의 방정식을 통해 x,y의 최솟값과 최댓값을 설정하고, 사이의 정수값을 가지는 점의 개수를 구합니다.
+x_min = int(input('하한')) #x의 최솟값(하한)을 설정합니다.
+x_max = int(input('상한')) #x의 최댓값(상한)을 설정합니다. 
+y_min = int(input('하한')) #y의 최솟값(하한)을 설정합니다.
+y_max = int(input('상한')) #y의 최댓값(상한)을 설정합니다. 
+
+a1 = float(input('a1')) 
 b1 = float(input('b1'))
 c1 = float(input('c1'))
 d1 = float(input('d1'))
@@ -67,16 +69,47 @@ for i in range(x_min,x_max+1) :
 print(cnt)
 
 5)내가 기여한 내용에 대한 설명
-하한, 상한 등의 표현이 처음에는 무엇인지 알기 어렵고, a1, b1, c1, a2, b2, c2가 무엇인지 알 수 있게 하기 위해서 주석과 설명을 수정하고
+하한, 상한 등의 표현이 처음에는 무엇인지 알기 어렵고, a1, b1, c1, a2, b2, c2가 무엇인지 알 수 있게 하기 위해서 주석과 설명을 수정하였다. 
 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 특정 염기서열의 플라스미드 DNA 상에서 작용하는 제한효소 자리를 찾아주는 프로그램]
+1)연구소 이름 : T form Lab
+2)연구소가 해결하려는 문제 : 임의의 제한효소에 대해 DNA 상에서 제한효소가 작용할 위치를 알려주는 서비스가 부족한 문제를 겪고 있는 플라즈마
+3)연구소의 깃헙 링크 : https://github.com/newton1101/hshs-2-1-project/blob/master/README.md
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+E.coli = 'TTAACCTATAAAAATAGGCGTATCACGAGGCAGAATTTCAGATAAAAAAAATCCTTAGCTTTCGCTAAGG' +'ATGATTTCTGGAATTCGCGGCCGCTTCTAGAGTTGACGGCTAGCTCAGTCCTAGGTACAGTGCTAGCTAC' +'TAGAGAAAGAGGAGAAATACTAGATGGCCGGCGCACGCAACGCGACCAATAAGCTCCTGCACAAAGCGAA' +'AAAAAGCAAAAGCGATGAGTTTTATACCCAGTATTGCGACATTGAAAACGAATTACAATACTACCGCGAA' +'CATTTCAGCGATAAGGTTGTGTACTGCAACTGTGATGACCCGCGTGTGAGCAATTTTTTTAAATATTTCG' +'CGGTGAACTTTGACAACCTCGGACTGAAGAAGCTGATTGCAAGCTGTTATGTAGAAAACAAGGAGGGCTT' +'TAGCTCCAGCGAAGCAGCAAAAAATGGCTTTTACTATGAATACCATAAAGAAAACGGCAAAAAACTGGTC' +'TTCGATGATATTTCGGTGAGTAGCTTCTGTGGCGACGGAGATTTTCGGAGCAGTGAAAGCATTGATCTGC' +'TCAAAAAAAGTGATATCGTGGTCACGAACCCGCCTTTTTCACTCTTTCGTGAATACTTAGATCAACTTAT' +'TAAATACGATAAAAAGTTCCTTATCATCGCCAATGTAAACAGCATTACTTATAAAGAAGTGTTTAATCTG' +'ATCAAAGAAAACAAGATCTGGCTGGGAGTACATTTAGGCCGGGGTGTGAGTGGCTTCATCGTTCCAGAAC' +'ATTACGAACTGTACGGCACCGAGGCCCGCATTGATTCAAATGGAAACCGTATTATCAGCCCGAATAACTG' +'TCTGTGGCTGACGAACCTTGACGTCTTCATTCGCCACAAAGACCTGCCGTTAACACGTAAATACTTTGGA' +'AACGAAAGCTCGTAC'
+
+def comp(E.coli):  #상보적 염기서열
+    comp_dict={'A':'T', 'T':'A', 'C':'G', 'G':'C'}
+    E.coli_comp=""
+    for char in E.coli:
+        if char in comp_dict:
+            E.coli_comp = E.coli_comp + comp_dict[char]
+    return E.coli_comp
+
+def rev(E.coli): #역순 염기서열
+    comp_dict={'A':'A', 'T':'T', 'C':'C', 'G':'G'}
+    rev_str = "".join(reversed(E.coli))
+    E.coli_rev = ""
+    for char in rev_str:
+        if char in comp_dict:
+            E.coli_rev = E.coli_rev + comp_dict[char]
+    return E.coli_rev
+
+def cke(E.coli, pattern): #제한효소자리 검사
+    pattern_list = []
+    for i in range(0, len(EcoRI) - len(pattern)) :
+        if E.coli[i:i+len(pattern)] == pattern : 
+            pattern_list.append((i+1, E.coli[i:i+len(pattern)]))
+    return pattern_list
+
+pattern = comp(input('사용할 제한효소의 염기서열을입력해주세요.').upper())
+i = cke(E.coli, pattern)
+print(i)
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+처음 대장균의 염기서열로 설정했던 EcoRI은 대장균에서 추출한 제한효소의 일종이다. 따라서 EcoRI으로 쓰는 것이 아니라 대장균의 학명인 E.coli로 바꾸었다.
+물론 큰 차이가 있지는 않겠지만 사용자들이 헷갈리지 않기 위함이다. 
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
