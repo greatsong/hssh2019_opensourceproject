@@ -1,33 +1,328 @@
-전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
-
 0. 학번 : 2107
 
-[프로젝트 1 : 화학 반응식 계수 맞추기]
-1)연구소 이름 : 화학 연구소
-2)연구소가 해결하려는 문제 : 화학 반응식 계수 못 맞추는 이동연
-3)연구소의 깃헙 링크 : https://github.com/kck0507/baseball/blob/master/%EC%A0%95%EB%B3%B4%20%EC%88%98%ED%96%89%ED%8F%89%EA%B0%80-Copy1.ipynb
+[프로젝트 1 : 혈액형 가계도 분석]
+
+1)연구소 이름 : 돌마을 연구소
+
+2)연구소가 해결하려는 문제 : 가계도 분석에 어려움을 겪고 있는 보현이의 중학교 3학년 동생 짱돌이
+
+3)연구소의 깃헙 링크 : https://github.com/eunjae324/2303-2305
+
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+# list에 혈액형 type을 Append한다.
+
+# str : Append할 혈액형 Type
+
+# mlist : 부계 또는 모계 혈액형 type을 가지고있을 list 변수
+
+def AppendList(str, mlist):
+
+    for a in str:
+
+        mlist.append(a)
+
+
+
+
+#딕셔너리를 이용하여 입력된 혈액형별 type 문자열을 리턴한다. 만일 없을경우 'XXXX'를 리턴
+
+# x : 입력된 혈액형 문자열
+
+def GetBloodType(x) :
+
+    return {'AB':'ABAB', 'O':'OOOO', 'C':'AOAO', 'D':'AAAA', 'E':'AAAO', 'F':'BOBO', 'G':'BBBB', 'H':'BBBO'}.get(x, 'XXXX')
+
+
+
+
+#혈액형을 입력받는다. 만일 소문자로 입력하였을 경우 대문자로 변환하며 입력된 데이터가
+
+#ABO 혈액형 문자가 아닐경우 에러처리를 하고 다시입력 받는다.
+
+#inTitle : 혈액형 입력시 출력되는 안내문
+
+def GetBloodData(inTitle) :
+
+    while True :
+
+        s = input(inTitle)
+
+        x = s.upper()
+
+        if x == 'A' or x == 'B' or x == 'O' or x == 'AB' : # 입력된 문자(열)이 ABO식일경우 대문자로 변환된 문자(열) 리턴
+
+            return x
+
+        else :
+
+            print('잘못 입력했습니다. 다시입력해 주세요.')
+
+
+
+
+#부모님(필요시 조부모님)의 혈액형을 입력받아 각각 list에 저장한다.
+
+#pName : '아버지' 또는 '어머니' 문자열
+
+#mlist : 혈액형 type을 저장할 list
+
+def GetParentBlood(pName, mlist):
+
+    s1 = GetBloodData(pName+'의 혈액형을 입력하세요 Ex) A, B, O or AB : ')
+
+    s2 = GetBloodType(s1)
+
+    if s2 == 'XXXX' :
+
+        gpName = '친'
+
+        if pName == '어머니' :
+
+            gpName = '외'
+
+        dd = GetBloodData(gpName+'할아버지의 혈액형을 입력하세요 Ex) A, B, O or AB :')
+
+        dm = GetBloodData(gpName+'할머니의 혈액형을 입력하세요 Ex) A, B, O or AB :')     
+
+        if s1 == 'A' :
+
+            if dd == 'B' or dd == 'O' or dm == 'B' or dm == 'O' :
+
+                AppendList(GetBloodType('C'), mlist)
+
+            elif dd == 'AB' and dm == 'AB' :
+
+                AppendList(GetBloodType('D'), mlist)
+
+            else:
+
+                AppendList(GetBloodType('E'), mlist)            
+
+        else :
+
+            if dd == 'A' or dd == 'O' or dm == 'A' or dm == 'O' :
+
+                AppendList(GetBloodType('F'), mlist)
+
+            elif dd == 'AB' and dm == 'AB' :
+
+                AppendList(GetBloodType('G'), mlist)
+
+            else :
+
+                AppendList(GetBloodType('H'), mlist)           
+
+    else :
+
+        AppendList(s2, mlist)
+
+        
+
+d = list()
+
+GetParentBlood('아버지', d)
+
+
+
+
+m = list()
+
+GetParentBlood('어머니', m)
+
+
+
+
 5)내가 기여한 내용에 대한 설명
+
 (자신이 어떤 기여를 한 것인지 설명해주세요)
+
+- 원래코드의 1라인~77라인 까지의 중복코드를 제거하고 4개의 함수로 정리하였습니다.
+
+- GetBloodData() 함수를 만들어 모든 혈액형 입력은 이함수를 통해 입력되도록 하고 upper() 함수를 이용하여 소문자도 입력가능하게 하고, ABO외의 입력은 에러처리하여 다시입력하도록 유도하였습니다.
+
+- GetParentBlood() 함수를 만들어 부계와 모계 혈액형을 각각 따로 입력 받는것을 리스트와 타이틀만 파라미터로 넘겨 하나의 함수를 통해 입력받았습니다.
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 과제연구기간(주로 화학)에서 발생하는 문제점 해결]
-1)연구소 이름 : 해결사 잡단
-2)연구소가 해결하려는 문제 : 과제연구 기간에서 번역의 오류를 겪고있는 학생들과 정보를 얻고 싶은데 영어로 되있어서 얻기 힘든 학생들의 문제를 해결하기 위해서 만든 프로젝트이다.
-3)연구소의 깃헙 링크 : http://github.com/seank519/2019-google-translation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[프로젝트 2 : 탄소 순환을 이용한 지구온난화 분석 및 '인류 멸망 주식회사']
+
+1)연구소 이름 : 연구소 이름을 까먹은 연구팀의 연구소(진짜 까먹었어요 죄송합니다)
+
+2)연구소가 해결하려는 문제 : 인류에 대한 증오심을 품고 있는 반상어 씨
+
+3)연구소의 깃헙 링크 : https://github.com/Usernam02/2508-2510
+
 4)내가 기여한 내용
+
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+def GetFoodAmount(x) :
+
+    return {'감자':292, '보리':176, '밀':248, '쌀':264, '채소':2, '빵':-1, '인공 음식':10000000}.get(x, -2)
+
+
+
+
+wf=input('뭐 먹을래? 감자 보리 밀 쌀 인공 음식     ')
+
+f = GetFoodAmount(wf)
+
+if f < 0 :
+
+    q = False
+
+    if f == -1 :
+
+        print('빵이 없으면 캐이크를 먹어-말이 안통하네트')
+
+    else :
+
+        print('그런 거 없다 반동분자야')
+
+
+
+
+
+
+
 5)내가 기여한 내용에 대한 설명
+
 (자신이 어떤 기여를 한 것인지 설명해주세요)
+
+ - 원코드의 53라인~70라인까지를 GetFoodAmount()함수의 딕셔너리를 이용하여 최적화 시켰습니다.
+
+
+
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 다양한 상황에서의 화학종 pH 구하기]
-1)연구소 이름 : 개굴개굴 연구
-2)연구소가 해결하려는 문제 : 로그 개념이 어려워 pH를 구하는데 어려움을 겪고 있는 한성과학고 신입
-3)연구소의 깃헙 링크 : https://github.com/shimwooyong/2607_2614
+
+
+
+
+
+
+
+
+
+
+
+
+[프로젝트 3 : 한성과고 맞춤 학습 플래너 개발]
+
+1)연구소 이름 : 지오이드 연구소
+
+2)연구소가 해결하려는 문제 : 공부 시간 분배에 대한 갈피를 못 잡고 있는 한성과고 학생, 자신의 공부 시간이나 스타일에 대해서 알고 싶은 학생,  중간고사 성적을 바탕으로 기말고사 공부에 피드백을 받고 싶은 학생 등등 성적 문제로 고민이 많은 학생들은 한 번 써 봤으면 좋겠다. 당장 유근이와 나도 한 번 써보기로 했다.
+
+3)연구소의 깃헙 링크 : https://github.com/ohyunsik/Ji-You-Guen
+
 4)내가 기여한 내용
+
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+def GetSubjectRate(subj) :
+
+    a = int(input('현재 '+subj+' 등급을 입력하세요.'))
+
+    A = int(input('목표 '+subj+' 등급을 입력하세요.'))
+
+    return a-A
+
+
+
+
+subName = ['국어','영어','심수1','심수2','물리','화학','생물','지학']
+
+sS = [0,0,0,0,0,0,0,0]
+
+print(len(sS))
+
+for i in range(0, len(sS)) :
+
+    sS[i] = GetSubjectRate(subName[i])
+
+
+
+
+m=o['국어']+o['영어']+o['심수1']+o['심수2']+o['물리']+o['화학']+o['생물']+o['지학']
+
+n = 0
+
+for i in range(0, len(sS)) :
+
+    n = n+sS[i]
+
+    
+
+#n=aA+bB+cC+dD+eE+fF+gG+hH
+
+i = {'국어':o['국어']/m,
+
+'영어':o['영어']/m,
+
+'심수1':o['심수1']/m,
+
+'심수2':o['심수2']/m,
+
+'물리':o['물리']/m,
+
+'화학':o['화학']/m,
+
+'생물':o['생물']/m,
+
+'지학':o['지학']/m,}
+
+
+
+
+j = {'국어':sS[0]/n,
+
+'영어':sS[1]/n,
+
+'심수1':sS[2]/n,
+
+'심수2':sS[3]/n,
+
+'물리':sS[4]/n,
+
+'화학':sS[5]/n,
+
+'생물':sS[6]/n,
+
+'지학':sS[7]/n}
+
+
+
+
 5)내가 기여한 내용에 대한 설명
+
 (자신이 어떤 기여를 한 것인지 설명해주세요)
+
+원소스코드의 33라인~84라인 까지를 함수와 for문, 리스트를 이용하여 최적화 하였습니다.
+
+현재 등급과 목표 등급을 입력하는 부분을 GetSubjectRate() 함수를 만들어 하나의 함수에서 입력하도록 하였고 리스트와 for문을 이용하여
+
+중복 코드를 제거하였습니다.
+
+
+
+
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+
