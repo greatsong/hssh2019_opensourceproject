@@ -1,39 +1,251 @@
 전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+0. 학번 : 2604
 
-0. 학번 : 2100
-
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 자동채점프로그램]
+1)연구소 이름 : 날카로운(-1)연구소
+2)연구소가 해결하려는 문제 : 시험지 채점으로 인해 클래식 공연에 갈 수 없는 김꼼꼼선생님
+3)연구소의 깃헙 링크 : https://github.com/mignon2002/2-1
 4-1)수정하거나 추가하고 싶은 내용
-(수정하거나 추가하고 싶은 내용을 작성해주세요!)
+코드 주석이 없는 것 같아 주석을 추가하였습니다.
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+import csv #csv 파일을 사용하겠다는 의미
+
+s = open("생명과학실험.csv") #s라는 곳에 생명과학실험(답지) csv 파일을 열어준다
+g = csv.reader(s) #csv파일을 읽어준다
+answer = []
+number = []
+score = [] #세 개의 리스트를 만들어준다
+for raw in g :
+    answer.append(raw[1]) #answer 리스트에 두번째 열을 모두 더해준다
+    number.append(raw[0]) #number 리스트에 첫번째 열을 모두 더해준다
+    score.append(raw[2]) #score 리스트에 세번째 열을 모두 더해준다
+
+s.close() 
+
+import csv
+
+f1 = open( "2604김소현.csv") 
+g1 = csv.reader(f1) 
+stanswer = [] #학생의 리스트를 만들어준다
+
+for raw in g1 :
+    stanswer.append(raw[1])
+f1.close() 
+
+new = []
+for i in range(0,len(answer)) :
+    n = answer[i].split('/')
+    new.append(n) #슬래쉬를 기준으로 자른 후 자른 것을 새 리스트에 모두 더해준다
+
+
+점수 = 0
+오답 = []
+그림문제 = []
+for j in range(0, len(stanswer)) :
+    txt = stanswer[j].upper() #소문자를 다 대문자로 만들어준다
+    sc = float(score[j]) #파일의 소수점을 없애준다
+    cp = True 
+    for i in range(len(new[j])) :
+        ans = new[j][i].upper()
+        if ans in txt :
+            cp = True
+        if ans not in txt :
+            cp = False
+            오답.append(number[j])
+            break #스플릿으로 잘라준 학생의 답안과 답안지의 답이 같을 경우 해당하는 점수를 리스트에 더해주고, 그렇지 않은경우 오답 리스트에 번호가 더해지며 점수는 부여되지 않는다. 
+        if str(ans) == '그림생략' :
+            n = number[j]
+            그림문제.append(n) #그림문제의 경우 그림생략이라는 명령어가 나오도록 한다
+    if cp :
+        점수 += sc
+
+print('채점 결과 : ',f1.name,'의',s.name,'과목의 총점은',점수,'점입니다')
+print('확인 사항 :',str(그림문제),'번은 그림을 그리는 문제이므로 시험지를 확인해주세요')
+print('틀린 문제 :',str(오답),'번 입니다')
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+코드에 주석을 달아서 이해하기 편하도록 하였다.
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+O
+
+[프로젝트 2 : 유효숫자 구하기 프로그램 구현]
+1)연구소 이름 : 406호 왼쪽 침대 연구소
+2)연구소가 해결하려는 문제 : 유효숫자 계산에 어려움을 겪고 있는 한성과학고등학교 학생들
+3)연구소의 깃헙 링크 : https://github.com/MeeRang/2019-
+4-1)수정하거나 추가하고 싶은 내용
+주석을 달아 보기 편하도록 하였다
+4-2)내가 기여한 내용
+
+def pn(a) :
+    cnt = 0
+    # 소수로만 되어있는 경우
+    if int(a) == 0: #정수부분이 0일 경우
+        b = a
+        while b != 0.0 : #while을 이용하여 if문의 반복을 시작
+            if b != 0.0 : # 만약 b가 0.0이 아닐경우
+                cnt+=1 #cnt에 하나를 더해준다
+            b = b*10 #그 후 b를 10 곱해서 이 과정 반복
+            #소수부분 구하기
+            l = len(str(int(b))) #b의 정수부분을 문자로 바꾸어 길이를 잰다
+            b = float('0'+str(b)[l:]) #b의 소수점을 위에서 구한 방법으로 나타내준다
+    # 정수부분이 있는 경우
+    b = int(a) #b는 a의 정수부분
+    while b == int(b): #만약 소수부분이 없는경우
+        b = b/10 # b를 10 나눠준다
+        if int(b):
+            cnt-=1 # cnt 를 하나 빼준다
+    return cnt
+    
+    def sum() :
+    a = input("더할 숫자들을 입력해주세요(숫자 사이에 띄어쓰기): ")
+    a = a.split() #띄어쓰기를 기준으로 잘라주기
+    # tmp에 가장 높은 유효숫자 자릿수를 저장
+    tmp = pn(float(a[0]))
+    # s에 총 합 저장
+    s = 0
+    for i in a :
+        if tmp > pn(float(i)) :
+            tmp = pn(float(i))
+        s += float(i)
+    # 반올림
+    print(round(s,tmp))
+    
+5)내가 기여한 내용에 대한 설명
+주석을 달았다
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 혈액형 가계도 분석]
+1)연구소 이름 : 돌마을 연구소
+2)연구소가 해결하려는 문제 : 가계도 분석에 어려움을 겪고 있는 보현이의 중학교 3학년 동생 짱돌이
+3)연구소의 깃헙 링크 : https://github.com/eunjae324/2303-2305
 4-1)수정하거나 추가하고 싶은 내용
-(수정하거나 추가하고 싶은 내용을 작성해주세요)
+주석을 달아주고 싶었다.
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+d = list(input('아버지의 혈액형을 입력하세요 Ex) A :  ')) #아버지의 혈액형을 입력받아 리스트에 정리
+if len(d) == 2 : #만약 d의 길이가 2라면
+    d.append('A') 
+    d.append('B') #AB형을 의미하므로d에 A,B를 넣어준다
+elif d[0] == 'O' : #만약 첫번째 문자가 0일경우
+    d.append('O') # 0형이므로 0을 더해준다
+    d.append('O')
+    d.append('O')
+elif d[0] == 'A' : #만약 첫번째 문자가 A일경우
+    dd = input('친할아버지의 혈액형을 입력하세요 :')
+    dm = input('친할머니의 혈액형을 입력하세요 :')
+    if dd == 'B' or dd == 'O' or dm == 'B' or dm == 'O' :
+        d.append('O') #친할아버지와 할머니의 혈액형을 통해 AO인지 AA인지 더해준다
+        d.append('A')
+        d.append('O')
+    elif dd == 'AB' and dm == 'AB' :
+        d.append('A') 
+        d.append('A')
+        d.append('A')
+    else:
+        d.append('A')
+        d.append('A')
+        d.append('O')
+else : #B형일때에도 A형과 동일한 작업 처리
+    dd = input('친할아버지의 혈액형을 입력하세요 :')
+    dm = input('친할머니의 혈액형을 입력하세요 :')
+    if dd == 'A' or dd == 'O' or dm == 'A' or dm == 'O' :
+        d.append('O')
+        d.append('B')
+        d.append('O')
+    elif dd == 'AB' and dm == 'AB' :
+        d.append('B')
+        d.append('B')
+        d.append('B')
+    else :
+        d.append('B')
+        d.append('B')
+        d.append('O')
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4-1)수정하거나 추가하고 싶은 내용
-(수정하거나 추가하고 싶은 내용을 작성해주세요)
-4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+m = list(input('어머니의 혈액형을 입력하세요 Ex) A :  ')) # 엄마도 아빠랑 같은 방법으로 정확한 혈액형을 구한다
+if len(m) == 2 :
+    m.append('A')
+    m.append('B')
+elif m[0] == 'O' :
+    m.append('O')
+    m.append('O')
+    m.append('O')
+elif m[0] == 'A' :
+    md = input('외할아버지의 혈액형을 입력하세요 :')
+    mm = input('외할머니의 혈액형을 입력하세요 :')
+    if md == 'B' or md == 'O' or mm == 'B' or mm == 'O' :
+        m.append('O')
+        m.append('A')
+        m.append('O')
+    elif md == 'AB' and mm == 'AB' :
+        m.append('A')
+        m.append('A')
+        m.append('A')
+    else:
+        m.append('A')
+        m.append('A')
+        m.append('O')
+else :
+    md = input('외할아버지의 혈액형을 입력하세요 :')
+    mm = input('외할머니의 혈액형을 입력하세요 :')
+    if md == 'A' or md == 'O' or mm == 'A' or mm == 'O' :
+        m.append('O')
+        m.append('B')
+        m.append('O')
+    elif md == 'AB' and mm == 'AB' :
+        m.append('B')
+        m.append('B')
+        m.append('B')
+    else :
+        m.append('B')
+        m.append('B')
+        m.append('O')
+son = [d[0]+m[0], d[0]+m[1], d[0]+m[2], d[0]+m[3], d[1]+m[0], d[1]+m[1], 
+       d[1]+m[2], d[1]+m[3], d[2]+m[0], d[2]+m[1], d[2]+m[2], d[2]+m[3], 
+       d[3]+m[0], d[3]+m[1], d[3]+m[2], d[3]+m[3]] #아들의 경우 나올 수 있는 모든 표본공간을 만들어 리스트로 저장해 둔다
+
+
+for i in range(0,16) :
+    if son[i] == 'BA' :
+        son[i] = 'AB'
+    elif son[i] == 'OA' :
+        son[i] = 'AO'
+    elif son[i] == 'OB' :
+        son[i] = 'BO' #우열에 따라 같은문자 처리를 해준다
+        
+cAB = 6.25 * (son.count('AB')) #1/8확률이므로 6.25 퍼센트를 곱해준다
+cAO = 6.25 * (son.count('AO'))
+cAA = 6.25 * (son.count('AA'))
+cBB = 6.25 * (son.count('BB'))
+cBO = 6.25 * (son.count('BO'))
+cOO = 6.25 * (son.count('OO'))
+pro = {"AO": cAO, "AA": cAA, "AB": cAB, "BO": cBO, "BB": cBB, "OO" : cOO}
+print(pro)
+
+import matplotlib.pyplot as plt #그래프를 그린다는 의미
+plt.figure(figsize=(3,2), dpi=300) #사이즈와 화질을 결정
+
+#value값이 0인 key들 제거
+delkey=[]
+for i in pro:
+    if pro[i]==0.0:
+        delkey.append(i)
+for i in delkey:
+    del pro[i]
+        
+#pro에서 size와 labels 제작
+labels = list(pro.keys())
+size = list(pro.values())
+
+#수에 맞는 색을 팔레트에서 추출
+palette = ['hotpink', 'red', 'blueviolet', 'blue','lightskyblue','lightgray']
+colors = []
+for i in pro:
+    colors.append(palette.pop())
+
+plt.title('blood type')
+plt.pie(size, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+
+plt.axis('equal')
+plt.show()
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+주석을 달았다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
