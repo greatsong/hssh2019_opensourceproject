@@ -9,9 +9,49 @@
 4-1)수정하거나 추가하고 싶은 내용
 (열성상위인 봄베이 O형에 대한 경우도 추가해보고 싶다)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+(dh = list(input('아버지의 봄베이혈액형을 입력하세요 Ex) Hh :  '))
+mh = list(input('아버지의 봄베이혈액형을 입력하세요 Ex) Hh :  '))
+if dh == 'hh' and mh == 'hh' :
+        cAA = 0
+        cAO = 0
+        cAA = 0
+        cBB = 0
+        cBO = 0
+        cOO = 100
+elif dh == 'Hh' and mh == 'hh' :
+            
+        cAB = 6.25 * (son.count('AB')) * 0.5
+        cAO = 6.25 * (son.count('AO')) * 0.5
+        cAA = 6.25 * (son.count('AA')) * 0.5
+        cBB = 6.25 * (son.count('BB')) * 0.5
+        cBO = 6.25 * (son.count('BO')) * 0.5
+        cOO = (6.25 * (son.count('OO')) * 0.5) + 0.5
+elif dh == 'hh' and mh == 'Hh' : 
+        cAB = 6.25 * (son.count('AB')) * 0.5
+        cAO = 6.25 * (son.count('AO')) * 0.5
+        cAA = 6.25 * (son.count('AA')) * 0.5
+        cBB = 6.25 * (son.count('BB')) * 0.5
+        cBO = 6.25 * (son.count('BO')) * 0.5
+        cOO = (6.25 * (son.count('OO')) * 0.5) + 0.5
+elif dh == 'Hh' and mh == 'Hh' :
+        cAB = 6.25 * (son.count('AB')) * 0.75
+        cAO = 6.25 * (son.count('AO')) * 0.75
+        cAA = 6.25 * (son.count('AA')) * 0.75
+        cBB = 6.25 * (son.count('BB')) * 0.75
+        cBO = 6.25 * (son.count('BO')) * 0.75
+        cOO = (6.25 * (son.count('OO')) * 0.75) + 0.25
+else :
+    
+        cAB = 6.25 * (son.count('AB'))
+        cAO = 6.25 * (son.count('AO'))
+        cAA = 6.25 * (son.count('AA'))
+        cBB = 6.25 * (son.count('BB'))
+        cBO = 6.25 * (son.count('BO'))
+        cOO = 6.25 * (son.count('OO'))
+pro = {"AO": cAO, "AA": cAA, "AB": cAB, "BO": cBO, "BB": cBB, "OO" : cOO}
+print(pro))
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+(봄베이 혈액형은 상위 유전자이므로 혈액형 유전자형이 무엇이던 상관없이 O형을 가지게 되는것이다. 부모의 봄베이 유전자형을 통해 자식이 어떻게 될지에 대한 코드를 작성해보았다. )
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 자동채점프로그램]
