@@ -12,23 +12,136 @@
 (자신이 어떤 기여를 한 것인지 설명해주세요)
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 그래프를 통한 탄소화합물의 구조식 결정
-1)연구소 이름 : 연구소의 누군가
-2)연구소가 해결하려는 문제 : 유기화학 공부에 어려움을 겪고있는 한성과고 학생
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 : 축구선수 산체스의 자산관리를 도와주자!
+1)연구소 이름 : 77ㅓ억 연구소
+2)연구소가 해결하려는 문제 : 현재 자산관리에 어려움을 겪고 있는 모든사람(우리는 특별히 산체스를 대표로 선정하였다)
+3)연구소의 깃헙 링크 :https://github.com/chanbum0613/-.git
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def gukbabchung(n) :
+	return n//i
+n = int(input("당신의 이번달 용돈 혹은 소비예정금액을 입력하시오"))
+k = int(input('당신의 지역번호를 입력해주세요.1.종로구,2.마포구,3.중구,4.영등포구, 5.서대문구, 6.용산구, 7.성동구, 8.동대문구, 9.성북구, 10.노원구, 11.도봉구, 12.송파구, 13강동구, 14.은평구, 15.그 외'))
+
+
+if k == 1 :
+	I = 9000
+	print("그 돈이면 견지동 이문설농탕에서 설농탕",gukbabchung(n),"그릇을 먹겠다")
+elif k == 2 :
+	i = 8000
+	print("그 돈이면 양화로 7길 옥동식에서 돼지곰탕",gukbabchung(n),"그릇을 먹겠다")
+elif k == 3 :
+	i = 8500
+	print("그 돈이면 세종대로21길 광화문국밥에서 돼지국밥",gukbabchung(n),"그릇을 먹겠다")
+elif k == 4 :
+	i = 18000
+	print("그 돈이면 선유동 부여집에서 꼬리곰탕 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 5 :
+	i = 8000
+	print("그 돈이면 홍제동 완산골명가에서 콩나물 국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 6 :
+	i = 6000
+	print("그 돈이면 신계동 김명자 굴국밥요리 쭈꾸미전문점에서 굴국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 7 :
+	i = 7000
+	print("그 돈이면 성수동 일미돼지국밥에서 콩나물 국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 8 :
+	i = 6000
+	print("그 돈이면 신설동 소문의 그 집에서 순대국 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 9 :
+	i = 6000
+	print("그 돈이면 안암동 부산아지매국밥에서 돼지국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 10 :
+	i = 7000
+	print("그 돈이면 노원문화의거리 풍미연에서 곰탕 및 설렁탕 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 11 :
+	i = 6000
+	print("그 돈이면 석계역 정지춘설렁탕에서 소머리국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 12 :
+	i = 8000
+	print("그 돈이면 가락동 함경도찹쌀순대에서 순대국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 13 :
+	i = 7000
+	print("그 돈이면 고덕동 옛날소머리국밥에서 소머리국밥 ",gukbabchung(n),"그릇을 먹겠다")
+elif k == 14 :
+	i = 7000
+	print("그 돈이면 대조동 삼오옛날순대국에서 순대국 ",gukbabchung(n),"그릇을 먹겠다")
+
+elif k ==15:
+	print("그 돈이면 니네 동네 근처 국밥집에서 얼큰한 국밥 특대에 깍두기 국물 말아먹겠다")
+  
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+몇몇 지역의 국밥집의 특정메뉴 가격으로 경우의 수를 추가함. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 원소의 화학적 성질
-1)연구소 이름 : 징징이 연구소
-2)연구소가 해결하려는 문제 : 원소의 화학적 성질을 찾고 공부하는데 어려움을 겪는 모든 화학을 공부하는 사람들의 문제를 해결하기 위한 것이다. 
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 몬티홀 문제 시각화
+1)연구소 이름 :LTHS Lab
+2)연구소가 해결하려는 문제 : 몬티홀 문제에 대한 답변을 이해하고 있지 못하는 사람들(우리의 문제 상황 구체화로는 쵸파를 이용했다) 위한 것이다. 
+3)연구소의 깃헙 링크 :https://github.com/hsguy0608/Real-Monty-hall/tree/master
 4)내가 기여한 내용
 (코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
 5)내가 기여한 내용에 대한 설명
+#문 5개에 대한 리스트 생성
+a = []
+b = []
+c = []
+d = []
+e = []
+#chs: 문을 바꿔서 성공, chf: 문을 바꿔서 실패,nchs: 문을 안바꿔서 성공,nchf: 문을 안바꿔서 실패/ ch = change, s= success, f= fail, n= no를 의미하는듯
+chs = 0
+chf = 0
+nchs = 0
+nchf = 0
+p = 0
+import random
+while p < 1000000 :
+    r = random.randint(1,5)
+    if r == 1 :
+        a.append(0)
+    elif r == 2 :
+        b.append(0)
+    elif r == 4 :
+        d.append(0)
+    elif r == 5 :
+        e.append(0)      #5개의 문 중 하나에 랜덤으로 차(= 0)를 넣어줌
+    else:
+        c.append(0)
+    z = random.randint(1,5)
+    if z == 1 :
+        a.append(1)
+    elif z == 2 :               #처음 선택한 문을 해당하는 리스트에 1을 추가해서 표현
+        b.append(1)
+    elif z == 4 :
+        d.append(1)
+    elif z == 5 :
+        e.append(1)
+    else:
+        c.append(1)
+    if len(a) == 2 or len(b) == 2 or len(c) == 2 or len(d) == 2 or len(e) == 2:    # 처음 고른게 성공일때
+        w = random.randint(4,5)
+        if w == 4 :
+            nchs = nchs + 1
+        else :                     #4면 선택한 문을 안바꿈-> nchs에 1 추가.
+            chf = chf + 1            #5면 선택한 문 바꿈 -> chf에 1 추가
+    else :  # 처음 선택한 문이 실패면
+        q = random.randint(8,9)
+        if q == 8 :
+            chs = chs + 1
+        else :                     #8이면 선택을 바꿈. 9이면 선택을 안바꿈 나머지 동일
+            nchf = nchf + 1
+    del a[:]
+    del b[:]
+    del c[:]
+    del d[:]
+    del e[:]       #문에 해당하는 리스트에 값이 자꾸 쌓여 오류남 => 지워줌
+    p = p + 1
+# 그래프를 이용하여 확률 시각화
+import matplotlib.pyplot as plt
+result_name = ['chs','chf','nchs','nchf']
+result = [chs, chf, nchs, nchf]
+plt.bar(range(4),result, width = 0.5)
+plt.xticks(range(4), result_name)
+plt.show()
+print(chs,chf,nchs,nchf)
+5)내가 기여한 내용에 대한 설명
 (자신이 어떤 기여를 한 것인지 설명해주세요)
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
-© 2019 GitHub, Inc.
