@@ -2,14 +2,112 @@
 
 0. 학번 : 2101
 
-[프로젝트 1 : 혈액형 가계도 분석
-1)연구소 이름 : 돌마을 연구소
-2)연구소가 해결하려는 문제 : 가계도 분석에 어려움을 겪고 있는 보현이의 중학교 3학년 동생 짱돌이
-3)연구소의 깃헙 링크 : https://github.com/eunjae324/2303-2305
+[프로젝트 1 : 학생 수행평가 관리 일정표 제작
+1)연구소 이름 : 레바의 연구소
+2)연구소가 해결하려는 문제 :평소 수행평가 때문에 일정 관리에 어려움을 겪고 있는 한성과학고 학생들
+3)연구소의 깃헙 링크 :https://github.com/KimKi-chan/Reva-Land
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+#수행평가 클래스 구현
+class assignment:
+def __init__(self):
+name = input("수행평가의 이름: ") #수행평가 이름 설정
+teacher = input("수행평가 담당 선생님: ") #수행평가 담당 선생님 설정
+month, day = input("제출 기한: ").split("/") #수행평가 제출 일자 설정
+X = input("난이도: ") #난이도 설정 -> 1: 하루 전날 준비,... 5: 5일 전부터 정리
+self.name = name
+self.teacher = teacher
+self.month = month
+self.day = int(day)
+if X in ['1', '2', '3', '4', '5']:
+self.X = X
+
+class Stack:
+def __init__(self, k = []) :
+self.items = k
+def isEmpt(self) :
+return self.items == []
+def push(self, item) :
+self.items.append(item)
+def pop(self) :
+return self.items.pop()
+def peek(self) :
+return self.items[-1]
+def size(self) :
+return len(self.items)
+
+# 달력에 수행평가 입력 구현
+
+from pandas import Series
+
+import numpy as np
+
+import pandas as pd
+
+import calendar
+
+from IPython.display import display
+
+k = []
+
+for i in range(0, 10000):
+
+Q = input('수행평가를 입력하세요: O or X : ')
+
+if Q == 'O': #input에 O를 입력하면 다음 질문으로 넘어감/해당하는 질문에 대답함.
+
+k.append(assignment())
+
+if Q == 'X': #X를 입력하면 이전 질문까지만 대답함.
+
+break
+
+U = Stack()
+
+ 
+
+# 달력을 표의 형태로 구현
+
+def calen(n, items):
+
+z = 0
+
+A = calendar.monthrange(2019,n)
+
+X = ['']*35
+
+Y = [['']*7, ['']*7, ['']*7, ['']*7, ['']*7]
+
+D = [['']*7, ['']*7, ['']*7, ['']*7, ['']*7]
+
+for i in range (0, A[1]):
+
+X[i+A[0]] = i+1
+
+for i in range (0, 5):
+
+for j in range(0, 7):
+
+Y[i][j] = X[7*i+j]
+
+for a in range(0, len(items)):
+
+for i in range (0,5):
+for j in range (0, 7):
+if Y[i][j] == items[a].day:
+for k in range(0, int(items[a].X)):
+D[i][j-k] = D[i][j-k]+items[a].name
+
+ 
+
+cal = np.array([Y[0], D[0], Y[1], D[1], Y[2], D[2], Y[3], D[3], Y[4], D[4]])
+pd.DataFrame(cal)
+display(pd.DataFrame(data = cal, columns = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'], index = ['', '', '', '', '', '', '', '', '', '']))
+
+ 
+
+calen(4, k) # 4는 4월을 의미, 월이 바뀔때마다 관리자가 바꿔줘야함
+5)내가 기여한 내용에 대한 설명 :
+주석처리를 통해 코드 이해도 증가시킴
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 축구선수 산체스의 자산관리를 도와주자!
@@ -143,5 +241,5 @@ plt.xticks(range(4), result_name)
 plt.show()
 print(chs,chf,nchs,nchf)
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+주석처리를 통해 코드 이해도 증가시킴
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
