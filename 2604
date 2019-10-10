@@ -73,7 +73,7 @@ O
 2)연구소가 해결하려는 문제 : 유효숫자 계산에 어려움을 겪고 있는 한성과학고등학교 학생들
 3)연구소의 깃헙 링크 : https://github.com/MeeRang/2019-
 4-1)수정하거나 추가하고 싶은 내용
-주석을 달아 보기 편하도록 하였다
+주석을 달아 보기 편하도록 하였다 또한 조금 고쳤다.
 4-2)내가 기여한 내용
 
 def pn(a) :
@@ -82,16 +82,15 @@ def pn(a) :
     if int(a) == 0: #정수부분이 0일 경우
         b = a
         while b != 0.0 : #while을 이용하여 if문의 반복을 시작
-            if b != 0.0 : # 만약 b가 0.0이 아닐경우
-                cnt+=1 #cnt에 하나를 더해준다
-            b = b*10 #그 후 b를 10 곱해서 이 과정 반복
+            cnt+=1 #cnt에 하나를 더해준다
+            b *= 10 #그 후 b를 10 곱해서 이 과정 반복
             #소수부분 구하기
             l = len(str(int(b))) #b의 정수부분을 문자로 바꾸어 길이를 잰다
             b = float('0'+str(b)[l:]) #b의 소수점을 위에서 구한 방법으로 나타내준다
     # 정수부분이 있는 경우
     b = int(a) #b는 a의 정수부분
     while b == int(b): #만약 소수부분이 없는경우
-        b = b/10 # b를 10 나눠준다
+        b /= 10 # b를 10 나눠준다
         if int(b):
             cnt-=1 # cnt 를 하나 빼준다
     return cnt
@@ -110,8 +109,71 @@ def pn(a) :
     # 반올림
     print(round(s,tmp))
     
+   def sgnum(a) :
+    cnt = 0
+    b = int(a)
+    # 정수부분이 존재하는 경우, 정수부분이 유효숫자 개수
+    if int(a):
+        while b:
+            b = int(b/10)
+            cnt+=1
+    # 소수부분 유효숫자 개수
+    while a != 0.0 :
+        l = len(str(int(a)))
+        b = float('0'+str(a)[l:])
+        if b != 0.0 :
+            cnt+=1
+        a *= 10
+        l = len(str(int(a)))
+        a = float('0'+str(a)[l:])
+    return cnt
+
+def mult() :
+    a = input("곱할 숫자들을 입력해주세요(숫자 사이에 띄어쓰기): ")
+    a = a.split()
+    # tmp에 가장 많은 유효숫자 개수 저장
+    tmp = sgnum(float(a[0]))
+    # s에 총 곱 저장
+    s = 1
+    # cnt1에 10을 곱하는 횟수 저장
+    cnt1 = 0
+    # cnt2에 10을 곱한 후 최대자릿수 저장
+    cnt2 = 0
+    for i in a :
+        if tmp > sgnum(float(i)) :
+            tmp = sgnum(float(i))
+        s *= float(i)
+    print(tmp)
+    l = len(str(int(s)))
+    b = float('0'+str(s)[l:])
+    # 총 곱을 구한 후 정수가 될때까지 10을 곱함
+    while b != 0.0 :
+        s *= 10
+        l = len(str(int(s)))
+        b = float('0'+str(s)[l:])
+        cnt1 += 1
+    c = int(s)
+    while c :
+        c = int(c/10)
+        cnt2 += 1
+    s = str(int(s))
+    t = 10**(cnt2-1)
+    result = 0
+    # 가장 적은 유효숫자 개수만큼 남기고 반올림하는 과정
+    for i in s :
+        if tmp == 0 :
+            # 반올림
+            if int(i) >= 5 :
+                result += t*10
+            break
+        result += t*int(i)
+        tmp -= 1
+        t /= 10
+    result = result/10**cnt1
+    print(result)
+    
 5)내가 기여한 내용에 대한 설명
-주석을 달았다
+주석을 달고 조금 고쳤다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 3 : 혈액형 가계도 분석]
