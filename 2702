@@ -9,9 +9,49 @@
 4-1)수정하거나 추가하고 싶은 내용
 (열성상위인 봄베이 O형에 대한 경우도 추가해보고 싶다)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+(dh = list(input('아버지의 봄베이혈액형을 입력하세요 Ex) Hh :  '))
+mh = list(input('아버지의 봄베이혈액형을 입력하세요 Ex) Hh :  '))
+if dh == 'hh' and mh == 'hh' :
+        cAA = 0
+        cAO = 0
+        cAA = 0
+        cBB = 0
+        cBO = 0
+        cOO = 100
+elif dh == 'Hh' and mh == 'hh' :
+            
+        cAB = 6.25 * (son.count('AB')) * 0.5
+        cAO = 6.25 * (son.count('AO')) * 0.5
+        cAA = 6.25 * (son.count('AA')) * 0.5
+        cBB = 6.25 * (son.count('BB')) * 0.5
+        cBO = 6.25 * (son.count('BO')) * 0.5
+        cOO = (6.25 * (son.count('OO')) * 0.5) + 0.5
+elif dh == 'hh' and mh == 'Hh' : 
+        cAB = 6.25 * (son.count('AB')) * 0.5
+        cAO = 6.25 * (son.count('AO')) * 0.5
+        cAA = 6.25 * (son.count('AA')) * 0.5
+        cBB = 6.25 * (son.count('BB')) * 0.5
+        cBO = 6.25 * (son.count('BO')) * 0.5
+        cOO = (6.25 * (son.count('OO')) * 0.5) + 0.5
+elif dh == 'Hh' and mh == 'Hh' :
+        cAB = 6.25 * (son.count('AB')) * 0.75
+        cAO = 6.25 * (son.count('AO')) * 0.75
+        cAA = 6.25 * (son.count('AA')) * 0.75
+        cBB = 6.25 * (son.count('BB')) * 0.75
+        cBO = 6.25 * (son.count('BO')) * 0.75
+        cOO = (6.25 * (son.count('OO')) * 0.75) + 0.25
+else :
+    
+        cAB = 6.25 * (son.count('AB'))
+        cAO = 6.25 * (son.count('AO'))
+        cAA = 6.25 * (son.count('AA'))
+        cBB = 6.25 * (son.count('BB'))
+        cBO = 6.25 * (son.count('BO'))
+        cOO = 6.25 * (son.count('OO'))
+pro = {"AO": cAO, "AA": cAA, "AB": cAB, "BO": cBO, "BB": cBB, "OO" : cOO}
+print(pro))
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+(봄베이 혈액형은 상위 유전자이므로 혈액형 유전자형이 무엇이던 상관없이 O형을 가지게 되는것이다. 부모의 봄베이 유전자형을 통해 자식이 어떻게 될지에 대한 코드를 작성해보았다. )
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 자동채점프로그램]
@@ -21,19 +61,110 @@
 4-1)수정하거나 추가하고 싶은 내용
 (빠진 키워드들을 분석하여 학생들이 자주 빠뜨리는 개념이 무엇인지 알아볼수있는 코드를 추가한다)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+for i in range(len(answer)) :
+    n = answer[i].split('/')
+    
+for i in range(len(stanswer)) :
+    stn = stanswer[i].split('/')
+new = []
+for i in range(0,len(answer)) :
+    new.append(n) #슬래쉬를 기준으로 자른 후 자른 것을 새 리스트에 모두 더해준다
+    
+a = []
+for i in stn :
+    if i not in n :
+        a.append(i)
+        
+ 마지막 부분에
+ print('빠뜨린 개념 :', a,'입니다')
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+학생이 빠뜨린 답(개념)을 출력하는 코드를 추가했다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 별의 뜨고 지는 시각과 별을 관측할 수 있는 시간을 알려준다]
+1)연구소 이름 : 꽃같은 연구소
+2)연구소가 해결하려는 문제 : 별을 관측하고 싶은데 언제 해야 할지 모르느 한성과학고 37기 Polaris 박하얀 학생
+3)연구소의 깃헙 링크 :https://github.com/mapotofu21518/2-1-real
 4-1)수정하거나 추가하고 싶은 내용
-(수정하거나 추가하고 싶은 내용을 작성해주세요)
+(주석달기)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+import math
+
+def day_ratio(d,c):
+    if 90-c <= d <=90:
+        return 1 #주극성일땐 항상 떠있음
+    if -90 <= d <= -(90-c):
+        return 0 #전몰성일땐 항상 져있음
+    r = math.acos(-math.tan(math.radians(d))*math.tan(math.radians(c)))
+    r_real = math.degrees(r)* 2
+    r_daytime = r_real/360
+    return r_daytime
+
+def timecon(time): #시간이 소수로 나올경우 이를 *시 *분으로 바꾸어주는 함수
+    listtime=[]
+    hour = int(time)
+    minute = int((time - hour)*60)
+    sec = int(((time - hour)*60 - minute)*60)
+    listtime.append(hour)
+    listtime.append(minute)
+    listtime.append(sec)
+    return listtime
+
+def decsun(mm,dd):
+    listmonth=[31,28,31,30,31,30,31,31,30,31,30,31] #각 달의 날짜수 
+
+    cnt_date = 0
+    for i in range(mm-1):
+        cnt_date += listmonth[i]
+    cnt_date += dd #1년에서 몇번째날인지
+
+    dec = 23.45 * math.sin(math.radians(((285 + cnt_date)/365)*360)) #태양의 적위 식
+    return dec 
+
+def asc(mm,dd):
+    listmonth=[31,28,31,30,31,30,31,31,30,31,30,31]
+
+    cnt_date = 0
+    for i in range(mm-1):
+        cnt_date += listmonth[i]
+    cnt_date += dd
+    
+    if cnt_date-80 >= 0:
+        ascension = (cnt_date-80)*24/365
+    else: 
+        ascension = 24+(cnt_date-80)*24/365
+    return ascension #별의 남중시간을 알기 위해 태양의 적경계산
+
+def starhigh(ascen): #남중시각 구하기
+    nam = (ascen - asc(month,day)) + 12
+    return nam
+  
+def risetime(ratio):
+    if ratio == 1:
+        return '주극성'
+    elif ratio == 0:
+        return '전몰성'
+    else: 
+        daytime = ratio*24
+        time_starrise = starhigh(asc_star) - daytime/2
+        return time_starrise
+    
+def settime(ratio):
+    if ratio == 1:
+        return '주극성'
+    elif ratio == 0:
+        return '전몰성'
+    else: 
+        daytime = ratio*24
+        time_starset = starhigh(asc_star) + daytime/2
+        return time_starset
+    
+def obtime(riseset): #태양의 지고 별은 떠있는시간
+    if s_list[-1] == time_starset:
+        if s_list[0] == time_starrise:
+            print(timecon(s_list[0])[0], ':',timecon(s_list[0])[1], ':', timecon(s_list[0])[2], '~', timecon(s_list[1])[0], ':', timecon(s_list[1]
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+주석달기
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
