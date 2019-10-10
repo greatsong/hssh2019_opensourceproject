@@ -1,0 +1,218 @@
+전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+
+0. 학번 : 2221
+
+[프로젝트 1 : 실험 안내 프로그램의 README 파일 수정]
+1)연구소 이름 : 노서John. LAB.
+2)연구소가 해결하려는 문제 : 산&염기, 산화&환원 적정 실험 안내 프로그램
+3)연구소의 깃헙 링크 : https://github.com/bugs1015/2019-1-/blob/master/2019%202216%202202.ipynb
+4)내가 기여한 내용
+
+#산&염기, 산화&환원 적정 실험 안내 프로그램
+ - 실험 진행을 도와주는 프로그램입니다.
+ 
+5)내가 기여한 내용에 대한 설명
+README 파일에 의미없는 글이 적혀 있었는데 프로젝트 이름과 간단한 설명을 추가했다.
+6)내가 기여한 내용의 반영 여부 : X 
+
+[프로젝트 2 : 렌즈계 구현 프로그램의 효율성 개선 및 주석 추가]
+1)연구소 이름 : 페르마 연구소
+2)연구소가 해결하려는 문제 : Queue를 이용한 렌즈계의 구현
+3)연구소의 깃헙 링크 : https://github.com/kys0527/HSHS-Computer-Science-Project
+4)내가 기여한 내용
+
+#기본적인 큐
+class Queue :
+    def __init__(self) :
+        self.items = []
+        lens.l = l
+
+total = Queue()
+
+#구현할 렌즈의 정보 받기
+n = int(input("렌즈의 개수는 몇개인가요?"))
+for i in range(1, n + 1):
+    tp = str(input("렌즈',i,'의 종류는 무엇인가요?(오목, 볼록 중 골라 주세요.)"))
+    focus = int(input("렌즈',i,'의 초점거리(절댓값)는 얼마인가요?"))
+    l = int(input("렌즈',i-1,'과 렌즈',i,'사이의 거리는 얼마인가요?(렌즈 0 은 물체 입니다.)"))
+    a = lens(tp,focus,l)
+    total.enqueue(a)
+fl = total.dequeue()
+
+5)내가 기여한 내용에 대한 설명
+print("~~~")로 문장을 출력한 후에 input으로 받는 형식을 사용했는데, 효율성을 위해 input("~~~")의 형태로 수정했다. 또한 주석을 추가했다.
+6)내가 기여한 내용의 반영 여부 : X
+
+[프로젝트 3 : 지형 및 중력보정 시각화 프로그램의 효율성 개선]
+1)연구소 이름 : 리중딱 연구소
+2)연구소가 해결하려는 문제 : 지형및 중력보정 시각화
+3)연구소의 깃헙 링크 : https://github.com/Jdaeum/Hansung-Science-High-School-2nd-Grade-Infomation-Project
+4)내가 기여한 내용
+
+# 표준중력
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+%matplotlib qt5
+ 
+x = np.arange(-10, 10, 0.25)
+y = np.arange(-10, 10, 0.25)
+X, Y = np.meshgrid(x, y)
+Z = X**2 - Y**2 + 100
+
+x_p = int(input('x 좌표 : '))
+y_p = int(input('y 좌표 : '))
+z_p = (x_p)**2 - (y_p)**2 + 100
+
+latitude = float(input('위도 : '))
+g_theo = 978.03267714*(1+0.00193185138639*((math.sin(latitude*math.pi/180))**2))/(((1-(0.00669437999013*(math.sin(latitude*math.pi/180)**2))))**(1/2))
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+bx = fig.gca(projection='3d')
+px = fig.gca(projection='3d')
+def graph 1:
+    ax.plot_surface(X, Y, Z,          # 1번그래프
+                       rstride=2,
+                       cstride=2,
+                       cmap=cm.summer,
+                       linewidth=1,
+                       antialiased=True)
+
+surf = graph1()          # 1번그래프
+
+# bx.plot_surface(X, Y, Z/3,        # 2번그래프
+#                       rstride=2,
+#                       cstride=2,
+#                       cmap=cm.RdPu,
+#                       linewidth=1,
+#                       antialiased=True)
+
+def hum:
+    px.scatter(x_p, y_p, z_p, c='r', marker='o')   #사람
+
+hum()
+
+def ddang:
+    bx.plot_surface(X, Y, 0,        # 땅
+                      rstride=2,
+                      cstride=2,
+                      cmap=cm.BrBG,
+                      linewidth=1,
+                      antialiased=True)
+
+ddang()
+
+fig.colorbar(surf, shrink=0.5, aspect=5)   # colour bar
+ 
+ax.view_init(elev=30,azim=70)
+ax.dist=10
+plt.show()
+print('표준 중력 : '+str(g_theo))
+print('높이 : '+str(z_p))
+
+# 프리에어 보정
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+%matplotlib qt5
+ 
+x_p = int(input('x 좌표 : '))
+y_p = int(input('y 좌표 : '))
+z_p = (x_p)**2 - (y_p)**2 + 100
+    
+x = np.arange(-10, 10, 0.25)
+y = np.arange(-10, 10, 0.25)
+X, Y = np.meshgrid(x, y)
+Z = X**2 - Y**2 + 100
+Z_B = X**2 - Y**2 + 100 - ((x_p)**2 - (y_p)**2 + 100)
+
+latitude = float(input('위도 : '))
+g_theo = 978.03267714*(1+0.00193185138639*((math.sin(latitude*math.pi/180))**2))/(((1-(0.00669437999013*(math.sin(latitude*math.pi/180)**2))))**(1/2))
+g_FA = 0.3086*z_p
+g_obs = float(input('측정한 중력가속도 : '))
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+a_Bx = fig.gca(projection='3d')
+bx = fig.gca(projection='3d')
+px = fig.gca(projection='3d')
+surf = graph1() #1번 그래프
+hum() # 사람
+ddang() #땅
+
+fig.colorbar(surf, shrink=0.5, aspect=5)   # colour bar
+ 
+ax.view_init(elev=30,azim=70)
+ax.dist=10
+plt.show()
+print('높이 : '+str(z_p))
+print('표준 중력 : '+str(g_theo))
+print('프리에어 보정 : '+str(g_FA))
+print('프리에어 이상 : '+str(g_obs + g_FA - g_theo))
+
+# 부게 보정
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+%matplotlib qt5
+ 
+x_p = int(input('x 좌표 : '))
+y_p = int(input('y 좌표 : '))
+z_p = (x_p)**2 - (y_p)**2 + 100
+    
+x = np.arange(-10, 10, 0.25)
+y = np.arange(-10, 10, 0.25)
+X, Y = np.meshgrid(x, y)
+Z = X**2 - Y**2 + 100
+Z_B = X**2 - Y**2 + 100 - ((x_p)**2 - (y_p)**2 + 100)
+
+latitude = float(input('위도 : '))
+g_theo = 978.03267714*(1+0.00193185138639*((math.sin(latitude*math.pi/180))**2))/(((1-(0.00669437999013*(math.sin(latitude*math.pi/180)**2))))**(1/2))
+g_FA = 0.3086*z_p
+denisity = float(input('밀도 : '))
+g_B = 0.04193*denisity*z_p
+g_obs = float(input('측정한 중력가속도 : '))
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+a_Bx = fig.gca(projection='3d')
+bx = fig.gca(projection='3d')
+px = fig.gca(projection='3d')
+cx = fig.gca(projection='3d')
+
+
+
+surf = graph1() #그래프
+hum() # 사람
+ddang() #땅
+
+for i in range(int(z_p/10)):
+    cx.plot_surface(X, Y, i*10,        # 기준면
+                      rstride=2,
+                      cstride=2,
+                      cmap=cm.hot,
+                      linewidth=1,
+                      antialiased=True)
+
+fig.colorbar(surf, shrink=0.5, aspect=5)   # colour bar
+ 
+ax.view_init(elev=30,azim=70)
+ax.dist=10
+plt.show()
+print('높이 : '+str(z_p))
+print('표준 중력 : '+str(g_theo))
+print('프리에어 보정 : '+str(g_FA))
+print('프리에어 이상 : '+str(g_obs + g_FA - g_theo))
+print('부게 보정 : '+str(g_B))
+
+5)내가 기여한 내용에 대한 설명
+같은 코드를 사용하는 부분이 세 번 반복되는데, 이 부분의 길이가 길어 코드의 효율성이 떨어졌다. 효율성을 개선하기 위해 함수를 만들어 간단하게 수정했다. 
+6)내가 기여한 내용의 반영 여부 : X
+© 2019 GitHub, Inc.

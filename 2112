@@ -8,27 +8,85 @@
 3)연구소의 깃헙 링크 : https://github.com/newton1101/hshs-2-1-project/blob/master/README.md
 4)내가 기여한 내용
 사용자가 쓸 벡터 플라스미드의 염기서열을 입력할수 있도록 기능을 추가했다.
+코드 : 
+
+def comp(vector):  #상보적 염기서열
+    comp_dict={'A':'T', 'T':'A', 'C':'G', 'G':'C'}
+    vector_comp=""
+    for char in vector:
+        if char in comp_dict:
+            vector_comp = vector_comp + comp_dict[char]
+    return vector_comp
+ 
+def rev(vector): #역순 염기서열
+    comp_dict={'A':'A', 'T':'T', 'C':'C', 'G':'G'}
+    rev_str = "".join(reversed(vector))
+    vector_rev = ""
+    for char in rev_str:
+        if char in comp_dict:
+            vector_rev = vector_rev + comp_dict[char]
+    return vector_rev
+
+def cke(vector, pattern): #제한효소자리 검사
+    pattern_list = []
+    for i in range(0, len(vector) - len(pattern)) :
+        if vector[i:i+len(pattern)] == pattern : 
+            pattern_list.append((i+1, vector[i:i+len(pattern)]))
+
+vector = str(input('enter sequence of your vector').upper())
+pattern = comp(input('사용할 제한효소의 염기서열을입력해주세요.').upper())
+i = cke(vector, pattern)
+print(i)
+
 5)내가 기여한 내용에 대한 설명
 원래는 대장균의 플라스미드 염기서열을 코드에 미리 저장하여 제한효소자리를 대장균 플라스미드에 한정하여 찾았는데 사용자가 원하는 벡터에서 
 사용할 수 있도록 벡터의 염기서열을 입력할 수 있도록 코드를 수정했다. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+1)연구소 이름 : 보노보노의 정보 탐험
+2)연구소가 해결하려는 문제 : DNA 염기서열과 프라이머를 입력받아 절편생성. 프라이머 위치 파악. 상보적인 염기서열을 알아내는 프로젝트입니다. 
+3)연구소의 깃헙 링크 : https://github.com/robot292/bonobonoDNA/blob/master/FINALUPLOADINGCODE
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+코드 : 
+
+a=len(yumgi)
+num=0
+yumgi.insert(0,0)
+for i in range(a):
+    del yumgi[0]
+    for j in range(len(primer)):
+        if checker:
+            if yumgi[int(j)]== primer[int(j)]:
+                checker=True
+            else:
+                checker=False
+        else:
+            checker=False
+    if checker:
+        num +=1
+        print(num, '~', num+len(primer)-1, '번째 서열에서 프라이머가 존재합니다')
+        checker=True
+    else:
+        num +=1
+        checker=True
+        
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+프라이머의 위치를 보여주는 코드에서 프라이머의 길이까지 포함한 위치 범위를 알려줄 수 있도록 수정했다. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+1)연구소 이름 : 노서John. LAB.
+2)연구소가 해결하려는 문제 : 산&염기, 산화&환원 적정 실험 안내 프로그램
+3)연구소의 깃헙 링크 : https://github.com/bugs1015/2019-1-/blob/master/2019%202216%202202.ipynb
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+ "sa = [\"황산\", \"염산\", \"질산\", \"염소산\", \"과염소산\", \"아이오딘화수소산\"]  #강산 리스트\n",
+ "sb = [\"수산화나트륨\", \"수산화칼슘\", \"수산화칼륨\", \"수산화바륨\", \"수산화리튬\"]  #강염기 리스트\n",
+ 
+ if a == \"염산\" or a == \"질산\" or a == \"하이퍼아염소산\" or a == \"아세트산\" or a == \"과염소산\" or a == \"아이오딘화수소산\" :\n",
+ if b == \"수산화칼슘\" or b == \"수산화바륨\" :\n",
+ elif b == \"수산화나트륨\" or b == \"수산화칼륨\" or b == \"암모니아\" or b == \"수산화리튬\" :\n",
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+코드에 내장된 산염기 리스트에 물질을 좀 더 추가해서 보강했다. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
