@@ -61,9 +61,25 @@ print(pro))
 4-1)수정하거나 추가하고 싶은 내용
 (빠진 키워드들을 분석하여 학생들이 자주 빠뜨리는 개념이 무엇인지 알아볼수있는 코드를 추가한다)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+
+for i in range(len(answer)) :
+    n = answer[i].split('/')
+    
+for i in range(len(stanswer)) :
+    stn = stanswer[i].split('/')
+new = []
+for i in range(0,len(answer)) :
+    new.append(n) #슬래쉬를 기준으로 자른 후 자른 것을 새 리스트에 모두 더해준다
+    
+a = []
+for i in stn :
+    if i not in n :
+        a.append(i)
+        
+ 마지막 부분에
+ print('빠뜨린 개념 :', a,'입니다')
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+학생이 빠뜨린 답(개념)을 출력하는 코드를 추가했다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 3 : 별의 뜨고 지는 시각과 별을 관측할 수 있는 시간을 알려준다]
@@ -150,5 +166,5 @@ def obtime(riseset): #태양의 지고 별은 떠있는시간
         if s_list[0] == time_starrise:
             print(timecon(s_list[0])[0], ':',timecon(s_list[0])[1], ':', timecon(s_list[0])[2], '~', timecon(s_list[1])[0], ':', timecon(s_list[1]
 5)내가 기여한 내용에 대한 설명
-()
+주석달기
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
