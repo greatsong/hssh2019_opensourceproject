@@ -4,7 +4,7 @@
 
 [프로젝트 1 : 등가속도 운동 방정식]
 1)연구소 이름 : 권순의 연구소
-2)연구소가 해결하려는 문제 : 
+2)연구소가 해결하려는 문제 : 초기속력, 가속도(최종속력), 진행시간 입력하면 공식에 대입해서 평균속력, 이동거리, 최종속력(가속도) 구하고 그래프도 출력
 3)연구소의 깃헙 링크 : https://github.com/yttts4354/-/blob/master/%EC%A0%95%EB%B3%B4%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8
 4-1)수정하거나 추가하고 싶은 내용
 등가속도 운동 방정식을 이용해 다양한 물리 문제를 풀 수 있다. 
@@ -23,7 +23,7 @@ if vf == ? :
 
 [프로젝트 2 : 원자번호에 따른 전자배치 구하기]
 1)연구소 이름 : 쌈박한 연구소
-2)연구소가 해결하려는 문제 : 원자번호에 따른 전자배치
+2)연구소가 해결하려는 문제 : 원자번호에 따른 전자배치 구하기
 3)연구소의 깃헙 링크 : https://github.com/parkhamint/-project-2019/blob/master/%EC%A0%95%EB%B3%B4%20pro%20%EC%B5%9C%EC%A2%85.ipynb
 4-1)수정하거나 추가하고 싶은 내용
 원자번호를 입력하면 원소의 이름도 같이 출력된다.
@@ -46,14 +46,65 @@ num['key'] = value
 그러므로 원자번호를 입력하면 전자배치와 함께 원자번호를 나타내어 이러한 원소가 어떤 전자배치를 가지고 있는지를 쉽게 알 수 있다.  
 6)내가 기여한 내용의 반영 여부 : X
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 별의 뜨고 지는 시각, 관측 시간 구하기]
+1)연구소 이름 : 꽃 같은 연구소
+2)연구소가 해결하려는 문제 : 별의 뜨고 지는 시각과 별을 관측할 수 있는 시간 구하기
+3)연구소의 깃헙 링크 : https://github.com/mapotofu21518/2-1-real/blob/master/%EC%A0%95%EB%B3%B4.ipynb
 4-1)수정하거나 추가하고 싶은 내용
 (수정하거나 추가하고 싶은 내용을 작성해주세요)
 4-2)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def day_ratio(d,c):  # d:적위, c:위도
+    if 90-c <= d <=90:  # 90-위도 <= 적위 < 90 인 경우
+        return 1  # 주극성
+    if -90 <= d <= -(90-c):  # -90 <= 적위 < -90+위도
+        return 0  # 전몰성
+    r = math.acos(-math.tan(math.radians(d))*math.tan(math.radians(c)))
+    r_real = math.degrees(r)* 2
+    r_daytime = r_real/360  # daytime = (arccos(tan적위*tan위도)/pi)*24h
+    return r_daytime
+
+def timecon(time): # 소수로 주어지는 시각을 시, 분, 초로 쪼개주는 함수
+    listtime=[]  # 리스트 생성
+    hour = int(time)  # 시:입력한 시각의 정수부분
+    minute = int((time - hour)*60)  # 분
+    sec = int(((time - hour)*60 - minute)*60) # 초 
+    listtime.append(hour)  
+    listtime.append(minute)
+    listtime.append(sec)  # 리스트에 시, 분, 초 append
+    return listtime
+
+def decsun(mm,dd):  # mm:월, dd: 일 
+    listmonth=[31,28,31,30,31,30,31,31,30,31,30,31]  # 1월부터 12월까지 한 달의 일 수
+    cnt_date = 0  # 초기값 0
+    for i in range(mm-1):  # mn-1이하 범위의 i에 대해
+        cnt_date += listmonth[i]  # 리스트[i]값을 cnt_date에 추가
+    cnt_date += dd  # cnt_date에 '일' 추가  
+    
+dec = 23.45 * math.sin(math.radians(((285 + cnt_date)/365)*360))  # 태양의 적위 구하는 함수
+    return dec
+    
+    ...
+    
+ def risetime(ratio):  # 뜨는 시각
+    if ratio == 1:
+        return '주극성'
+    elif ratio == 0:
+        return '전몰성'
+    else: 
+        daytime = ratio*24  # 주극성일 경우 daytime = 1*24시간, 전몰성일 겨우 daytime = 0*24시간 
+        time_starrise = starhigh(asc_star) - daytime/2  # 뜨는 시각 = 남중시각 - 떠있는시간의 절반
+        return time_starrise
+        
+def settime(ratio):
+    if ratio == 1:
+        return '주극성'
+    elif ratio == 0:
+        return '전몰성'
+    else: 
+        daytime = ratio*24
+        time_starset = starhigh(asc_star) + daytime/2  # 지는 시각 = 남중시각 + 떠있는시간의 절반
+        return time_starset
+        
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+주석을 달았다.
+6)내가 기여한 내용의 반영 여부 : x
