@@ -63,41 +63,37 @@ print(d) #d출력
 코드에 대한 주석을 달았습니다.
 6) 내가 기여한 내용의 반영 가능성 : O 
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1) 연구소 명 : 킹민짜이 연구소
-2) 연구소가 해결 될 문제 : 미분 암기 테이블(미분을 쉽게 공부하는 게임)
-3) 연구소의 깃헙 링크 : https://github.com/maga0328/maganetic/blob/master/%ED%82%B9%EB%AF%BC%EC%A7%9C%EC%9D%B4%20%EC%97%B0%EA%B5%AC%EA%B2%B0%EA%B3%BC
+[프로젝트 3 : 급수를 시각화 하기 ]
+1) 연구소 명 : 알수민파카르
+2) 연구소가 해결 될 문제 : 급수를 정적분으로 바꿀때 
+3) 연구소의 깃헙 링크 : https://github.com/smkangkr/12131206python/blob/master/%EC%A0%95%EB%B3%B4%EC%88%98%ED%96%89
 4-1) 수정 가능성 추가하고 싶은 내용
 (수정 가능성 추가하고 싶은 내용을 만들려면)
 4-2) 내가 기여한 내용
-from sympy import Derivative
-from sympy import symbol
-x = symbols('x')
-def dercof(sth):
-    L=[]
-    for i in range(0, int(len(sth))):
-        while len(sth)>i :
-             L.append(str(Derivative(sth.pop(),x).doit()))
-        return L
-def rd():
-    sth=input().split()
-    fin=input().split()
-    x = dercof(sth)
-    if x == fin:
-        return 'pass'        
-    if x != fin:
-        return 'fail'
-i = 1
-while i<=4:
-    print('round', i)
-    a = rd()
-    if a== 'pass':
-        i=i+1
-    if a== 'fail':
-        print('try again')
-        break
-    if i==5 and a=='pass':
-        print('success')
+import matplotlib.pyplot as plt #그래프를 그릴 함수를 불러온다.
+import numpy as np #numpy를 불러온다.
+
+f = input() 
+g = lambda x : eval(f)
+n=int(input()) #n은 정수
+p=float(input()) #실수로 정의
+q=float(input()) #실수로 정의
+r=float(input()) #실수로 정의
+
+a=p
+b=p+q
+
+X = np.arange(a, b, q/n) #정적분이 넓이를 구하는 것이므로 구분구적법으로 구하면 결국 미소길이에 대한 직사각형들의 총 면적을 합하는 것이다. 따라서 직사각형의 넓이를 출력한다.
+Y = list(map(lambda x : g(x)*r/q, X))
+
+x = np.arange(a, b, 0.1) #미소길이에 대한 면적
+y = list(map(lambda x : g(x)*r/q, x))
+
+plt.bar(X, Y, width =q/n ,alpha = 0.5, edgecolor = 'r', align = 'edge')
+plt.plot(x,y)
+plt.text(a, g(a)*r/q, str(g(a)*r/q))
+plt.text(b, g(b)*r/q, str(g(b)*r/q))
+plt.show()
 5) 내가 기여한 내용에 대한 설명
 (자신이 어떤 기여를 한 효율적인 설명 해주세요)
 6) 내가 기여한 내용의 반영 가능성 : (O, X 중 선택 해주세요)
