@@ -2,14 +2,25 @@
 
 0. 학번 : 2205
 
-[프로젝트 1 : 근사해를 구하는 여러가지 방법의 시각화]
-1)연구소 이름 : 근사해 연구소 (approximate solution lab)
-2)연구소가 해결하려는 문제 : 근사해를 구하는 여러가지 방법의 시각화를 통해 그 이해에 도움을 준다. 
-3)연구소의 깃헙 링크 : https://github.com/jschrislee/Approximate-Solution
+[프로젝트 1 : 태양계 구현]
+1)연구소 이름 : 고기만두연구소
+2)연구소가 해결하려는 문제 : 처음으로 태양계를 배운 초등학교 2학년의 고기만두양의 태양계의 모습에 대한 궁금증 해결 
+3)연구소의 깃헙 링크 : https://github.com/bborish/BBORISH
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+Earth.v = vector(0,-8.5,0) # 태양과 지구의 모양, 위치를 각각 설정
+Fgrav = 10000 * radialVector/dist**2    # 태양과 지구 사이의 만유인력 설정
+from visual import *    #creating visual actions
+from visual.graph import *   # to creat graphs
+mercury = sphere (pos = vec(200,0,0), radius = 50, texture = textures.wood, color = color.red)  # creating planets
+mercury.trail = curve(color = mercury.color) # creating a trail to follow mercucy's motion
+mercury.velocity = vector(0,0,295)  # defines the initial velocity of mercury 
+moon.velocitylocal = vector(0,0,195+1)   # defines the velocity vector of the moon in relation to the earth
+그래프1. 시간에 따른 지구의 속도
+venusRatio = gcurve(gdisplay = graphSpeedRatios, color = color.orange)     #그래프2. 태양에 대한 지구의 위치에 따른 지구의 중력포텐셜 에너지를 나타내는 그래프설정
+venusRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.orange)   # 그래프3. 시간에 따른 지구에 대한 행성들의 상대속도
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+코드에 대한 이해도를 높일 수 있는 주석을 추가하였다. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : classcard형식의 지구과학 암기 학습 게임]
