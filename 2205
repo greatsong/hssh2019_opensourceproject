@@ -20,7 +20,7 @@ venusRatio = gcurve(gdisplay = graphSpeedRatios, color = color.orange)     #그�
 venusRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.orange)   # 그래프3. 시간에 따른 지구에 대한 행성들의 상대속도
 
 5)내가 기여한 내용에 대한 설명
-코드에 대한 이해도를 높일 수 있는 주석을 추가하였다. 
+코드에 대한 이해도를 높일 수 있는 주석을 추가하였다. 주석의 내용은 그래프, 좌표값설정, 행성 모델의 형태(만유인력, 반지름 등)이다. 
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
 [프로젝트 2 : classcard형식의 지구과학 암기 학습 게임]
