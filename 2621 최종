@@ -1,0 +1,133 @@
+전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+
+0. 학번 : 2621
+[프로젝트 1 : classcard형식의 지구과학 암기 학습 게임]
+1)연구소 이름 : gold챠오니 도깨비 연구소
+
+2)연구소가 해결하려는 문제 : classcard형식의 지구과학 암기 학습 게임
+
+3)연구소의 깃헙 링크 : https://github.com/keumchaewon/keumjeong/blob/greatsong/project
+
+4-1)수정하거나 추가하고 싶은 내용
+연속적으로 맞추면 점수를 더 많이 받고 중단하거나 완료했을때 정답률을 알려줬으면 좋겠다.
+4-2)내가 기여한 내용
+if cho in "1, 2" :
+
+        while pic != [] :
+            a = random.randint(0, len(pic)-1)
+            play = pic.pop(a)
+            img = imread(play)
+            plt.imshow(img)
+            plt.show()
+
+            name = input("답을 입력해주세요. (학습을 중단하시려면 '그만'을 입력하세요)")
+
+            if name == "그만" :
+                print("학습을 중단하셨습니다. 현재까지 누적 점수는", nscore, "점 입니다.")
+                break
+
+            elif cho == '1' :
+                if name == play.split('_')[0] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                    right += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[0], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)
+                    wrong += 1
+
+            elif cho == '2' :
+                if name == play.split('_')[1] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                     right += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[1], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)
+                    wrong += 1
+
+        print("학습이 완료되었습니다. 최종점수", score, "점, 정답률은 "100*right/right + wrong"%,(누적 점수는", nscore, ")"점입니다.)
+5)내가 기여한 내용에 대한 설명
+맞춘문제와 틀린문제의 개수를 카운트하여 정답률을 알게 해주었다.
+
+6)내가 기여한 내용의 반영 여부 : 모른다
+
+
+[프로젝트 2 : 유효숫자 구하기 프로그램 구현]
+1)연구소 이름 : 406호 왼쪽 침대 연구소
+
+2)연구소가 해결하려는 문제 : 유효숫자 구하기 프로그램 구현
+
+3)연구소의 깃헙 링크 : https://github.com/MeeRang/2019-
+
+4-1)수정하거나 추가하고 싶은 내용
+할수있는 사치연산이 늘어났으면 좋겠다.
+
+4-2)내가 기여한 내용
+def sum() :
+    a = input("더할 숫자들을 입력해주세요(숫자 사이에 띄어쓰기): ")
+    b = input("뺄 숫자들을 입력해주세요(숫자 사이에 띄어쓰기): ")
+    a = a.split()
+    b = b.split()
+    c = c.append(a) + c.append(b)
+    # tmp에 가장 높은 유효숫자 자릿수를 저장
+    tmp = pn(float(c[0]))
+    # s에 총 합 저장
+    s = 0
+    for i in a :
+        if tmp > pn(float(i)) :
+            tmp = pn(float(i))
+        s += float(i)
+    for i in b :
+       if tmp > pn(float(i)) :
+           tmp = pn(float(i))
+       s -= float(i)
+       
+    # 반올림
+    print(round(s,tmp))
+    
+5)내가 기여한 내용에 대한 설명
+덧셈과 곱셈만 있는 기존 코드에 뺄셈을 추가하였다.
+
+6)내가 기여한 내용의 반영 여부 : 모른다
+
+
+[프로젝트 3 : ]
+1)연구소 이름 : 자진퇴사 연구소
+2)연구소가 해결하려는 문제 : 운형을 넣으면 구름의 모양을 시각화해서 보여주는 프로그램 제작
+3)연구소의 깃헙 링크 : https://github.com/SeunghoLee1/informaticsproject2-1
+4-1)수정하거나 추가하고 싶은 내용
+주석을 수정하고 이해가 쉽게 고치고 싶다.
+4-2)내가 기여한 내용
+if ss != '' :\n",
+    "        break\n",
+    "        \n",
+    "height = '' #How high does the cloud form?\n",
+    "thickFactor = 1 #How thick is the cloud?\n",
+    "blanket = 3 #How vast does the cloud form?\n",
+    "particle = '.' #What form does the droplets have?\n",
+    "height = '' #구름이 생성되는 고도\n",
+    "thickFactor = 1 #구름의 두께\n",
+    "blanket = 3 #구름의 규모\n",
+    "particle = '.' #물방울이 가지는 형태\n",
+    "\n",
+    "for col in data :\n",
+    "    if col[0] == ss :\n",
+@@ -83,7 +83,7 @@
+    "        scat.append(height-1+r.random()*thickFactor)\n",
+    "        \n",
+    "    \n",
+    "    if 'L' in ss :\n",
+    "    if 'L' in ss : #이하 코드는 구름의 종류별로 list에 넣어준다.\n",
+    "        if 'S' in ss :\n",
+    "            k.append(2+r.random()*r.randrange(9,18,4)*np.random.normal())\n",
+    "        elif 'N' in ss :\n",
+5)내가 기여한 내용에 대한 설명
+영어로 된 주석을 한글로 고치고 다른 주석을 추가하였다.
+6)내가 기여한 내용의 반영 여부 : 모른다.
