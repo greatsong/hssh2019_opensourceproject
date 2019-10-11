@@ -2,32 +2,229 @@
 
 0. 학번 : 2503
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+--------------------------------------------------------------------------
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 조부모님의 혈액형이 필요없는 경우를 통해 코드 단순화시키기]
+1)연구소 이름 : 돌마을 연구소 
+2)연구소가 해결하려는 문제 : 혈액형 가계도 분석 
+3)연구소의 깃헙 링크 : https://github.com/eunjae324/2303-2305
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+d = list(input('아버지의 혈액형을 입력하세요 Ex) A :  '))
+m = list(input('어머니의 혈액형을 입력하세요 Ex) A :  '))
+if d[0] == 'O' or m[0] == 'O' :
+    if d[0] == 'O' and m[0] == 'O' :
+        print('OO:100%')
+    elif d[0] == 'O' and len(m) != 2 : 
+        ch = m[0]+ 'O'
+        print(ch +':'+ '50%, OO:50%')
+    elif m[0] == 'O' and len(d) != 2:
+        ch = d[0]+ 'O'
+        print(ch +':'+ '50%, OO:50%')
+    else :
+        if len(m)==2 or len(d)==2:
+            print('AO:50%, BO:50%')
+elif len(d) == 2 and len(m) == 2:
+    print('AA:25%, BB:25%, AB:50%')
+else : 
+    print('정확한 계산을 위해 조부모님의 혈액형이 필요합니다.'+'\n'+'-----------------------------------------')
+    
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+기존 코드는 입력된 부모님과 조부모님의 혈액형을 리스트로 만들어서 확률을 구했다. 하지만, 부모님 중 한 분이라도 O형인 경우에는
+조부모님의 혈액형을 알지 않아도 그 자식의 혈액형 유전자형에 대한 확률을 매우 쉽게 구할 수 있다. 이 사실을 이용해 append를 이용하지 않고 
+조부모님의 혈액형을 몰라도 되는 경우의 코드를 짰다. 이 코드를 초기에 사용하면 기존 프로젝트의 코드 길이가 훨씬 줄어든다는 장점이 있다. 
+6)내가 기여한 내용의 반영 여부 : 
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+------------------------------------------------------------------------
+
+[프로젝트 2 : 더 다양한 입력값에 대해 번역된 아미노산 서열 구하기]
+1)연구소 이름 : 거인 연구소
+2)연구소가 해결하려는 문제 : 임의의 염기서열이 주어졌을 때 폴리펩타이드 아미노산 구하기
+3)연구소의 깃헙 링크 : https://github.com/aminoacidteam/ang
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+def tsc(seq):  #주형을 전사하는 함수(결과가 주형과 반대 방향)
+    comp_dict={'A':'U', 'T':'A', 'C':'G', 'G':'C'}
+    seq_comp=""
+    for char in seq:
+        if char in comp_dict:
+            seq_comp = seq_comp + comp_dict[char]
+        else:
+            seq_comp = seq_comp + '?'
+    return seq_comp
+
+def rev(seq): #핵산의 방향을 바꾸어주는 함수 
+    comp_dict={'A':'A', 'U':'U', 'C':'C', 'G':'G'}
+    rev_str = "".join(reversed(seq))
+    seq_rev = ""
+    for char in rev_str:
+        if char in comp_dict:
+            seq_rev = seq_rev + comp_dict[char]
+        else:
+            seq_rev = seq_rev + '?'
+    return seq_rev
+
+def rev_tsc(seq): #전사한 결과가 주형가닥 방향과 동일하도록 만들어주는 함수 
+    return rev(tsc(seq))
+
+def ss(seq): #비주형 가닥의 주형가닥 mRNA 
+    comp_dict={'A':'A', 'T':'U', 'C':'C', 'G':'G'}
+    seq_comp=""
+    for char in seq:
+        if char in comp_dict:
+            seq_comp = seq_comp + comp_dict[char]
+        else:
+            seq_comp = seq_comp + '?'
+    return seq_comp
+
+def translate(): 
+    table = { 
+        'AUA':'ILEU-', 'AUC':'ILEU-', 'AUU':'ILEU-', 'AUG':'N-MET-', 
+        'ACA':'THR-', 'ACC':'THR-', 'ACG':'THR-', 'ACU':'THR-', 
+        'AAC':'ASN-', 'AAU':'ASN-', 'AAA':'LYS-', 'AAG':'LYS-', 
+        'AGC':'SER-', 'AGU':'SER-', 'AGA':'ARG-', 'AGG':'ARG-',                  
+        'CUA':'LEU-', 'CUC':'LEU-', 'CUG':'LEU-', 'CUU':'LEU-', 
+        'CCA':'PRO-', 'CCC':'PRO-', 'CCG':'PRO-', 'CCU':'PRO-', 
+        'CAC':'HIS-', 'CAU':'HIS-', 'CAA':'GLN-', 'CAG':'GLN-', 
+        'CGA':'ARG-', 'CGC':'ARG-', 'CGG':'ARG-', 'CGU':'ARG-', 
+        'GUA':'VAL-', 'GUC':'VAL-', 'GUG':'VAL-', 'GUU':'VAL-', 
+        'GCA':'ALA-', 'GCC':'ALA-', 'GCG':'ALA-', 'GCU':'ALA-', 
+        'GAC':'ASP-', 'GAU':'ASP-', 'GAA':'GLU-', 'GAG':'GLU-', 
+        'GGA':'GLY-', 'GGC':'GLY-', 'GGG':'GLY-', 'GGU':'GLY-', 
+        'UCA':'SER-', 'UCC':'SER-', 'UCG':'SER-', 'UCU':'SER-', 
+        'UUC':'PHE-', 'UUU':'PHE-', 'UUA':'LEU-', 'UUG':'LEU-', 
+        'UAC':'TYR-', 'UAU':'TYR-', 'UAA':'_', 'UAG':'_', 
+        'UGC':'CYS-', 'UGU':'CYS-', 'UGA':'_', 'UGG':'TRY-', 
+    } 
+    protein ="" 
+    sm = False
+    if len(m)%3 == 0: 
+        for i in range(0, len(m), 3):
+            codon = m[i:i + 3]
+            if codon == 'AUG':
+                sm = True
+            if sm == True:
+                if codon == ('UAA' or 'UAG' or 'UGA'):
+                    protein += 'C'
+                    return protein 
+                else: 
+                    protein+= table[codon] 
+    else:            
+        return False
+
+n = input("입력할 염기서열의 방향을 입력해주세요 (Ex: 53, 35): ")
+k = input("입력할 핵산의 종류를 입력해주세요 (DNA:1, RNA:2): ")
+src = input("seq: ")
+if k=='1':
+    ss = input("입력하신 가닥이 주형이면 1, 비주형이면 2를 입력하세요: ")
+    if ss == '1':
+        if n == '53' :
+            m = rev_tsc(src)
+        else :
+            m = tsc(src)
+    else :
+        if n == '53' :
+            m = ss(src)
+        else :
+            m = ss(rev(src))
+else :
+    if n == '53' :
+        m = src
+    else :
+        m = rev(src)
+print('5-'+m+'-3')
+print(translate())
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+기존 코드는 5에서 3방향의 DNA가 입력되었을 경우만 고려했다는 문제점을 발견했다. 실제로 DNA 번역 문제를 풀 때에는 방향을 모르는 DNA 또는 mRNA가 
+주어져 있어서 어려움을 겪을 때가 많았다. 또는 DNA가 주형가닥인지, 비주형가닥인지도 모르는 상황도 있었기 때문에 이러한 문제점을 해결하기 위해 
+입력하는 핵산 sequence가 DNA인 경우, mRNA인 경우로 나누었고, DNA일 때에는 주형과 비주형의 경우도 나누어서 코드를 새로 작성하였다. 
+이때 mRNA를 출력하는 코드도 조금 바꾸었다. 기존 코드에서는 mRNA가 아니라 입력 DNA의 상보적인 염기서열을 출력했지만, 출력값을 받고 생물 문제를 푸는
+학생의 입장에서 생각했을 때는 서열 방향이 포함된 mRNA(티민 대신 우라실)을 출력하는 것이 더 나을 것 같다고 생각했다. 그래서 기존 코드에서 만들어
+놓은 comp, reverse 함수를 바탕으로 transcription(전사)하는 함수를 새로 만들었고, 이 함수를 위에서 나눈 경우에 대입을 해서 mRNA가 방향과 함께
+출력될 수 있도록 하였다. 
+추가적으로 물론 MET가 첫 아미노산 서열인 것은 모든 사람이 알지만, 번역 결과에서도 N, C말단의 방향을 알려주는 것도 더 좋을 것 같아서 N,C말단을 
+추가해서 출력할 수 있도록 코드를 개선하였다. 
+6)내가 기여한 내용의 반영 여부 : O
+
+------------------------------------------------------------------------
+
+[프로젝트 3 : 수행평가 관리 일정표 코드에 주석 달기]
+1)연구소 이름 : 레바의 연구소 
+2)연구소가 해결하려는 문제 : 학생 수행평가 관리 일정표 제작
+3)연구소의 깃헙 링크 : https://github.com/KimKi-chan/Reva-Land
+4)내가 기여한 내용(이 중 주석만 기여했습니다)
+#수행평가 class를 구현하자
+class assignment: 
+    def __init__(self):
+        name = input("수행평가의 이름: ")
+        teacher = input("수행평가 담당 선생님: ")
+        month, day = input("제출 기한: ").split("/")
+        X = input("난이도: ")
+        self.name = name
+        self.teacher = teacher
+        self.month = month
+        self.day = int(day)
+        #난이도는 1~5, 수행평가를 하는데 걸리는 시간(단위:일)과 같음
+        if X in ['1', '2', '3', '4', '5']: 
+            self.X = X
+            
+#Stack과 Stack에 이용되는 함수들 정의            
+class Stack:
+    def __init__(self, k = []) :
+        self.items = k
+    def isEmpt(self) :
+        return self.items == []
+    def push(self, item) :
+        self.items.append(item)
+    def pop(self) :
+        return self.items.pop()
+    def peek(self) :
+        return self.items[-1]
+    def size(self) :
+        return len(self.items)
+    
+#달력에 수행평가를 입력하는 코드 
+from pandas import Series
+import numpy as np
+import pandas as pd
+import calendar #python에서 달력을 불러오는 코드 
+from IPython.display import display
+k = [] #리스트 생성
+#'수행평가를 입력하세요'에 X를 누를 때까지 계속 과제를 입력할 수 있음 
+for i in range(0, 10000):
+    Q = input('수행평가를 입력하세요: O or X : ')
+    if Q == 'O':
+        k.append(assignment()) #리스트에 입력한 과제 추가
+    if Q == 'X':
+        break
+U = Stack()
+
+#달력을 만들어보자
+def calen(n, items):
+    z = 0
+    #monthrange: 그 연도(2019년)와 입력한 달(n월)에 대해 그 달의 1일이 무슨 요일인지, 며칠까지 있는지를 불러옴 
+    A = calendar.monthrange(2019,n)
+    X = ['']*35 #하나의 달에 최대 5주까지 있으므로 35개 
+    Y = [['']*7, ['']*7, ['']*7, ['']*7, ['']*7] #X에 대응하는 표의 칸(5행 7열)
+    D = [['']*7, ['']*7, ['']*7, ['']*7, ['']*7] #Y 아래에 과제가 입력될 칸
+    for i in range (0, A[1]): #n월의 1일부터 마지막 일
+        X[i+A[0]] = i+1
+    for i in range (0, 5): #행(5주)
+        for j in range(0, 7): #열(일주일;7일)
+            Y[i][j] = X[7*i+j] #X를 Y에 들어갈 표 칸의 형태로 바꾸어줌 
+    for a in range(0, len(items)): #입력한 과제들
+         for i in range (0,5):
+            for j in range (0, 7):
+                if Y[i][j] == items[a].day: #날짜와 과제의 기한이 일치하면 과제의 이름을 날짜 아래 입력하는 코드 
+                    for k in range(0, int(items[a].X)):
+                        D[i][j-k] = D[i][j-k]+items[a].name
+    
+    cal = np.array([Y[0], D[0], Y[1], D[1], Y[2], D[2], Y[3], D[3], Y[4], D[4]])
+    pd.DataFrame(cal)
+    display(pd.DataFrame(data = cal, columns = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'], index = ['', '', '', '', '', '', '', '', '', '']))
+    
+calen(4, k) #단점: 4월이면 4 처럼 코드를 그 달마다 매번 수정해야 함
+
+5)내가 기여한 내용에 대한 설명 
+이 코드에 사용된 python의 calendar 함수를 이해하고, 수행평가 입력을 위해 달력을 표로 만드는 과정을 이해하면서 처음 이 코드를 접하는 사람들도
+바로 이해할 수 있도록 자세한 주석을 작성하였음. 
+6)내가 기여한 내용의 반영 여부 : 
