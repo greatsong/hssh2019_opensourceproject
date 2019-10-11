@@ -1,33 +1,176 @@
 전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
 
-0. 학번 : 2502
+0. 학번 : (2502,)
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 화학물질 데이터 자동 출력 프로그램 제작]
+1)연구소 이름 : (스낵랩)
+2)연구소가 해결하려는 문제 : (과제연구시 MSDS 정보를 찾기 힘든 사람의 정보를 찾기 위해 프로젝트를 진행하였다.)
+3)연구소의 깃헙 링크 : (https://github.com/sincerejisoo/python2019)
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+(주석, "metadata": {},
+   "outputs": [],
+   "source": [
+    "from selenium import webdriver\n",
+    "from bs4 import BeautifulSoup\n",
+    "import time"
+    "from selenium import webdriver\n", #selenium의 webdriver를 import
+    "from bs4 import BeautifulSoup\n", #웹사이트의html 태그를 처리하기 위해 BeautifulSoup import
+    "import time" #진행바를 출력하기 위해 import
+   ]
+  },
+  {
+@@ -69,8 +69,11 @@
+    "from selenium import webdriver\n",
+    "from bs4 import BeautifulSoup\n",
+    "import time\n",
+    #인터넷 검색 환경을 만들어 주기 위한 코드
+    #화합물의 이름을 입력받고 pubchem 사이트에서 검색할수 있는 링크 : S링크
+    "def chem_search(s_name):    \n",
+    "    s_link='https://pubchem.ncbi.nlm.nih.gov/#query='+s_name\n",
+    #options:웹브라우저를 열지않고 검색을 할수있는 환경을 조성하기 위함
+    "    options_1 = webdriver.ChromeOptions()\n",
+    "    options_1.add_argument('headless')\n",
+    "    options_1.add_argument('window-size=1920x1080')\n",
+@@ -86,8 +89,10 @@
+    "        # Update Progress Bar\n",
+    "        printProgressBar(i + 1, 50, prefix = '검색 중:', suffix = 'Complete', length = 50)\n",
+    "    html = driver.page_source\n",
+    #웹페이지를 로딩하면서 진행 바를 출력하고 로딩된 페이지를 파이썬으로 검색하여 처리할 수 있도록 BeautifulSoup이용
+    "    soup = BeautifulSoup(html, 'html.parser')\n",
+    "    \n",
+    #찾은 링크의 마지막 숫자가 PubChem 내의 화학물질의 번호, Queue를 이용하여 그 페이지로 들어감
+    "    a = soup.select(\"#collection-results-container > div > div > div:nth-child(2) > ul > li:nth-child(1) > div > div > div.p-sm.flex-container.flex-nowrap.width-100 > div.flex-grow-1.p-md-left > div.f-medium.p-sm-top.p-sm-bottom.f-1125 > a\")\n",
+    "    b=a[0].get('href')\n",
+    "    c=Queue()\n",
+@@ -118,6 +123,7 @@
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    #웹 페이지 내의 원하는 정보(위험성, 화학식, 이름, 분자량)를 찾아서 출력
+    "def finding_hazard_transd(a):\n",
+    "    x=a.select(\"#GHS-Classification > div.section-content > div.section-content-item > div.overflow-x-auto.border > table > tbody > tr:nth-child(3) > td > div\")\n",
+    "    cleanres=[]\n",
+@@ -190,6 +196,7 @@
+   "outputs": [],
+   "source": [
+    "from googletrans import Translator\n",
+    #위에서 정의한 모든 함수를 하나씩 실행시켜 결과값으로 정리해주는 함수
+    "def tranktoe(a):\n",
+    "    translator=Translator()\n",
+    "    return translator.translate(a, src='en', dest='ko').text" )
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+(깃헙에 올려져있는 코드의 설명이 부족하여 코드내용 이해를 위한 설명을 추가하였다. 새로운 함수의 도입이 많아서 이해하기 어려운 부분이 많아 직접 주석을 달았다.)
+6)내가 기여한 내용의 반영 여부 : (X)
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 : 적정할 용액과 표준 용액의 액성, 초기농도, 부피만 알면 산 염기 적정시 pH를 구할 수있는 코드 작성하기]
+1)연구소 이름 : (지옥연구소)
+2)연구소가 해결하려는 문제 : (화학을 잘 못해 산 염기 적정 시 pH를 구하는데 어려움을 겪고 있는 사람들을 위한pH구하기 코드)
+3)연구소의 깃헙 링크 : (https://github.com/dmsdl7322/2503/blob/master/Untitled3.ipynb)
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+( 코드,
+K = float(input())
+C = float(input())
+if C > 10**-6:
+    if K>1:
+        c=float(C)
+    else:
+        c=float(math.sqrt(K*C))
+elif C<10**-8:
+    c=10**-7
+print(-math.log(c,10))
+)
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+(일양성자산의 pH를 구할때 평형을 체계적으로 고려하기 위해 제안한 코드이다.)
+6)내가 기여한 내용의 반영 여부 : X)
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 과제연구 시간에 자신의 실험내용과 주제를 어떠한 기구를 어떤 방법으로 써야 할지에 대한 해결책 제시]
+1)연구소 이름 : (방석 연구소)
+2)연구소가 해결하려는 문제 : (한성과학고에 새롭게 입학한 1학년 학생. 과제연구로 하고 싶은 주제와  실험방법 등은 구상해 놓았는데 실험실에서 어떠한 기구를 어떻게 사용해야 하는지 방법을 몰라 어려움을 겪는 학생들을 대상으로 한다.)
+3)연구소의 깃헙 링크 : (https://github.com/yujin77/hshsproject/tree/master)
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+(주석,  f = open('과제연구 계획서 방지연', encoding = 'utf8')
+for row in f :
+    print(row.strip())
+f.close()
+---------------------------
+
+f = open('test.txt', 'r')
+text = f.read()
+f.close()
+
+words = text.replace('.', ' ').replace(',', ' ').split()
+#print(words)
+
+dic = dict()
+for word in words:
+    if word in dic:
+        dic[word] = dic[word]+1
+    else:
+        dic[word] = 1
+#print(dic)
+
+sorted_x = sorted(dic, key=dic.get, reverse=True)
+#print(sorted_x)
+sorted_list = [(key, dic[key]) for key in sorted_x]
+
+#print(sorted_list)
+for n in range(1000):
+    i, j = sorted_list[n]
+    print(i, j)
+--------------------------
+
+f = open('과제연구 계획서 방지연', encoding = 'utf8')
+
+from collections import Counter
+wordDict = Counter()
+
+sentences = f.readlines()
+
+for sentence in sentences: #한 문장씩
+    	for word in sentence.split(): #한 문장에 들어있는 한 단어씩
+       		wordDict[word] += 1 #Counter에 count를 1씩 증가시킨다.
+        
+for word, freq in wordDict.most_common(20): # 출력할 단어 개수: 20개 
+    	print (word, freq)
+------------------------------
+
+f = open('과제연구 계획서 방지연', encoding = 'utf8')
+
+from collections import Counter
+wordDict = Counter()
+
+sentences = f.readlines()
+
+for sentence in sentences: #한 문장씩
+    for word in sentence.split(): #한 문장에 들어있는 한 단어씩
+        wordDict[word] += 1 #Counter에 count를 1씩 증가시킨다.        
+        #과제연구 계획서를 불러와 문장 속 단어를 한 단어씩 split시킴
+        #몇 개의 단어를 나오게 할 것인지 정함
+        
+        
+word_list = []
+freq_list = []
+for word, freq in wordDict.most_common(20): #20개의 단어를 나타내게 함
+    print (word, freq)
+    word_list.append(word)
+    freq_list.append(freq)
+#각각의 단어가 몇번 등장했는지 단어와 함께 나타남
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(30,5))
+plt.rc('font', family = 'Malgun Gothic')
+n = len(word_list)
+ind = np.arange(n)
+plt.bar(ind, freq_list, label='frequency')
+plt.xticks(ind, word_list)
+plt.xlabel('words')
+plt.ylabel('count')
+plt.title('words frequency')
+plt.legend()
+plt.show()
+#그래프의 x축과 y축에 해당하는 단어와 빈도수를 리스트를 만들어 넣어주고 그래프 작성함)
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+(코드의 목적과 관련하여 무엇을 하려는 코드인지 자세하게 설명하였다.)
+6)내가 기여한 내용의 반영 여부 : (X)
