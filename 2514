@@ -2,32 +2,213 @@
 
 0. 학번 : 2514
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 벌점 계산]
+1)연구소 이름 : 효모 연구소
+2)연구소가 해결하려는 문제 : 예상치 못한 퇴사를 당한 적 있는 최재원
+3)연구소의 깃헙 링크 : https://github.com/hyomohyomo29/hansungscience-2505/wiki
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+for i in a:
+    if a == "봉사" or "정리" :
+        print('당신이 ',name[a],' 로 걸린 횟수는 ',num[a],'점 , 받은 상점은 ',-bur[a],' 점 입니다')
+        break
+    else :
+        print('당신이 ',name[a],' 로 걸린 횟수는 ',num[a],'점 , 받은 벌점은 ',bur[a],' 점 입니다')
+        break
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+z = input('퇴사까지 벌점이 몇점 남았는지 궁금하면 1주퇴사, 2주퇴사 중 하나를 입력해주세요.')
+for i in z :
+    if z == "1주퇴사" :
+        print('당신은 1주퇴사까지', 20-score, '점 남았습니다.')
+        break
+    elif z == "2주퇴사" :
+        print('당신은 2주퇴사까지', 40-score, '점 남았습니다.')
+        break
+    else :
+        print('다시 입력해 주세요.')
+        break
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+기존에 어떤 항목에서 벌점을 받았는지 알려주는 기능에 정리나 봉사등 상점 항목을 입력했을 때 '받은 벌점은 -n점 입니다' 라고 나오는 결과를 '받은 상점은
+n점 입니다' 라고 바꾸었고, 퇴사까지 벌점이 몇점 남았는지 알려주는 기능을 추가하였습니다.
+6)내가 기여한 내용의 반영 여부 : X
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 : 전기 영동 결과를 바탕으로 제한효소지도 작성하기]
+1)연구소 이름 : 지오이드 연구소
+2)연구소가 해결하려는 문제 : 공부 시간 분배에 대한 갈피를 못 잡고 있는 한성과고 학생, 자신의 공부 시간이나 스타일에 대해서 알고 싶은 학생,
+중간고사 성적을 바탕으로 기말고사 공부에 피드백을 바독 싶은 학생 등등 성적 문제로 고민이 많은 학생들은 한 번 써 봤으면 좋겠다.
+당장 유근이와 나도 한 번 써보기로 했다.
+3)연구소의 깃헙 링크 : 
+https://github.com/ohyunsik/Ji-You-Guen
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+import matplotlib.pyplot as plt # 그래프를 그리기 위한 라이브러리를 불러옴
+import numpy as np
+
+from matplotlib import font_manager, rc
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc('font', family=font_name) # 그래프의 폰트를 지정해줌
+
+%matplotlib inline
+
+o = {'국어':0, # 각 과목마다 리스트로 지정해줌
+'영어':0,
+'심수1':0,
+'심수2':0,
+'물리':0,
+'화학':0,
+'생물':0,
+'지학':0}
+
+while True:
+x = input('오늘은 어떤 과목 공부했나요?') # 공부한 과목을 입력할 수 있도록 한다
+if x == '그만' : # 그만을 입력하면 입력을 마친다
+break
+y = float(input('몇 시간 공부했나요?')) #공부한 시간을 입력한다
+o[x] =+ y
+print(o)
+xx=o.keys()
+yy=o.values()
+
+p = np.arange(8)
+plt.bar(p, yy) # 그래프 설정
+plt.xticks(p, xx)
+plt.show()
+a = int(input('현재 국어 등급을 입력하세요.')) #현재 각 과목의 등급을 입력받는다
+A = int(input('목표 국어 등급을 입력하세요.'))
+aA=a-A # 목표 등급과 현재 등급의 차
+
+b = int(input('현재 영어 등급을 입력하세요.'))
+B = int(input('목표 영어 등급을 입력하세요.'))
+bB=b-B
+
+c = int(input('현재 심수1 등급을 입력하세요.'))
+C = int(input('목표 심수1 등급을 입력하세요.'))
+cC=c-C
+
+d = int(input('현재 심수2 등급을 입력하세요.'))
+D = int(input('목표 심수2 등급을 입력하세요.'))
+dD=d-D
+
+e = int(input('현재 물리 등급을 입력하세요.'))
+E = int(input('목표 물리 등급을 입력하세요.'))
+eE=e-E
+
+f = int(input('현재 화학 등급을 입력하세요.'))
+F = int(input('목표 화학 등급을 입력하세요.'))
+fF=f-F
+
+g = int(input('현재 생물 등급을 입력하세요.'))
+G = int(input('목표 생물 등급을 입력하세요.'))
+gG=g-G
+
+h = int(input('현재 지학 등급을 입력하세요.'))
+H = int(input('목표 지학 등급을 입력하세요.'))
+hH=h-H
+
+m=o['국어']+o['영어']+o['심수1']+o['심수2']+o['물리']+o['화학']+o['생물']+o['지학'] 
+n=aA+bB+cC+dD+eE+fF+gG+hH 
+
+i = {'국어':o['국어']/m,
+'영어':o['영어']/m,
+'심수1':o['심수1']/m,
+'심수2':o['심수2']/m,
+'물리':o['물리']/m,
+'화학':o['화학']/m,
+'생물':o['생물']/m,
+'지학':o['지학']/m,}
+
+j = {'국어':aA/n,
+'영어':bB/n,
+'심수1':cC/n,
+'심수2':dD/n,
+'물리':eE/n,
+'화학':fF/n,
+'생물':gG/n,
+'지학':hH/n}
+
+q = {'국어':i['국어']*0.6+j['국어']*0.4, #가중치를 설정해 공부 권장량을 알려준다 (과목마다 다르게 설정해주면 더 좋지 않을까)
+'영어':i['영어']*0.6+j['영어']*0.4,
+'심수1':i['심수1']*0.6+j['심수1']*0.4,
+'심수2':i['심수2']*0.6+j['심수2']*0.4,
+'물리':i['물리']*0.6+j['물리']*0.4,
+'화학':i['화학']*0.6+j['화학']*0.4,
+'생물':i['생물']*0.6+j['생물']*0.4,
+'지학':i['지학']*0.6+j['지학']*0.4,}
+
+plt.axis('equal')
+
+labels = q.keys()
+sizes = q.values()
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+plt.show() #그래프를 통해 공부 권장비율을 보여준다
+print('이 정도 비율로 공부해보는건 어떨까요?')
+
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+코드에 주석을 추가해서 보는 사람이 더 이해하기 쉽게 도와주었다
+6)내가 기여한 내용의 반영 여부 : x
+
+[프로젝트 3 : 중력 보정을 통한 지형 보정 값 출력]
+1)연구소 이름 : 탈론연구소
+2)연구소가 해결하려는 문제 : 지형 보정값을 구하는데 어려움을 겪고 있는 햄스터 해먼드
+3)연구소의 깃헙 링크 : 
+https://github.com/McCree081318/McCree
+4)내가 기여한 내용
+import csv
+import math as m
+f = open('a.csv', encoding = 'cp949')
+c = csv.reader(f)
+
+city = input("도시를 입력하세요(~도 ~시): ") # 중력보정을 하고 싶은 도시를 입력한다
+alldata = []
+g = 978032.677 # 중력가속도값 정의 
+
+        
+def standardG( o): # 표준 중력
+    sin2 = (m.sin(m.radians(o)))**2
+    return g*(1+0.005278895*sin2+0.000023462*sin2**2)
+
+def freeAirCorrection(h): # 프리에어 보정값 계산 
+    return 0.308*h
+
+def freeAirAnomaly(g, h, o): # 프리에어 이상값 계산 
+    return (g - standardG(o)+freeAirCorrection(h))
+
+def bouguerCorrection(p, h): # 부게 보정값 계산 
+    return 0.0419 * p * h
+
+def bouguerAnomaly(g, h, o, p): # 부게 이상값 계산 
+    return freeAirAnomaly(g, h, o) - bouguerCorrection(p, h)
+
+def terrainCorrection(g, h, o, p, gBC): # 지형 보정값 계산 
+    return gBC - bouguerAnomaly(g,h,o,p)
+
+
+for row in c:
+    if city in row[0]: # 데이터 불러오기 
+        alldata = row
+        wido = float(row[1])
+        kyongdo = float(row[2])
+        godo = float(row[3])
+        g_obs = float(row[4])
+        gb = float(row[5])
+        den = float(row[7])
+        print(alldata)
+        tc = terrainCorrection(g,godo, wido, den, gb)
+        print(tc/1000) # 단위 맞춰주기
+    else:
+        print("데이터가 없쪄용ㅠㅠ") # 입력받은 도시가 데이터에 없을 시 출력 
+        
+for i in c: 
+    l = i
+    location = str(l[0])
+    latitude = float(l[1])
+    longitude = float(l[2])
+    h = float(l[3])
+    g = float(l[4])
+    gBC = float(l[5])
+    stone = str(l[6])
+    p = float(l[7])
+    dgt = terrainCorrection(g, h, latitude, p, gBC) # 최종 중력보정값 출력 
+    print(dgt)
+5)내가 기여한 내용에 대한 설명
+코드를 이해하기 쉽게 주석을 추가했다. 어떤 과정에서 어떤 보정이 들어가는지 알려주었다.
+6)내가 기여한 내용의 반영 여부 : x
