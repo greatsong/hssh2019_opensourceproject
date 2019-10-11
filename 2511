@@ -1,33 +1,291 @@
 전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
 
-0. 학번 : 2511
-
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+학번 : 2511
+[프로젝트 1 : Queue를 이용한 렌즈계의 구현]
+1)연구소 이름 : (페르마 연구소)
+2)연구소가 해결하려는 문제 : (Queue를 이용한 렌즈계의 구현)
+3)연구소의 깃헙 링크 : (https://github.com/kys0527/HSHS-Computer-Science-Project)
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+class Queue :
+    def __init__(self) :
+        self.items = []
+    def enqueue(self, item) :
+        self.items.insert(0,item)
+    def dequeue(self) :
+        return self.items.pop()
+    def peek(self) :
+        return self.items[0]
+    def isEmpty(self) :
+        return self.items == []
+    def size(self) :
+        return len(self.items) # Queue 정의
+class lens :
+    def __init__(self, tp, focus, l): # 변수 초기화
+        self.tp = tp
+        self.focus = focus
+        self.l = l # 변수 공유
+total = Queue()
+print('렌즈의 개수는 몇개인가요?')
+n = int(input())
+print('렌즈 1의 종류는 무엇인가요?(오목, 볼록 중 골라 주세요.)')
+tp = str(input())
+print('렌즈1의 초점거리(절댓값)는 얼마인가요?')
+focus = int(input())
+print('물체와 렌즈사이의 거리는 얼마인가요?')
+l = int(input()) # 렌즈 개수, 종류, 초점 거리, 렌즈 사이의 거리 입력
+a = lens(tp,focus,l)
+total.enqueue(a)
+for i in range (2,n + 1):
+    print('렌즈',i,'의 종류는 무엇인가요?(오목, 볼록 중 골라 주세요.)')
+    tp = str(input())
+    print('렌즈',i,'의 초점거리(절댓값)는 얼마인가요?')
+    focus = int(input())
+    print('렌즈',i-1,'과 렌즈',i,'사이의 거리는 얼마인가요?')
+    l = int(input())
+    a = lens(tp,focus,l)
+    total.enqueue(a) # 각각의 렌즈에 대해 입력 반복
+fl = total.dequeue()
+sign = 1
+if fl.tp == '오목' :
+    sign = -1
+a = fl.l
+f = fl.focus
+inb = sign/f - 1/a
+b = 1/inb
+B = round(b,2)
+m = - 1 / inb / a # 렌즈 수식에 입력값들을 대입
+for i in range(1,n):
+    fl = total.dequeue()
+    sign = 1
+    if fl.tp == '오목' :
+        sign = -1
+    a = fl.l - b
+    f = fl.focus
+    inb = sign/f - 1/a
+    b = 1/inb
+    B = round(b,2)
+    m = m * (- 1 / inb / a) # 반복해서 각각의 렌즈에 식을 적용
+M = round(m,2)
+flag = '도립(뒤집어져있음)'
+if m > 0:
+    flag = '정립(똑바로 서있음)'
+print('상의 위치는',n,'번째 렌즈로부터',B,'의 거리에 있으며, 배율은',M,'배입니다. 상은',flag,'입니다.') # 결론 )
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+( 코드에 대해 주석을 달았다. 렌즈계를 위해 queue를 사용했는데, 각각의 렌즈에 대해 변수를 입력받고 )
+6)내가 기여한 내용의 반영 여부 : (X)
+[프로젝트 2 : 산화.환원을 이용한 화학 전지 반응식 세우기]
+1)연구소 이름 : (감자연구소)
+2)연구소가 해결하려는 문제 : (전기화학 수업시간에 어려움을 겪는 학생)
+3)연구소의 깃헙 링크 : (https://github.com/sechan0817/2-1)
+4)내가 기여한 내용
+
+(def gcd(a, b):
+    while (b != 0):
+        temp = a % b
+        a = b
+        b = temp
+    return abs(a) # 최대공약수 코드, 정의
+metal=['K','Ca','Na','Mg','Al','Zn','Fe','Ni','Sn','Pb','Cu','Ag','Pt','Au'] # Hg는 분자형이온으로 존재해서 우선 제외시킴.
+metalnum=[1,2,1,2,3,2,2,2,2,2,2,1,2,3]  # 금속별로 이온의 전하량을 나타냄
+m1=input()
+m2=input()
+a=-1
+b=-1
+for i in range(len(metal)) :
+    if metal[i] == m1 :
+        a = i
+        break
+
+for i in range(len(metal)) :
+    if metal[i] == m2:
+        b = i
+        break
+
+if b < a :
+    c = a
+    a = b
+    b = c
+    m1 = metal[a]
+    m2 = metal[b]  #index를 자유롭게 활용하기 위해 m1 m2 자체를 바꾸지 않고 그 index를 바꿔줌
+
+g=gcd(metalnum[b],metalnum[a])
+x=int(metalnum[b]/g)
+y= int(metalnum[a]/g)
+#반응식의 계수를 결정해줌
+print(str(x)+m1+' + '+str(y)+m2+str(metalnum[b])+'+'+' -> '+str(y)+m2+' + '+str(x)+m1+str(metalnum[a])+'+') # 최종식)
+5)내가 기여한 내용에 대한 설명
+(코드의 주석을 추가하였다)
+6)내가 기여한 내용의 반영 여부 : X
+
+[프로젝트 3 : 다양한 상황에서의 화학종 pH 구하기]
+1)연구소 이름 : (개굴개굴 연구)
+2)연구소가 해결하려는 문제 : (다양한 상황에서의 화학종 pH 구하기)
+3)연구소의 깃헙 링크 : (https://github.com/shimwooyong/2607_2614)
+4)내가 기여한 내용
+
+import math
+K=float(input())#산의 이온화 상수
+C=float(input())#수용액의 몰농도
+if C>10**-6:#평형의 체계적 고려X
+    if K>=1:
+        c=float(C)
+    else:
+        c=float((-K+math.sqrt(K**2+4*K*C))/2)
+elif C<10**-8:#매우 묽은 용액-->pH=7
+    c=10**-7
+else:#평형의 체계적 고려
+    if K>1:
+        c=float((C+math.sqrt(C**2+4*10**-14))/2) # 강산의 경우 다음과 같은 식을 사용한다.
+    else:
+        c=10**-7 # 약산의 경우 다음과 같은 식을 사용한다
+print(-math.log(c,10))
+5)내가 기여한 내용에 대한 설명
+코드에 주석을 달았다
+6)내가 기여한 내용의 반영 여부 : (X)전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+
+학번 : 2511
+[프로젝트 1 : Queue를 이용한 렌즈계의 구현]
+1)연구소 이름 : (페르마 연구소)
+2)연구소가 해결하려는 문제 : (Queue를 이용한 렌즈계의 구현)
+3)연구소의 깃헙 링크 : (https://github.com/kys0527/HSHS-Computer-Science-Project)
+4)내가 기여한 내용
+
+class Queue :
+    def __init__(self) :
+        self.items = []
+    def enqueue(self, item) :
+        self.items.insert(0,item)
+    def dequeue(self) :
+        return self.items.pop()
+    def peek(self) :
+        return self.items[0]
+    def isEmpty(self) :
+        return self.items == []
+    def size(self) :
+        return len(self.items) # Queue 정의
+class lens :
+    def __init__(self, tp, focus, l): # 변수 초기화
+        self.tp = tp
+        self.focus = focus
+        self.l = l # 변수 공유
+total = Queue()
+print('렌즈의 개수는 몇개인가요?')
+n = int(input())
+print('렌즈 1의 종류는 무엇인가요?(오목, 볼록 중 골라 주세요.)')
+tp = str(input())
+print('렌즈1의 초점거리(절댓값)는 얼마인가요?')
+focus = int(input())
+print('물체와 렌즈사이의 거리는 얼마인가요?')
+l = int(input()) # 렌즈 개수, 종류, 초점 거리, 렌즈 사이의 거리 입력
+a = lens(tp,focus,l)
+total.enqueue(a)
+for i in range (2,n + 1):
+    print('렌즈',i,'의 종류는 무엇인가요?(오목, 볼록 중 골라 주세요.)')
+    tp = str(input())
+    print('렌즈',i,'의 초점거리(절댓값)는 얼마인가요?')
+    focus = int(input())
+    print('렌즈',i-1,'과 렌즈',i,'사이의 거리는 얼마인가요?')
+    l = int(input())
+    a = lens(tp,focus,l)
+    total.enqueue(a) # 각각의 렌즈에 대해 입력 반복
+fl = total.dequeue()
+sign = 1
+if fl.tp == '오목' :
+    sign = -1
+a = fl.l
+f = fl.focus
+inb = sign/f - 1/a
+b = 1/inb
+B = round(b,2)
+m = - 1 / inb / a # 렌즈 수식에 입력값들을 대입
+for i in range(1,n):
+    fl = total.dequeue()
+    sign = 1
+    if fl.tp == '오목' :
+        sign = -1
+    a = fl.l - b
+    f = fl.focus
+    inb = sign/f - 1/a
+    b = 1/inb
+    B = round(b,2)
+    m = m * (- 1 / inb / a) # 반복해서 각각의 렌즈에 식을 적용
+M = round(m,2)
+flag = '도립(뒤집어져있음)'
+if m > 0:
+    flag = '정립(똑바로 서있음)'
+print('상의 위치는',n,'번째 렌즈로부터',B,'의 거리에 있으며, 배율은',M,'배입니다. 상은',flag,'입니다.') # 결론 )
+
+5)내가 기여한 내용에 대한 설명
+( 코드에 대해 주석을 달았다. 렌즈계를 위해 queue를 사용했는데, 각각의 렌즈에 대해 변수를 입력받고 )
+6)내가 기여한 내용의 반영 여부 : (X)
+[프로젝트 2 : 산화.환원을 이용한 화학 전지 반응식 세우기]
+1)연구소 이름 : (감자연구소)
+2)연구소가 해결하려는 문제 : (전기화학 수업시간에 어려움을 겪는 학생)
+3)연구소의 깃헙 링크 : (https://github.com/sechan0817/2-1)
+4)내가 기여한 내용
+
+(def gcd(a, b):
+    while (b != 0):
+        temp = a % b
+        a = b
+        b = temp
+    return abs(a) # 최대공약수 코드, 정의
+metal=['K','Ca','Na','Mg','Al','Zn','Fe','Ni','Sn','Pb','Cu','Ag','Pt','Au'] # Hg는 분자형이온으로 존재해서 우선 제외시킴.
+metalnum=[1,2,1,2,3,2,2,2,2,2,2,1,2,3]  # 금속별로 이온의 전하량을 나타냄
+m1=input()
+m2=input()
+a=-1
+b=-1
+for i in range(len(metal)) :
+    if metal[i] == m1 :
+        a = i
+        break
+
+for i in range(len(metal)) :
+    if metal[i] == m2:
+        b = i
+        break
+
+if b < a :
+    c = a
+    a = b
+    b = c
+    m1 = metal[a]
+    m2 = metal[b]  #index를 자유롭게 활용하기 위해 m1 m2 자체를 바꾸지 않고 그 index를 바꿔줌
+
+g=gcd(metalnum[b],metalnum[a])
+x=int(metalnum[b]/g)
+y= int(metalnum[a]/g)
+#반응식의 계수를 결정해줌
+print(str(x)+m1+' + '+str(y)+m2+str(metalnum[b])+'+'+' -> '+str(y)+m2+' + '+str(x)+m1+str(metalnum[a])+'+') # 최종식)
+5)내가 기여한 내용에 대한 설명
+(코드의 주석을 추가하였다)
+6)내가 기여한 내용의 반영 여부 : X
+
+[프로젝트 3 : 다양한 상황에서의 화학종 pH 구하기]
+1)연구소 이름 : (개굴개굴 연구)
+2)연구소가 해결하려는 문제 : (다양한 상황에서의 화학종 pH 구하기)
+3)연구소의 깃헙 링크 : (https://github.com/shimwooyong/2607_2614)
+4)내가 기여한 내용
+
+import math
+K=float(input())#산의 이온화 상수
+C=float(input())#수용액의 몰농도
+if C>10**-6:#평형의 체계적 고려X
+    if K>=1:
+        c=float(C)
+    else:
+        c=float((-K+math.sqrt(K**2+4*K*C))/2)
+elif C<10**-8:#매우 묽은 용액-->pH=7
+    c=10**-7
+else:#평형의 체계적 고려
+    if K>1:
+        c=float((C+math.sqrt(C**2+4*10**-14))/2) # 강산의 경우 다음과 같은 식을 사용한다.
+    else:
+        c=10**-7 # 약산의 경우 다음과 같은 식을 사용한다
+print(-math.log(c,10))
+5)내가 기여한 내용에 대한 설명
+코드에 주석을 달았다
+6)내가 기여한 내용의 반영 여부 : (X)
