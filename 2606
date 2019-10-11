@@ -10,7 +10,51 @@
 직렬, 병렬 함수를 하나의 함수로 통합
 5)내가 기여한 내용에 대한 설명
 직렬함수를 변형하여 직렬 처리를 할때 병렬도 처리되도록 함수를 수정하였다.
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+6)내가 기여한 내용의 반영 여부 : X
+
+print('지점 사이의 합성저항값을 모두 입력해주세요')
+print('ex) 1,2:3 2,3:6 3,4:2 4,1:1')
+res=input().split()
+print('전압을 걸어줄 두 지점과 걸어줄 전압을 입력해주세요')
+print('ex) 1,3:30')
+vol=input().replace(',',' ').replace(':',' ').split()
+strtp=int(vol[0])
+fnshp=int(vol[1])
+pnpvol=int(vol[2])
+rsdc={}
+for i in res:
+    n=i.replace(',',' ').replace(':',' ').split()
+    if int(n[0]) not in rsdc:
+        rsdc[int(n[0])]={}
+    rsdc[int(n[0])][int(n[1])]=int(n[2])
+    if int(n[1]) not in rsdc:
+        rsdc[int(n[1])]={}
+    rsdc[int(n[1])][int(n[0])]=int(n[2])
+def intg(a):
+    if not a==strtp and not a==fnshp and a:
+        if len(rsdc[a])==2:
+            ssee=[]
+            for i in rsdc[a]:
+                ssee.append(i)
+            serisum=rsdc[a][ssee[0]]+rsdc[a][ssee[1]]
+            del(rsdc[a])
+            if ssee[1] in rsdc[ssee[0]]:
+                prres=rsdc[ssee[0]][ssee[1]]
+                rstres=(serisum*prres)/(serisum+prres)
+                rsdc[ssee[0]][ssee[1]]=rstres
+                rsdc[ssee[1]][ssee[0]]=rstres
+            else:
+                rsdc[ssee[0]][ssee[1]]=serisum
+                rsdc[ssee[1]][ssee[0]]=serisum
+for i in range(100):
+    for j in rsdc:
+        if not j==strtp and not j==fnshp and j:
+            if len(rsdc[j])==2:
+                intg(i)
+                break
+pnpres=rsdc[strtp][fnshp]
+pnpirr=pnpvol/pnpres
+print('전체전압 =',pnpvol,', 전체저항 =',pnpres,', 전체전류 =',pnpirr)
 
  [프로젝트 2 : 길찾기 문제의 해결방법]
 1)연구소 이름 : 퇴사각
@@ -20,7 +64,38 @@
 맵을 구성하는 방식을 바꿈, 세는 방식을 바꿈
 5)내가 기여한 내용에 대한 설명
 n*m격자에서 빠지는 점들을 입력하여 맵을 구성하도록 만들었고 재귀함수를 이용하여 최단경우의 개수를 계산하였다.
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+6)내가 기여한 내용의 반영 여부 : X
+
+print('도착지의 좌표를 입력해주세요(출발: 0.0) ex) 3,5')
+a = input().split(',')
+print('갈 수 없는 통로(.5 사용) 또는 점의 좌표를 모두 입력해주세요 ex) 3,2.5 4.5,3 3,4')
+b = input().split()
+counter={}
+def f(m,n):
+    s=(2**m)*(5**n)
+    if s in counter:
+        pass
+    elif str(str(m)+','+str(n)) in b :
+        counter[s]= 0
+    elif m ==0 and n ==0:
+        counter[s]= 1
+    elif m==-1 or n == -1:
+        counter[s]= 0
+    elif str(str(m-0.5)+','+str(n)) in b and str(str(m)+','+str(n-0.5)) in b:
+        counter[s]= 0
+    elif str(str(m-0.5)+','+str(n)) in b:
+        f(m,n-1)
+        counter[s]= counter[s/5]
+    elif str(str(m)+','+str(n-0.5)) in b:    
+        f(m-1,n)
+        counter[s]= counter[s/2]
+    else:
+        f(m-1,n)
+        f(m,n-1)
+        counter[s]= counter[s/2] + counter[s/5]
+    return counter[s]
+print(b)
+print(str(f(int(a[0]),int(a[1])))+'가지')
 
  [프로젝트 3 : 상대론 시각화]
 1)연구소 이름 : 내가 판단하는
@@ -30,4 +105,38 @@ n*m격자에서 빠지는 점들을 입력하여 맵을 구성하도록 만들�
 물체의 운동과 계산 방식을 바꿈
 5)내가 기여한 내용에 대한 설명
 각 등속직선운동하는 물체에 대한 상대속도를 로렌츠변환을 통해 비교할 수 있도록 함
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+6)내가 기여한 내용의 반영 여부 : X
+
+GlowScript 2.9 VPython
+print('움직일 물체와 그 속도 성분/c 을 모두 써주세요 ex) kn:0.6,0.6,0 rd:0.8,0.8,0.8 st:0,0,0')
+obin= input().split()
+obdc={}
+dt =1
+t=0
+tlim=80
+for i in obin:
+    n= i.replace(':',' ').replace(',',' ').split()
+    who=n[0]
+    obdc[who]= sphere(pos = vector(0,0,0), radius = 5)
+    obdc[who].velocity = vector(int(n[1]),int(n[2]),int(n[3]))
+    obdc[who].vfnl =((int(n[1]))**2+(int(n[2]))**2+(int(n[3]))**2)**0.5
+    obdc[who].vx=int(n[1])
+    obdc[who].vy=int(n[2])
+    obdc[who].vz=int(n[3])
+def gamma(n):
+    return (1-n**2)**(-0.5)
+obli=[]
+for i in obdc:
+    obli.append(i)
+print(obli,'순으로 보여줍니다.')
+for i in range(len(obli)):
+    obi=obli[i]
+    while t<tlim * i:
+        rate(1)
+        t += dt
+        for j in range(len(obli)):
+            obj=obli[j]
+            obdc[obj].velocity.x = (gamma(obdc[obi].vx)*(obdc[obj].vx-obdc[obi].vx))/(gamma(obdc[obi].vfnl)*(1-(obdc[obi].vfnl*obdc[obj].vx)))
+            obdc[obj].velocity.y = (gamma(obdc[obi].vy)*(obdc[obj].vy-obdc[obi].vy))/(gamma(obdc[obi].vfnl)*(1-(obdc[obi].vfnl*obdc[obj].vy)))
+            obdc[obj].velocity.z = (gamma(obdc[obi].vz)*(obdc[obj].vz-obdc[obi].vz))/(gamma(obdc[obi].vfnl)*(1-(obdc[obi].vfnl*obdc[obj].vz)))
+            obdc[obj].pos += obdc[obi].velocity *dt
