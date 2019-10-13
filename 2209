@@ -88,12 +88,63 @@ for i in range(3):
 원래는 뭘 출력한건지 알 수 없는 상태였는데 말로 잘 써놓아서 사용자가 잘 사용할 수 있게 했다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 : 태양계 구현에서 반복되는 코드들을 줄였음]
+1)연구소 이름 : 고기만두 연구소
+2)연구소가 해결하려는 문제 : 처음으로 태양계를 배운 초등학교 2학년의 고기만두양의 태양계의 모습에 대한 궁금증 해결
+3)연구소의 깃헙 링크 : https://github.com/bborish/BBORISH
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+class Planet:
+    def __init__(self, pos, radius, textures, color_p, val, mass, angle, real_ratio):
+        self.pos = pos
+        self.radius = radius
+        self.textures = textures
+        self.color_p = color_p
+        self.vel = vel
+        self.mass = mass
+        self.angle = angle
+        self.real_ratio = real_ratio
+        
+        self.planet = sphere(pos=pos, radius=radius, texture=texture, color=color_p)
+        self.planet.trail = curve(color=color_p)
+        self.planet.velocity = vel
+        
+        self.ratio_c = gcurve(gdisplay = graphSpeedRatios, color = color_p)
+        self.real_ratio_c = gdots(gdisplay = graphSpeedRatios, color = color_p)
+        
+        self.distance = 0
+        self.unit_vector = 0
+        self.Fgrav = 0
+        self.ratio = 0
+        
+planet_list = [
+    mercury = Planet(vec(200,0,0), 50, textures.wood, color.red, vector(0,0,295), 3.29*10**3, radians(10), 1.600),
+    venus  = Planet(vec(373.664,0,0), 50, textures.wood, color.orange, vector(0,0,225), 4.87*10**4, radians(20), 1.177),
+    earth = Planet(vec(516.664,0,0), 50, textures.earth,  color.yellow, vector(0,0,195), 6.0*10**4, radians(30), 1.000),
+    mars = Planet(vec(787.222,0,0), 50, textures.wood, color.green, vector(0,0,155), 6.39*10**3, radians(15), 0.805),
+    jupiter = Planet(vec(2688.068,0,0), 75, textures.gravel, color.cyan, vector(0,0,70), 1.90*10**7, radians(15), 0.437),
+    saturn = Planet(vec(4920.048,0,0), 75, textures.gravel, color.blue, vector(0,0,50), 5.68*10**6, radians(15), 0.324),
+    uranus = Planet(vec(9924.19,0,0), 75, textures.wood, color.magenta, vector(0,0,30), 8.68*10**5, radians(15), 0.228),
+    neptune = Planet(vec(15544.811,0,0), 75, textures.wood, color.red, vector(0,0,23), 1.02*10**6, radians(15), 0.182),
+    pluto = Planet(vec(20534.968,0,0), 75, textures.wood, color.orange, vector(0,0,0.1), 1.31*10**2, radians(15), 0.158)
+]
+
+--------------------------------
+
+    for i in planet_list:
+        i.planet.trail.append(pos=i.planet.pos)
+        i.distance = mag(i.planet.pos)
+        i.unit_vector = (i.planet.pos - sun.pos)/i.distance
+        
+        self.planet.velocity += (i.Fgrav/i.mass)*deltat
+        self.planet.pos +=  self.planet.velocity*deltat
+        self.planet.rotate(angle = i.angle, axis = vec(0,1,0))
+        
+        i.ratio = mag(self.planet.velocity)/mag(earth.velocity)
+        
+        if i.distance <= sun.radius : check = False
+        
+        i.ratio_c.plot(pos=(t, i.ratio))
+        i.real_ratio_c.plot(pos=(t, i.real_ratio))
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+원래 이 부분이 되게 길게 되어있었는데 반복되는게 보여서 그걸 for이나 class로 줄였음.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
