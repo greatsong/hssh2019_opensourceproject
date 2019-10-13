@@ -28,7 +28,11 @@ venusRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.orange)   # �
 2)연구소가 해결하려는 문제 : 핵산분석을 기작 이해가 아닌 수식 외우기를 통해 하는 학생들의 이해에 도움을 준다.
 3)연구소의 깃헙 링크 : https://github.com/hui0518/HuiJh
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+    def __str__(self):
+        return f"RNA 3'-{self.base}-5'"  # 5' --> 3' 방향으로 염기가 들어감
+       def complement(self): #상보적 RNA 객체 생성
+        string = list(map(lambda x : self.pair[x], (self.base[::-1])))
+        # 상보적인 염기를 짝짓고, list의 염기순서를 거로 뒤집어 핵산의 방향을 맞춘다. 
 5)내가 기여한 내용에 대한 설명
 (자신이 어떤 기여를 한 것인지 설명해주세요)
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
