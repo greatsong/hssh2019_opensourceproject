@@ -2,32 +2,104 @@
 
 0. 학번 : 2207
 
-[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 1 : 특정 염기서열의 제한효소가 플라스미드 DNA 상에서 작용하는 제한효소자리를 찾아주는 프로그램]
+1)연구소 이름 :  T form Lab
+2)연구소가 해결하려는 문제 : 임의의 제한효소에 대해 DNA 상에서 제한효소가 작용할 위치를 알려주는 서비스가 부족한 문제를 겪고 있는 플라즈마
+3)연구소의 깃헙 링크 : https://github.com/newton1101/hshs-2-1-project/blob/master/README.md
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+1. E.coli = 'TTAACCTATAAAAATAGGCGTATCACGAGGCAGAATTTCAGATAAAAAAAATCCTTAGCTTTCGCTAAGG' +'ATGATTTCTGGAATTCGCGGCCGCTTCTAGAGTTGACGGCTAGCTCAGTCCTAGGTACAGTGCTAGCTAC' +'TAGAGAAAGAGGAGAAATACTAGATGGCCGGCGCACGCAACGCGACCAATAAGCTCCTGCACAAAGCGAA' +'AAAAAGCAAAAGCGATGAGTTTTATACCCAGTATTGCGACATTGAAAACGAATTACAATACTACCGCGAA' +'CATTTCAGCGATAAGGTTGTGTACTGCAACTGTGATGACCCGCGTGTGAGCAATTTTTTTAAATATTTCG' +'CGGTGAACTTTGACAACCTCGGACTGAAGAAGCTGATTGCAAGCTGTTATGTAGAAAACAAGGAGGGCTT' +'TAGCTCCAGCGAAGCAGCAAAAAATGGCTTTTACTATGAATACCATAAAGAAAACGGCAAAAAACTGGTC' +'TTCGATGATATTTCGGTGAGTAGCTTCTGTGGCGACGGAGATTTTCGGAGCAGTGAAAGCATTGATCTGC' +'TCAAAAAAAGTGATATCGTGGTCACGAACCCGCCTTTTTCACTCTTTCGTGAATACTTAGATCAACTTAT' +'TAAATACGATAAAAAGTTCCTTATCATCGCCAATGTAAACAGCATTACTTATAAAGAAGTGTTTAATCTG' +'ATCAAAGAAAACAAGATCTGGCTGGGAGTACATTTAGGCCGGGGTGTGAGTGGCTTCATCGTTCCAGAAC' +'ATTACGAACTGTACGGCACCGAGGCCCGCATTGATTCAAATGGAAACCGTATTATCAGCCCGAATAACTG' +'TCTGTGGCTGACGAACCTTGACGTCTTCATTCGCCACAAAGACCTGCCGTTAACACGTAAATACTTTGGA' +'AACGAAAGCTCGTAC'
+2.    for i in range(0, len(E.coli) - len(pattern)+1) :
+3.     for i in range(len(E.coli)-len(pattern)+2,len(E.coli)):
+        if E.coli[i:len(E.coli)]==pattern[0:len(E.coli)-i] and E.coli[0:len(E.coli)-i] == pattern[len(E.coli)-i:len(pattern)]:
+            pattern_list.append(i+1)
+4.print(i, len(pattern_list))
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+1. -> 대장균의 플라스미드 서열이 담긴 값의 명칭으로 대장균의 이름이 아닌 제한효소의 이름이 쓰여 이름을 EcoRI에서 E.coli로 바꿔 주었다.
+2. -> range의 범위에서 제한효소의 특성을 고려하면 뒷 범위에 1을 더해주는 것이 맞아 수정했다.
+3. 원코드에서는 복제원점을 기준으로 플라스미드의 염기서열을 일렬로 나열하였으나, 원형의 플라스미드 성질상 복제원점 부근의 염기서열을 제한효소자리로 하는 제한효소의 경우 잘려야 하는 부분이 모두 나오지 않는다. 이를 보완해주었고, 이런 경우와 원래 경우를 구분하기 위해 이럴 경우 제한 부위가 처음 나오는 부분의 번호만 써주는 것으로 설정했다.
+4. 몇 개의 제한효소 절편이 생기는지 확인할 수 있는 코드를 추가했다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 :탄소 순환을 이용한 지구온난화 분석 및 '인류 멸망 주식회사']
+1)연구소 이름 : 연구소 이름을 까먹은 연구팀의 연구소(진짜 까먹었어요 죄송합니다)
+2)연구소가 해결하려는 문제 : 인류에 대한 증오심을 품고 있는 반상어 씨
+3)연구소의 깃헙 링크 : https://github.com/Usernam02/2508-2510
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+while q :
+    b=int(input('편안함'))
+    for i in range(1,41):
+        at.append(a)
+        gt.append(g)
+        wt.append(w)
+        ht.append(h)
+        y=y+1                         #해는 1년씩 늘어남
+        nw=int(a*0.1)
+        bh=int(b*h)
+        bh1=int(bh*0.4)
+        bh2=int(bh*0.1)
+        f1=int(f*0.1)
+        a=a+w-nw+h+bh2-f1            #1년 후 이산화탄소의 양
+        g=g-bh+f-h                   #1년 후 화석 연료의 양
+        w=nw
+        dh=int(0.08*h)
+        nh=int(0.02*bh)
+        if a<3000 :                     #이산화탄소 농도가 너무 낮으면 호흡이 안되서 농사가 망함
+            print('서기',y,'년',wf,'농사가 망했습니다 you die')
+            print('농사가 망했습니다 you die')
+            at.append(a)
+            q=False
+            break
+        elif f-h<0 :                #인구에 비해 수확량이 적으면 정부에 반기를 든 분노한 시민들이 폭동을 일으킵니다.
+            print('서기',y,'년',wf,'수확량이 부족합니다 폭동이 일어났습니다 you die')
+            q=False
+            break
+        elif g<0 :                  #화석 연료가 없어서 너는 굶어 죽습니다.
+            print('서기',y,'년',wf,'화석 연료가 다 떨어졌습니다 가장 현실에 가깝습니다 you die')
+            gt.append(g)
+            q=False
+            break
+        elif a>30000:               #이산화탄소 농도가 너무 높으면 질식사합니다
+            print('서기',y,'년',wf,'숨이 막혀 오는 것이 느껴집니다 you die')
+            at.append(a)
+            q=False
+            break
+        elif f-h>500 :             #수확량이 인구에 비해 너무 많으면 넘쳐나는 음식물 쓰레기를 주체할 수 없게 됩니다.
+            print('서기',y,'년',wf,'음식물 쓰레기가 너무 많습니다 you die')
+            q=False
+            break
+        elif h>12000000000 :   #인구가 너무 많으면 주거공간이 모자라게 됩니다.
+            print('서기',y,'년',wf,'주거공간이 모자랍니다 폭동이 일어났습니다. you die')
+            q=False
+        elif h<1 :   #지구에 살아있는 인류가 없습니다.
+            print('서기',y,'년',wf,'지구위에 살아있는 인류는 없습니다. you die')
+            q=False
+        else :
+            h=h-dh+nh
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+위에 있는 코드를 제가 다 한 것은 아니고 원래 print 이후에 나오는 문장이 조금씩 다섯 줄로 끊어 써져 있었는데, 가독성이 떨어지는 것 같아 한 줄에 볼 수 있도록 코드를 재구성했습니다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 3 :길찾기 문제의 해결방법 ]
+1)연구소 이름 : 퇴사각 연구소
+2)연구소가 해결하려는 문제 : 고2 학생이 수학시간에 길찾기 문제를 푸는데 어려움을 겪고 있다.
+3)연구소의 깃헙 링크 : https://github.com/kiminhee0311/how-to-find-road
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+a = list(map(int, input("출발 지점의 x,y 좌푯값을 입력해주세요.").split()))
+b = list(map(int, input("도착 지점의 x,y 좌푯값을 입력해주세요.").split()))
+def BBareun(ini, fin):
+    x = fin[0] - ini[0]
+    y = fin[1] - ini[1]
+    return Combination(x+y,min(x,y))
+def Fact(n):
+    if n==1: return 1
+    return Fact(n-1)*n
+def Combination(n,r):
+    return Fact(n-r+1)/Fact(r)
+c=list(map(int, input("장애물이 놓여있는 지점의 x,y 좌푯값을 입력해주세요.").split())) #장애물을 점으로 볼 수 있는 경우
+def Pihaega(ini,fin,obs):
+    return BBareun(ini,fin)-BBareun(ini,obs)*BBareun(obs,fin)
+print(Pihaega(a,b,c))
+        
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
+좌표계를 구현하는 데 실패하여 길찾기 문제를 해결하지 못했다고 해서 이를 list를 통해 구현할 수 있도록 하고 이렇게 구현한 좌표계를 통해 최단경로와 점 크기의 장애물이 있을 때 이를 지나지 않고 도달할 수 있는 최단경로의 경우의 수를 구할 수 있는 함수를 만들었다.
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
