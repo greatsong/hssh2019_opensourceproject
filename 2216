@@ -8,33 +8,157 @@
 DNA 염기 서열에 대한 이해가 부족하고 이론적인 내용보다는 가시적인 것을 빠르게 이해하는 생물이"
 3)연구소의 깃헙 링크 : https://github.com/qndjzm/2110-2114
 4)내가 기여한 내용
-#염기 서열 인식 및 효소 절편 제작 base = input('5-3순서대로 입력해주세요') #염기 서열 입력 fragment = input('5-3순서대로 입력해주세요') def enzyme(base,fragment) : base_saver = [] cnt = 0 check = 0 while len(base[0:-1] ) != 1 : for i in range(len(base)-2) : if base[i:i+len(fragment)] == fragment : base1 = base[0:i+1] print(base1) check += 0 break else :#모든 효소 절편이 절단되도록 설정 print(base) cnt += 1 break if check == 0 : break base_saver.append(base1) cnt +=1 base = base[len(base1):len(base)] if check != 0 : print('RFLP의 갯수는' , cnt , '입니다') #효소 절편 개수 제시 else : print('만들어진 절편은 존재하지 않습니다.') enzyme(base,fragment)
+#염기 서열 인식 및 효소 절편 제작 
+base = input('5-3순서대로 입력해주세요') #염기 서열 입력 
+fragment = input('5-3순서대로 입력해주세요') 
+def enzyme(base,fragment) : 
+    base_saver = [] cnt = 0 check = 0 while len(base[0:-1] ) != 1 : 
+for i in range(len(base)-2) : 
+    if base[i:i+len(fragment)] == fragment : 
+        base1 = base[0:i+1] print(base1) check += 0 break else :#모든 효소 절편이 절단되도록 설정 
+        print(base) cnt += 1 break if check == 0 : 
+    break base_saver.append(base1) cnt +=1 base = base[len(base1):len(base)] 
+    if check != 0 : 
+        print('RFLP의 갯수는' , cnt , '입니다') #효소 절편 개수 제시 
+    else : 
+        print('만들어진 절편은 존재하지 않습니다.') enzyme(base,fragment)
 
-class Base : def init(self, k=[]) : self.bases = k def polymerase(self) : a = self.bases[::-1] b = [] for i in range(len(a)) : if a[i] == 'A' : b.append('T') elif a[i] == 'G' : b.append('C') elif a[i] == 'C' : b.append('G') elif a[i] == 'T' : b.append('A') for i in range(len(b)) : print(b[i], end = '')
+class Base : 
+def init(self, k=[]) : 
+self.bases = k def polymerase(self) : 
+a = self.bases[::-1] 
+b = [] for i in range(len(a)) : 
+if a[i] == 'A' : 
+b.append('T') 
+elif a[i] == 'G' : 
+b.append('C') elif a[i] == 'C' : 
+b.append('G') elif a[i] == 'T' : 
+b.append('A') for i in range(len(b)) : 
+print(b[i], end = '')
 
-def lyase(self) : return self.bases[0:-1] def size(self) : return len(self.bases) def restrict(self) : fragment = input('5-3순서대로 입력해주세요') enzyme(self.bases,fragment) def Dna_checker(self) : for i in range(len(self.bases)): if self.bases[i] == 'A': continue elif self.bases[i] == 'G': continue 
-elif self.bases[i] == 'C': continue elif self.bases[i] == 'T': continue 
-else: print('다음의 DNA는 존재하지 않습니다.')#해당 염기 이외의 문자는 인식하지 않음 return False
+def lyase(self) : 
+return self.bases[0:-1] 
+def size(self) : 
+return len(self.bases) 
+def restrict(self) : 
+fragment = input('5-3순서대로 입력해주세요') enzyme(self.bases,fragment) 
+def Dna_checker(self) : 
+for i in range(len(self.bases)): 
+if self.bases[i] == 'A': 
+continue 
+elif self.bases[i] == 'G': 
+continue 
+elif: 
+self.bases[i] == 'C': continue elif self.bases[i] == 'T': continue 
+else: 
+print('다음의 DNA는 존재하지 않습니다.')#해당 염기 이외의 문자는 인식하지 않음 
+return False
+
 5)내가 기여한 내용에 대한 설명
 중요한 코드에 대한 주석 추가 및 코드에서 빠진 부분 보충
 6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
 
-[프로젝트 2 : 실험실 기기 대여 프로그램의 파일 저장 기능 추가]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
+[프로젝트 2 : classcard형식의 지구과학 암기 학습 게임]
+1)연구소 이름 : gold챠오니 도깨비 연구소
+2)연구소가 해결하려는 문제 : "통합과학을 배우면서 암기과목에 어려움을 느끼고 있는 평범한 1학년 고등학생"
+3)연구소의 깃헙 링크 : https://github.com/keumchaewon/keumjeong/blob/greatsong/project
 4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
-5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+import matplotlib.pyplot as plt
+from matplotlib.image import imread #그림 파일 불러오기
 
-[프로젝트 3 : 길 찾기 문제 해결 프로그램의 코드 오류 수정]
-1)연구소 이름 : (공유 파일에서 복붙하세요)
-2)연구소가 해결하려는 문제 : (공유 파일에서 복붙하세요)
-3)연구소의 깃헙 링크 : (공유 파일에서 복붙하세요)
-4)내가 기여한 내용
-(코드, 주석, 문서화 등 내가 기여한 내용을 복붙해주세요)
+pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+       '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+       '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG'] #pic 리스트에 저장된 사진 불러오기
+       
+    while pic != [] : #리스트가 비어있지 않은 경우 실행
+            a = random.randint(0, len(pic)-1) #랜덤으로 사진 선택
+            play = pic.pop(a)
+            img = imread(play)
+            plt.imshow(img)       
+            
+ elif cho == '1' : #첫번째 게임 실행 코드
+                if name == play.split('_')[0] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore -= 1
+                    pic.append(play)
+
+            elif cho == '2' :
+            elif cho == '2' : #두번재 게임 실행 코드
+                if name == play.split('_')[1] :
+                    print("정답입니다. +1")
+                    score += 1
+            game = True
+            pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+           '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
+           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG'] #게임을 새로 시작            
 5)내가 기여한 내용에 대한 설명
-(자신이 어떤 기여를 한 것인지 설명해주세요)
-6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+코드 설명을 위한 주석 추가
+6)내가 기여한 내용의 반영 여부 : x
+
+[프로젝트 3 : 태양계 구현]
+1)연구소 이름 : 고기만두연구소
+2)연구소가 해결하려는 문제 : 처음으로 태양계를 배운 초등학교 2학년의 고기만두양의 태양계의 모습에 대한 궁금증 해결
+3)연구소의 깃헙 링크 : https://github.com/bborish/BBORISH
+4)내가 기여한 내용
+from visual import
+from visual.graph import #그래프 설정
+
+#태양계 행성들의 지름, 위치, 색, 공전 속도 및 궤도 설정
+mercury = sphere (pos = vec(200,0,0), radius = 50, texture = textures.wood, color = color.red)
+mercury.trail = curve(color = mercury.color)
+mercury.velocity = vector(0,0,295)
+
+G = -6.7*10**-4 #중력 상수 설정
+
+#행성들의 실제 질량
+m_sun = 2*10**10
+m_mercury = 3.29*10**3
+m_venus = 4.87*10**4
+m_earth = 6.0*10**4
+m_moon = 7.35*10**2
+m_mars = 6.39*10**3
+m_jupiter = 1.90*10**7
+m_saturn = 5.68*10**6
+m_uranus = 8.68*10**5
+m_neptune = 1.02*10**6
+m_pluto = 1.31*10**2
+m_spaceship =  7.0*10**5
+
+#행성들의 실제 공전속도(지구 기준 상대적)
+mercury_RealRatio = 1.600 
+venus_RealRatio = 1.177
+earth_RealRatio = 1.000
+mars_RealRatio = 0.805
+jupiter_RealRatio = 0.437
+saturn_RealRatio = 0.324
+uranus_RealRatio = 0.228
+neptune_RealRatio = 0.182
+pluto_RealRatio = 0.158
+
+t = 0 #그래프에서의 초기속도
+deltat = .01
+time_interval = 0.05
+time_interval_int = int(time_interval/deltat)
+
+graphpos = gdisplay (x=600, y=0, xtitle = "Time", ytitle="Position", width = 600, height=400, title="Position vs.Time of Earth")
+earthposx = gcurve(gdisplay=graphpos, color = color.blue) #그래프 초기 설정
+
+graphv = gdisplay(x=600, y=500, xtitle = "Time", ytitle="Velocity", width = 600, height = 400, foreground = color.black, background = color.white, title= "Velocity vs. Time of Earth")
+earthvelocity = gcurve(gdisplay = graphv, color = color.blue)
+
+mercury.trail.append(pos=mercury.pos)#각 행성의 위치를 벡터로 설정하여 각 행성의 좌표 비교
+    distanceMercury = mag(mercury.pos)
+    UnitVectorMercury = (mercury.pos - sun.pos)/distanceMercury
+    
+ FgravMercury = (G*m_sun*m_mercury*UnitVectorMercury)/distanceMercury**2#태양-행성간 만유인력
+    mercury.velocity = mercury.velocity +(FgravMercury/m_mercury)*deltat
+    mercury.pos = mercury.pos + mercury.velocity*deltat
+    mercury.rotate(angle = radians(10), axis = vec(0,1,0))
+    if distanceMercury <= sun.radius : break
+    mercury_Ratio = mag(mercury.velocity)/mag(earth.velocity)    
+
+5)내가 기여한 내용에 대한 설명
+코드 설명을 위한 주석 추가
+6)내가 기여한 내용의 반영 여부 : x
