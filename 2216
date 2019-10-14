@@ -65,36 +65,103 @@ return False
 4)내가 기여한 내용
 import matplotlib.pyplot as plt
 from matplotlib.image import imread #그림 파일 불러오기
+import random
+import pickle
 
 pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
        '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
        '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG'] #pic 리스트에 저장된 사진 불러오기
-       
-    while pic != [] : #리스트가 비어있지 않은 경우 실행
+
+player = {}
+
+file=open("savedata","wb")
+try:
+    file1=open("savedata","rb")
+    pickle.load(file1)
+    file1.close()
+except:
+    pickle.dump({'init':1}, file)
+file.close()
+
+file=open("savedata","rb")
+player = pickle.load(file)
+
+game = True
+
+while game == True :
+    
+    pep = input("player 닉네임을 입력해주세요.")
+    
+    if pep not in player :
+        player[pep] = 0
+    
+    score = 0
+    nscore = player[pep]
+    
+    cho = input("이름 학습을 플레이하려면 1, 시대 학습을 플레이하려면 2를 입력해주세요.")
+    
+    if cho in "1, 2" :
+
+        while pic != [] : #리스트가 비어있지 않은 경우 실행
             a = random.randint(0, len(pic)-1) #랜덤으로 사진 선택
             play = pic.pop(a)
             img = imread(play)
-            plt.imshow(img)       
-            
- elif cho == '1' : #첫번째 게임 실행 코드
+            plt.imshow(img)
+            plt.show()
+
+            name = input("답을 입력해주세요. (학습을 중단하시려면 '그만'을 입력하세요)")
+
+            if name == "그만" :
+                print("학습을 중단하셨습니다. 현재까지 누적 점수는", nscore, "점 입니다.")
+                player[pep] = nscore
+                break
+
+            elif cho == '1' : #첫번째 게임 실행 코드
                 if name == play.split('_')[0] :
                     print("정답입니다. +1")
                     score += 1
+                    nscore += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[0], ")")
+                    score -= 1
                     nscore -= 1
                     pic.append(play)
 
-            elif cho == '2' :
             elif cho == '2' : #두번재 게임 실행 코드
                 if name == play.split('_')[1] :
                     print("정답입니다. +1")
                     score += 1
+                    nscore += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[1], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)        
+
+        print("학습 완료. 당신의 점수는", score, "점 입니다.(누적 점수 :", nscore, ")")
+        player[pep] = nscore
+        
+        new = input("새 게임을 시작하시겠습니까? 예 / 아니오")
+        
+        if new == '예' :
             game = True
             pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
            '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
-           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
-           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG'] #게임을 새로 시작            
+           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG'] #게임을 새로 시작
+        else : 
+            game = False                
+    else :
+        game = False
+        print("입력이 잘못되었습니다.")
+
+file=open("savedata","wb")
+pickle.dump(player, file)
+file.close()
+
+print("학습이 종료됩니다.")
+          
 5)내가 기여한 내용에 대한 설명
-코드 설명을 위한 주석 추가
+실행한 학생과, 실행결과(점수)를 파일로 저장하는 코드를 작성하였고, 코드 설명을 위한 주석 추가
 6)내가 기여한 내용의 반영 여부 : x
 
 [프로젝트 3 : 태양계 구현]
