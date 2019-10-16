@@ -1,0 +1,378 @@
+전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+
+0. 학번 : 2316
+
+[프로젝트 1 : 혈액형 가계도 분석]
+1)연구소 이름 : 돌마을 연구소
+2)연구소가 해결하려는 문제 : 가계도 분석에 어려움을 겪고 있는 보현이의 중학교 3학년 동생 짱돌이
+3)연구소의 깃헙 링크 : https://github.com/eunjae324/2303-2305
+4-1)수정하거나 추가하고 싶은 내용
+받고자하는 혈액형 외에 다른 내용을 입력 받았을 때 오류가 뜨지 않고 안내 멘트가 나오게 하기
+4-2)내가 기여한 내용
+d = list(input('아버지의 혈액형을 입력하세요 Ex) A :  '))
+if d[0] == 'AB' :
+    d = ['A','B']
+elif d[0] == 'O' :
+    d = ['O','O','O','O']
+elif d[0] == 'A' :
+    dd = input('친할아버지의 혈액형을 입력하세요 :')
+    dm = input('친할머니의 혈액형을 입력하세요 :')
+    if dd == 'B' or dd == 'O' or dm == 'B' or dm == 'O' :
+        d = ['A','O','A','O']
+    elif dd == 'AB' and dm == 'AB' :
+        d = ['A','A','A','A']
+    else:
+        d = ['A','A','A','O'] # 아버지의 유전자형 결정
+elif d[0] == 'B' :
+    dd = input('친할아버지의 혈액형을 입력하세요 :')
+    dm = input('친할머니의 혈액형을 입력하세요 :')
+    if dd == 'A' or dd == 'O' or dm == 'A' or dm == 'O' :
+        d = ['B','O','B','O']
+    elif dd == 'AB' and dm == 'AB' :
+        d = ['B','B','B','B']
+    else :
+        d = ['B','B','B','O']
+else :
+    d = list(input('아버지의 혈액형을 다시 입력하세요 Ex) A :  ')) # O,A,B,AB가 아닐 시 재입력 받음
+m = list(input('어머니의 혈액형을 입력하세요 Ex) A :  '))
+if m[0] == 'AB' :
+    m = ['A','B']
+elif m[0] == 'O' :
+    d = ['O','O','O','O']
+elif m[0] == 'A' :
+    md = input('외할아버지의 혈액형을 입력하세요 :')
+    mm = input('외할머니의 혈액형을 입력하세요 :')
+    if md == 'B' or md == 'O' or mm == 'B' or mm == 'O' :
+        d = ['A','O','A','O']
+    elif md == 'AB' and mm == 'AB' :
+        d = ['A','A','A','A']
+    else:
+        d = ['A','A','A','O']
+elif m[0] == 'B' :
+    md = input('외할아버지의 혈액형을 입력하세요 :')
+    mm = input('외할머니의 혈액형을 입력하세요 :')
+    if md == 'A' or md == 'O' or mm == 'A' or mm == 'O' :
+        d = ['B','O','B','O']
+    elif md == 'AB' and mm == 'AB' :
+        d = ['B','B','B','B']
+    else :
+        d = ['B','B','B','O'] # 어머니의 유전자형 결정
+else :
+    m = list(input('어머니의 혈액형을 다시 입력하세요 Ex) A :  ')) # O,A,B,AB가 아닐 시 재입력 받음
+    
+son = [d[0]+m[0], d[0]+m[1], d[0]+m[2], d[0]+m[3], d[1]+m[0], d[1]+m[1], 
+       d[1]+m[2], d[1]+m[3], d[2]+m[0], d[2]+m[1], d[2]+m[2], d[2]+m[3], 
+       d[3]+m[0], d[3]+m[1], d[3]+m[2], d[3]+m[3]] #어머니, 아버지 유전자형 토대로 자식 유전자 결정
+
+
+for i in range(0,16) :
+    if son[i] == 'BA' :
+        son[i] = 'AB'
+    elif son[i] == 'OA' :
+        son[i] = 'AO'
+    elif son[i] == 'OB' :
+        son[i] = 'BO'
+        
+cAB = 6.25 * (son.count('AB'))
+cAO = 6.25 * (son.count('AO'))
+cAA = 6.25 * (son.count('AA'))
+cBB = 6.25 * (son.count('BB'))
+cBO = 6.25 * (son.count('BO'))
+cOO = 6.25 * (son.count('OO'))
+pro = {"AO": cAO, "AA": cAA, "AB": cAB, "BO": cBO, "BB": cBB, "OO" : cOO}
+print(pro)
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(3,2), dpi=300)
+
+size = [cAO, cAA, cAB, cBB, cBO, cOO]  
+labels = 'AO', 'AA', 'AB', 'BB','BO','OO'
+colors = ['hotpink', 'red', 'blueviolet', 'blue','lightskyblue','lightgray']
+
+plt.title('blood type')
+plt.pie(size, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+
+plt.axis('equal')
+plt.show() # 각 혈액형별 확률을 그래프로 표시
+5)내가 기여한 내용에 대한 설명
+코드가 어떤 의미를 담고 있는지 코드에 주석 처리, 리스트에 추가를 하는 대신 리스트를 대체해 속도 향상
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+[프로젝트 2 : 태양계 구현]
+1)연구소 이름 : 고기만두연구소
+2)연구소가 해결하려는 문제 : 처음으로 태양계를 배운 초등학교 2학년의 고기만두양의 태양계의 모습에 대한 궁금증 해결
+3)연구소의 깃헙 링크 : https://github.com/bborish/BBORISH
+4-1)수정하거나 추가하고 싶은 내용
+코드가 반복적 복잡, 설명 및 간결화
+4-2)내가 기여한 내용
+GlowScript 2.7 VPython
+from visual import *
+from visual.graph import *
+
+scene = display (title = 'Planets Orbiting the Sun', width = 800, height = 800, range = vec(25000, 25000, 25000), center = vec(1000, 0, 0))
+scene.autoscale = True 
+#그래프 설정
+sun = sphere (pos=vec(0,0,0), radius = 100, texture = textures.stucco, color = color.yellow, mass = 10)
+
+mercury = sphere (pos = vec(200,0,0), radius = 50, texture = textures.wood, color = color.red)
+mercury.trail = curve(color = mercury.color)
+mercury.velocity = vector(0,0,295)
+
+venus = sphere (pos = vec(373.664,0,0), radius = 50, texture = textures.wood, color = color.orange)
+venus.trail = curve(color = venus.color)
+venus.velocity = vector(0,0,225)
+
+earth = sphere (pos = vec(516.664,0,0), radius = 50, texture = textures.earth, mass=2)
+earth.trail = curve(color = color.yellow)
+earth.velocity = vector(0,0,195)
+
+moon = sphere (pos=vec(516.664+5.0016, 0,0), radius = 10, color=color.white)
+moon.trail = curve (color = moon.color)
+moon.velocitylocal = vector(0,0,195+1)
+
+mars = sphere(pos= vec(787.222,0,0), radius = 50, texture= textures.wood, color = color.green)
+mars.trail = curve(color=mars.color)
+mars.velocity = vector(0,0,155)
+
+jupiter = sphere (pos = vec(2688.068,0,0), radius = 75, texture = textures.gravel, color = color.cyan)
+jupiter.trail = curve(color = jupiter.color)
+jupiter.velocity = vector(0,0,70)
+
+saturn = sphere (pos = vec(4920.048,0,0), radius = 75, texture = textures.gravel, color = color.blue)
+saturn.trail = curve(color = saturn.color)
+saturn.velocity = vector(0,0,50)
+
+uranus = sphere (pos = vec(9924.19,0,0), radius = 75, texture = textures.wood, color = color.magenta)
+uranus.trail = curve(color = uranus.color)
+uranus.velocity = vector(0,0,30)
+
+neptune = sphere (pos = vec(15544.811,0,0), radius = 75, texture = textures.wood, color = color.red)
+neptune.trail = curve(color =neptune.color)
+neptune.velocity = vector(0,0,23)
+
+pluto = sphere (pos = vec(20534.968,0,0), radius = 75, texture = textures.wood, color = color.orange)
+pluto.trail = curve(color = pluto.color)
+pluto.velocity = vector(0,0,.01)
+# 각 천체들의 속도, 크기, 색, 궤도등을 설정
+G = -6.7*10**-4
+# 만유인력 상수 설정
+m_sun = 2*10**10
+m_mercury = 3.29*10**3
+m_venus = 4.87*10**4
+m_earth = 6.0*10**4
+m_moon = 7.35*10**2
+m_mars = 6.39*10**3
+m_jupiter = 1.90*10**7
+m_saturn = 5.68*10**6
+m_uranus = 8.68*10**5
+m_neptune = 1.02*10**6
+m_pluto = 1.31*10**2
+m_spaceship =  7.0*10**5
+#천체들의 실제 질량 설정
+mercury_RealRatio = 1.600
+venus_RealRatio = 1.177
+earth_RealRatio = 1.000
+mars_RealRatio = 0.805
+jupiter_RealRatio = 0.437
+saturn_RealRatio = 0.324
+uranus_RealRatio = 0.228
+neptune_RealRatio = 0.182
+pluto_RealRatio = 0.158
+#천체들의 실제 공전 속도 설정
+t = 0
+deltat = .01
+time_interval = 0.05
+time_interval_int = int(time_interval/deltat)
+#시간 t=0에서 부터 0.01초 간격으로 결과 보임
+graphpos = gdisplay (x=600, y=0, xtitle = "Time", ytitle="Position", width = 600, height=400, title="Position vs.Time of Earth")
+earthposx = gcurve(gdisplay=graphpos, color = color.blue)
+
+graphv = gdisplay(x=600, y=500, xtitle = "Time", ytitle="Velocity", width = 600, height = 400, foreground = color.black, background = color.white, title= "Velocity vs. Time of Earth")
+earthvelocity = gcurve(gdisplay = graphv, color = color.blue) # 그래프 축, 크기등 설정
+tlist = []
+vlist = []
+graphGPE = gdisplay (x=800, y=500, xtitle = "Position", ytitle ="Gravitational Potential Energy", width = 600, height = 400, title = "GPE vs. Position of Earth to Sun")
+earthGPE = gcurve(gdisplay = graphGPE, color = color.green)
+
+graphSpeedRatios = gdisplay (x=600, y=500, xtitle = "Time", ytitle="Speed Ratio", width = 600, height = 400, title = "Planet Speed Ratios to Earth vs. Time") # 지구의 시간에 따른 속도 그래프로 표현
+mercuryRatio = gcurve(gdisplay = graphSpeedRatios, color = color.red)
+mercuryRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.red)
+
+venusRatio = gcurve(gdisplay = graphSpeedRatios, color = color.orange)
+venusRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.orange)
+
+earthRatio = gcurve(gdisplay = graphSpeedRatios, color = color.yellow)
+earthRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.yellow)
+
+marsRatio = gcurve(gdisplay = graphSpeedRatios, color = color.green)
+marsRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.green)
+ 
+jupiterRatio = gcurve(gdisplay = graphSpeedRatios, color = color.cyan)
+jupiterRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.cyan)
+
+saturnRatio = gcurve(gdisplay = graphSpeedRatios, color = color.blue)
+saturnRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.blue)
+
+uranusRatio = gcurve(gdisplay = graphSpeedRatios, color = color.magenta)
+uranusRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.magenta)
+
+neptuneRatio = gcurve(gdisplay = graphSpeedRatios, color = color.red)
+neptuneRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.red)
+
+plutoRatio = gcurve(gdisplay = graphSpeedRatios, color = color.orange)
+plutoRealRatio = gdots(gdisplay = graphSpeedRatios, color = color.orange)
+# 태양에 대한 지구의 위치에 따른 지구의 중력 퍼텐셜 에너지 그래프와 시간에 따른 지구에 대한 행성들의 상대속도 그래프로 표현
+
+while True : # 각행성들의 위치를 앞에서 설정한 내용을 바탕으로 벡터로 설정 질량 값을 포함한 만유인력의 크기 설정
+    rate(10000)
+    
+    mercury.trail.append(pos=mercury.pos)
+    distanceMercury = mag(mercury.pos)
+    UnitVectorMercury = (mercury.pos - sun.pos)/distanceMercury
+    FgravMercury = (G*m_sun*m_mercury*UnitVectorMercury)/distanceMercury**2
+    mercury.velocity = mercury.velocity +(FgravMercury/m_mercury)*deltat
+    mercury.pos = mercury.pos + mercury.velocity*deltat
+    mercury.rotate(angle = radians(10), axis = vec(0,1,0))
+    if distanceMercury <= sun.radius : break
+    mercury_Ratio = mag(mercury.velocity)/mag(earth.velocity)
+     
+    venus.trail.append(pos=venus.pos)
+    distanceVenus = mag(venus.pos)
+    UnitVectorVenus = (venus.pos - sun.pos)/distanceVenus
+    FgravVenus = (G*m_sun*m_venus*UnitVectorVenus)/distanceVenus**2
+    venus.velocity = venus.velocity + (FgravVenus/m_venus)*deltat
+    venus.pos = venus.pos + venus.velocity*deltat
+    venus.rotate(angle = radians(20), axis = vec(0,1,0))
+    if distanceVenus <= sun.radius : break
+    venus_Ratio = mag(venus.velocity)/mag(earth.velocity)
+    
+    earth.trail.append(pos=earth.pos)
+    distanceEarth = mag(earth.pos)
+    UnitVectorEarth = (earth.pos - sun.pos)/distanceEarth
+    FgravEarth = (G*m_sun*m_earth*UnitVectorEarth)/distanceEarth**2
+    earth.velocity = earth.velocity + (FgravEarth/m_earth)*deltat
+    earth.pos = earth.pos + earth.velocity*deltat
+    earth.rotate(angle = radians(30), axis = vec(0,1,0))
+    earth_GPE = (G*m_sun*m_earth)/distanceEarth
+    if distanceEarth <= sun.radius : break
+    earth_Ratio = mag(earth.velocity)/mag(earth.velocity)
+
+    mars.trail.append(pos=mars.pos)
+    distanceMars = mag(mars.pos)
+    UnitVectorMars = (mars.pos - sun.pos)/distanceMars
+    FgravMars = (G*m_sun*m_mars*UnitVectorMars)/distanceMars**2
+    mars.velocity = mars.velocity +(FgravMars/m_mars)*deltat
+    mars.pos = mars.pos + mars.velocity*deltat
+    mars.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distanceMars <= sun.radius : break
+    mars_Ratio = mag(mars.velocity)/mag(earth.velocity)
+    
+    jupiter.trail.append(pos=jupiter.pos)
+    distanceJupiter = mag(jupiter.pos)
+    UnitVectorJupiter = (jupiter.pos - sun.pos)/distanceJupiter
+    FgravJupiter = (G*m_sun*m_jupiter*UnitVectorJupiter)/distanceJupiter**2
+    jupiter.velocity = jupiter.velocity +(FgravJupiter/m_jupiter)*deltat
+    jupiter.pos = jupiter.pos + jupiter.velocity*deltat
+    jupiter.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distanceJupiter <= sun.radius : break
+    jupiter_Ratio = mag(jupiter.velocity)/mag(earth.velocity)
+    
+    saturn.trail.append(pos=saturn.pos)
+    distanceSaturn = mag(saturn.pos)
+    UnitVectorSaturn = (saturn.pos - sun.pos)/distanceSaturn
+    FgravSaturn = (G*m_sun*m_saturn*UnitVectorSaturn)/distanceSaturn**2
+    saturn.velocity = saturn.velocity +(FgravSaturn/m_saturn)*deltat
+    saturn.pos = saturn.pos + saturn.velocity*deltat
+    saturn.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distanceSaturn <= sun.radius : break
+    saturn_Ratio = mag(saturn.velocity)/mag(earth.velocity)
+    
+    uranus.trail.append(pos=uranus.pos)
+    distanceUranus = mag(uranus.pos)
+    UnitVectorUranus = (uranus.pos - sun.pos)/distanceUranus
+    FgravUranus = (G*m_sun*m_uranus*UnitVectorUranus)/distanceUranus**2
+    uranus.velocity = uranus.velocity +(FgravUranus/m_uranus)*deltat
+    uranus.pos = uranus.pos + uranus.velocity*deltat
+    uranus.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distanceUranus <= sun.radius : break
+    uranus_Ratio = mag(uranus.velocity)/mag(earth.velocity)
+    
+    neptune.trail.append(pos=neptune.pos)
+    distanceNeptune = mag(neptune.pos)
+    UnitVectorNeptune = (neptune.pos - sun.pos)/distanceNeptune
+    FgravNeptune = (G*m_sun*m_neptune*UnitVectorNeptune)/distanceNeptune**2
+    neptune.velocity = neptune.velocity +(FgravNeptune/m_neptune)*deltat
+    neptune.pos = neptune.pos + neptune.velocity*deltat
+    neptune.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distanceNeptune <= sun.radius : break
+    neptune_Ratio = mag(neptune.velocity)/mag(earth.velocity) 
+    
+    pluto.trail.append(pos=pluto.pos)
+    distancePluto = mag(pluto.pos)
+    UnitVectorPluto  = (pluto.pos - sun.pos)/distancePluto 
+    FgravPluto  = (G*m_sun*m_pluto*UnitVectorPluto )/distancePluto **2
+    pluto.velocity = pluto.velocity +(FgravPluto /m_pluto)*deltat
+    pluto.pos = pluto.pos + pluto.velocity*deltat
+    pluto.rotate(angle = radians(15), axis = vec(0,1,0))
+    if distancePluto  <= sun.radius : break
+    pluto_Ratio = mag(pluto.velocity)/mag(earth.velocity) 
+    # 각 천체들의 움직인 경로를 보이게 설정
+    earthposx.plot(pos=(t,earth.pos.x))
+    earthvelocity.plot(pos=(t,earth.velocity.x))
+    earthGPE.plot(pos=(earth.pos.x,earth_GPE))
+    # 지구의 움직임을 그래프로 
+    
+5)내가 기여한 내용에 대한 설명
+각 코드가 어떤 의미를 갖는지 주석 처리
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
+
+[프로젝트 3 : 미분 암기 테이블(미분을 쉽게 공부하는 게임)]
+1)연구소 이름 : 킹민짜이 연구소
+2)연구소가 해결하려는 문제 : 미분공부에 어려움을 겪는 친구(옥슬이)
+3)연구소의 깃헙 링크 : https://github.com/maga0328/maganetic/blob/master/%ED%82%B9%EB%AF%BC%EC%A7%9C%EC%9D%B4%20%EC%97%B0%EA%B5%AC%EA%B2%B0%EA%B3%BC
+4-1)수정하거나 추가하고 싶은 내용
+오타 수정 및 여러가지 기능, 편의성 추가
+4-2)내가 기여한 내용
+from sympy import Derivative
+from sympy import symbols
+x = symbols('x')
+def dercof(sth):
+    L=[]
+    for i in range(0, int(len(sth))):
+        while len(sth)>i :
+             L.append(str(Derivative(sth.pop(),x).doit()))
+        L.reverse()
+        return L
+def rd():
+    sth=input().split()
+    fin=input().split()
+    x = dercof(sth)
+    if x == fin:
+        return 'pass'        
+    if x != fin:
+        return 'fail'
+def game() :
+    i = 1
+    while i<=4:
+        print('round', i)
+        a = rd()
+        if a == 'pass':
+            i=i+1
+        if a == 'fail':
+            print('wrong,'+'your score is ' + str(i-1))
+            coin = input('Do you want to try again?'+'The answer should be yes or no')
+            if coin == 'yes' :
+                game()
+            if coin == 'no' :
+                break
+            else :
+                print('taking that as no')
+                break
+        if i==5 and a=='pass':
+            print('success')
+start= input('type start to start')
+if start == 'start' :
+    game()
+5)내가 기여한 내용에 대한 설명
+코드 오류 수정, 게임에 다시하기 기능 추가, 비교하는 과정에 함수 표현 보기쉽게 함, 점수 표시됨,
+6)내가 기여한 내용의 반영 여부 : (O,X 중 선택해주세요)
