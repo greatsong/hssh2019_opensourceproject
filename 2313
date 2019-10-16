@@ -1,0 +1,129 @@
+전체 프로젝트 공유 : https://bit.ly/2ZaI9sJ
+
+0. 학번 : 2313
+
+[프로젝트 1 : 중력가속도 알고리즘의 효율성 개선]
+1)연구소 이름 : 권순의 연구소
+2)연구소가 해결하려는 문제 : 등가속도 운동 방정식
+3)연구소의 깃헙 링크 : https://github.com/yttts4354/-/blob/master/정보%20프로젝트
+4-1)수정하거나 추가하고 싶은 내용
+등속도 운동 방정식 중 쓸데없는 부분을 수정하였다.더욱 코드 길이를 줄였다.
+4-2)내가 기여한 내용
+from matplotlib import pyplot as plt 
+from matplotlib import font_manager, rc 
+
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name() 
+rc('font', family=font_name)
+
+#초기속력, 가속도(최종속력), 진행시간 입력
+#공식에 대입해서 평균속력, 이동거리, 최종속력(가속도)
+#그래프도 출력
+
+import numpy as np
+#입력, 계산부
+vi = int(input("초기속력을 입력하세요:"))
+a = int(input("가속도를 입력하세요:"))
+vf = int(input("최종속력을 입력하세요:"))
+t = int(input("진행시간을 입력하세요:"))
+
+if a != 0 and vf!=0 :
+    print('가속도와 최종속력 둘중 하나는 0이어야 합니다.')
+    
+    
+if a == 0 :
+   d=vi*t
+    #그래프부
+    plt.plot([0,t],[vi,vf]) 
+    plt.xlabel('time(s)') 
+    plt.ylabel('velocity(m/s)')
+    plt.title('등가속도 운동 시간-속도 그래프') 
+    plt.show()
+    
+    x = np.arange(0, t, 0.01)
+    y = vi
+    plt.plot(x,y)
+    plt.xlabel('time(s)')
+    plt.ylabel('distance(m)')
+    plt.title('시간-거리 그래프')
+    plt.show()
+
+if vf == 0 :
+    vf = vi + a*t
+    d = (vf**2 - vi**2) / (2*a)  
+    print("최종속력은", vf, "m/s 입니다.")  
+    print("이동거리는", abs(d), "m 입니다.")
+    #그래프부
+    plt.plot([0,t],[vi,vf]) 
+    plt.xlabel('time(s)') 
+    plt.ylabel('velocity(m/s)')
+    plt.title('등가속도 운동 그래프') 
+    plt.show()
+    
+    x = np.arange(0, t, 0.01)
+    y = vi*x + 0.5*a*x**2
+    plt.plot(x,y)
+    plt.xlabel('time(s)')
+    plt.ylabel('distance(m)')
+    plt.title('시간-거리 그래프')
+    plt.show()
+
+5)내가 기여한 내용에 대한 설명
+a=0인 등속도 운동에서도 등가속도 운동과 같은 공식을 써 불필요한 코드를 사용하였는데, 그 부분을 수정하였다.
+6)내가 기여한 내용의 반영 여부 : X
+
+[프로젝트 2 : 축구선수 산체스의 자산관리를 도와주자!]
+1)연구소 이름 : 77ㅓ억 연구소
+2)연구소가 해결하려는 문제 : 현재 자산관리에 어려움을 겪고 있는 모든사람(우리는 특별히 산체스를 대표로 선정하였다)
+3)연구소의 깃헙 링크 : https://github.com/chanbum0613/-.git
+4-1)수정하거나 추가하고 싶은 내용
+담배를 피는 사람들에게 담배로 인해 손실된 돈을 알려주는 코드를 만들고 싶었다.
+4-2)내가 기여한 내용
+def Dampichung(n,m) :
+    return 4500*365*n*m
+n=int(input('당신은 몇년이나 담배를 폈나요?'))
+m=int(input('하루에 몇 갑 정도 담배를 피나요?')
+print("당신이 담배에 꼬라박은 돈은", Dampichung(n,m), "원 입니다.")
+5)내가 기여한 내용에 대한 설명
+담배 핀 햇수와 하루에 피는 갑 수를 받은 뒤 계산해주는 코드를 짰다.
+6)내가 기여한 내용의 반영 여부 : X
+
+[프로젝트 3 : 미분 암기 테이블(미분을 쉽게 공부하는 게임)]
+1)연구소 이름 : 킹민짜이 연구소
+2)연구소가 해결하려는 문제 : 미분 암기 테이블(미분을 쉽게 공부하는 게임)
+3)연구소의 깃헙 링크 : https://github.com/maga0328/maganetic/blob/master/%ED%82%B9%EB%AF%BC%EC%A7%9C%EC%9D%B4%20%EC%97%B0%EA%B5%AC%EA%B2%B0%EA%B3%BC
+4-1)수정하거나 추가하고 싶은 내용
+주석이 달려있지 않아 첫눈에 보고 이해하기 어려울 수 있는 친구들이 있을 것 같다.
+4-2)내가 기여한 내용
+from sympy import Derivative
+from sympy import symbol
+x = symbols('x')
+def dercof(sth):
+x = symbols('x') #심볼 x 설정
+def dercof(sth): #미분함수 설정
+    L=[]
+    for i in range(0, int(len(sth))):
+        while len(sth)>i :
+             L.append(str(Derivative(sth.pop(),x).doit()))
+        return L
+def rd():
+def rd(): #채점해주는 함수 설정
+    sth=input().split()
+    fin=input().split()
+    x = dercof(sth)
+def rd():
+    if x != fin:
+        return 'fail'
+i = 1
+while i<=4:
+while i<=4: #4라운드까지 설정
+    print('round', i)
+    a = rd()
+    if a== 'pass':
+        i=i+1
+        i=i+1 #정답맞추면 하나씩추가
+    if a== 'fail':
+        print('try again')
+        break
+5)내가 기여한 내용에 대한 설명
+함수에 대한 설명 주석을 추가하였고, 아래쪽 퀴즈를 만드는 부분에 대해서도 주석을 추가하였다.
+6)내가 기여한 내용의 반영 여부 : 
